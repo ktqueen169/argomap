@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>My Fantasy Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #map { height: 100%; width: 100%; }
+
+  /* Popup styling */
+  .leaflet-popup-content { width: 220px !important; margin: 0 !important; font-family: Georgia, serif; }
+  .popup-img { width: 100%; height: 90px; object-fit: cover; display: block; }
+  .popup-body { padding: 10px 12px 12px; }
+  .popup-title { font-size: 14px; font-weight: bold; margin-bottom: 4px; }
+  .popup-cat { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .popup-desc { font-size: 12px; line-height: 1.6; margin-bottom: 8px; }
+  .popup-link { font-size: 11px; color: #5566aa; text-decoration: none; }
+  .popup-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+// =============================================================================
+// STEP 1 — Set your map image dimensions (in pixels)
+// Open your image file and check its width and height.
+// =============================================================================
+const MAP_WIDTH  = 2000;  // px — replace with your image's actual width
+const MAP_HEIGHT = 2000;  // px — replace with your image's actual height
+
+
+// =============================================================================
+// STEP 2 — Categories
+// Add or remove categories to match your world.
+// e  = emoji shown on the pin
+// c  = pin background colour (any CSS colour)
+// =============================================================================
+const CATEGORIES = {
+  shop:      { label: 'Shop',      e: '🪙', c: '#c89018' },
+  residence: { label: 'Residence', e: '🏰', c: '#8a4e28' },
+  academy:   { label: 'Academy',   e: '📜', c: '#6848a0' },
+  tavern:    { label: 'Tavern',    e: '🍺', c: '#b04020' },
+  dungeon:   { label: 'Dungeon',   e: '⚔️', c: '#2a2a38' },
+};
+
+
+// =============================================================================
+// STEP 3 — Locations
+// pos: [y, x] in pixels from the TOP-LEFT of your image.
+//   y increases downward, x increases rightward.
+//   Tip: open your image in a browser, right-click → Inspect, then hover
+//   over points to read the pixel coordinates from the image element.
+// img: URL or relative path to a small image (shown at top of popup)
+// link: URL for the "View more" link in the popup
+// =============================================================================
+const LOCATIONS = [
+  {
+    id: 'example-shop',
+    cat: 'shop',                           // must match a key in CATEGORIES
+    pos: [300, 400],                       // [y, x] from top-left of image
+    name: 'The Golden Stall',
+    img: '',                               // image URL or path — leave blank to hide
+    desc: 'A bustling market famous for enchanted goods and rare components.',
+    link: 'https://your-wiki.com/golden-stall',
+  },
+  {
+    id: 'example-castle',
+    cat: 'residence',
+    pos: [200, 800],
+    name: 'Castle Ironhold',
+    img: '',
+    desc: 'The seat of House Ironhold, overlooking the valley for five centuries.',
+    link: 'https://your-wiki.com/ironhold',
+  },
+  // ── Add more locations here, copy the block above ──
+];
+
+
+// =============================================================================
+// STEP 4 — Regions (optional — delete this section if you don't need them)
+// coords: list of [y, x] pixel points tracing the region border (top-left origin)
+// color: fill and border colour for the polygon
+// lore: text shown when region is clicked
+// =============================================================================
+const REGIONS = [
+  {
+    id: 'north-kingdom',
+    name: 'The Northern Kingdom',
+    lore: 'A cold realm of ancient warriors and iron-grey skies.',
+    color: '#5577aa',
+    coords: [
+      [0, 0], [0, 1000], [600, 1000], [600, 0]
+      // Trace your actual region border here
+    ],
+  },
+  // ── Add more regions here ──
+];
+
+
+// =============================================================================
+// MAP SETUP — you shouldn't need to edit below this line
+// =============================================================================
+
+// Leaflet CRS.Simple uses [y, x] with y=0 at the BOTTOM.
+// Our pixel coords have y=0 at the TOP, so we flip with (MAP_HEIGHT - y).
+function px([y, x]) {
+  return [MAP_HEIGHT - y, x];
+}
+
+const map = L.map('map', {
+  crs: L.CRS.Simple,
+  minZoom: -2,
+  maxZoom: 2,
+  zoomSnap: 0.25,
+  attributionControl: false,
+});
+
+// Fit the map to the image bounds on load
+const bounds = [[0, 0], [MAP_HEIGHT, MAP_WIDTH]];
+map.fitBounds(bounds);
+
+// Load your map image — replace the path with your actual image file
+L.imageOverlay('test.png', bounds).addTo(map);
+
+
+// ── Draw regions ──────────────────────────────────────────────────────────────
+let activeRegion = null;
+const regionLayers = {};
+
+REGIONS.forEach(r => {
+  const leafletCoords = r.coords.map(px);
+  const poly = L.polygon(leafletCoords, {
+    color: r.color, weight: 2, opacity: 0.8,
+    fillColor: r.color, fillOpacity: 0.25,
+    dashArray: '6 4',
+  })
+  .bindTooltip(r.name, { sticky: true })
+  .on('click', e => { L.DomEvent.stopPropagation(e); toggleRegion(r.id); })
+  .addTo(map);
+
+  regionLayers[r.id] = { poly, data: r };
+});
+
+function toggleRegion(id) {
+  if (activeRegion === id) { clearRegion(); return; }
+  activeRegion = id;
+
+  Object.entries(regionLayers).forEach(([rid, { poly }]) => {
+    if (rid === id) poly.setStyle({ fillOpacity: 0.5, opacity: 1, weight: 3 });
+    else            poly.setStyle({ fillOpacity: 0.05, opacity: 0.25, weight: 1 });
+  });
+
+  const r = regionLayers[id].data;
+  alert(`${r.name}\n\n${r.lore}`);  // Replace this with your own sidebar/panel
+
+  applyFilters();
+}
+
+function clearRegion() {
+  activeRegion = null;
+  Object.values(regionLayers).forEach(({ poly }) =>
+    poly.setStyle({ fillOpacity: 0.25, opacity: 0.8, weight: 2 }));
+  applyFilters();
+}
+
+map.on('click', clearRegion);
+
+
+// ── Draw markers ──────────────────────────────────────────────────────────────
+const categoryGroups = {};
+Object.keys(CATEGORIES).forEach(c => { categoryGroups[c] = L.layerGroup().addTo(map); });
+
+const markerMap = {};
+
+function makeIcon(cat) {
+  const cfg = CATEGORIES[cat];
+  return L.divIcon({
+    className: '',
+    html: `<div style="
+      width:24px; height:28px; position:relative;
+      display:flex; align-items:center; justify-content:center;">
+      <div style="
+        width:22px; height:22px; border-radius:50% 50% 50% 0;
+        transform:rotate(-45deg); background:${cfg.c};
+        border:2px solid rgba(0,0,0,0.4);
+        box-shadow:2px 3px 6px rgba(0,0,0,0.4);
+        display:flex; align-items:center; justify-content:center;">
+        <span style="transform:rotate(45deg); font-size:10px;">${cfg.e}</span>
+      </div>
+    </div>`,
+    iconSize: [24, 28],
+    iconAnchor: [12, 27],
+    popupAnchor: [1, -26],
+  });
+}
+
+function makePopup(loc) {
+  const cfg = CATEGORIES[loc.cat];
+  const imgHtml = loc.img
+    ? `<img class="popup-img" src="${loc.img}" alt=""/>`
+    : '';
+  return `
+    ${imgHtml}
+    <div class="popup-body">
+      <div class="popup-title">${loc.name}</div>
+      <div class="popup-cat">${cfg.e} ${cfg.label}</div>
+      <div class="popup-desc">${loc.desc}</div>
+      ${loc.link ? `<a class="popup-link" href="${loc.link}" target="_blank">View more &rarr;</a>` : ''}
+    </div>`;
+}
+
+LOCATIONS.forEach(loc => {
+  const marker = L.marker(px(loc.pos), { icon: makeIcon(loc.cat) })
+    .bindPopup(makePopup(loc), { minWidth: 222, maxWidth: 222 });
+  categoryGroups[loc.cat].addLayer(marker);
+  markerMap[loc.id] = { marker, loc };
+});
+
+
+// ── Category filter (applied when a region is selected) ───────────────────────
+const activeCategories = new Set(Object.keys(CATEGORIES));
+
+function applyFilters() {
+  LOCATIONS.forEach(loc => {
+    const show = activeCategories.has(loc.cat)
+              && (!activeRegion || loc.reg === activeRegion);
+    if (show) categoryGroups[loc.cat].addLayer(markerMap[loc.id].marker);
+    else      categoryGroups[loc.cat].removeLayer(markerMap[loc.id].marker);
+  });
+}
+
+// Optional: programmatically toggle a category from your UI
+// toggleCategory('shop');
+function toggleCategory(cat) {
+  if (activeCategories.has(cat)) activeCategories.delete(cat);
+  else                           activeCategories.add(cat);
+  applyFilters();
+}
+
+
+// ── Built-in layer control (optional) ─────────────────────────────────────────
+// Adds a Leaflet checkbox panel (top-right) to toggle categories.
+// Remove this block if you build your own custom filter UI.
+const overlays = {};
+Object.entries(CATEGORIES).forEach(([key, cfg]) => {
+  overlays[`${cfg.e} ${cfg.label}`] = categoryGroups[key];
+});
+L.control.layers(null, overlays, { position: 'topright', collapsed: false }).addTo(map);
+</script>
+</body>
+</html>
