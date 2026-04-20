@@ -84,7 +84,13 @@ const REGIONS = [
 // Leaflet CRS.Simple uses [y, x] with y=0 at the BOTTOM.
 // Our pixel coords have y=0 at the TOP, so we flip with (MAP_HEIGHT - y).
 function px([y, x]) {
-  return [MAP_HEIGHT - y, x];
+  const centerY = MAP_HEIGHT / 2;
+  const centerX = MAP_WIDTH / 2;
+
+  return [
+    centerY - y, // invert so positive = up
+    centerX + x
+  ];
 }
 
 const map = L.map('map', {
