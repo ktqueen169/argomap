@@ -1,0 +1,38 @@
+[
+  {
+    "id": "north-quarter",
+    "label": "North Quarter",
+    "img": "images/magictower.jpg",
+    "desc": "Trade-heavy district with dense foot traffic, market stalls, and guild storefronts.",
+    "link": "https://example.com/regions/north-quarter",
+    "accent": "#2b6cb0",
+    "soft": "rgba(43,108,176,0.10)",
+    "overlay": "rgba(43,108,176,0.14)",
+    "stroke": "#2b6cb0",
+    "points": [[120, 40], [120, 430], [160, 520], [240, 620], [520, 620], [520, 40]]
+  },
+  {
+    "id": "river-ward",
+    "label": "River Ward",
+    "img": "images/pi.png",
+    "desc": "Canal-side ward with piers, warehouses, and investigator offices along the water.",
+    "link": "https://example.com/regions/river-ward",
+    "accent": "#2f855a",
+    "soft": "rgba(47,133,90,0.10)",
+    "overlay": "rgba(47,133,90,0.14)",
+    "stroke": "#2f855a",
+    "points": [[160, 520], [120, 620], [120, 1100], [520, 1100], [520, 760], [460, 700], [420, 660], [320, 640], [240, 620]]
+  },
+  {
+    "id": "arcane-heights",
+    "label": "Arcane Heights",
+    "img": "images/magictower.jpg",
+    "desc": "High terraces dominated by magical institutions, archives, and ceremonial towers.",
+    "link": "https://example.com/regions/arcane-heights",
+    "accent": "#7b3fb6",
+    "soft": "rgba(123,63,182,0.10)",
+    "overlay": "rgba(123,63,182,0.16)",
+    "stroke": "#7b3fb6",
+    "points": [[520, 40], [520, 620], [460, 700], [520, 760], [520, 1100], [960, 1100], [960, 40]]
+  }
+]
