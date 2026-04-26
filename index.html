@@ -20,11 +20,18 @@ html, body, #map { height: 100%; width: 100%; }
 }
 
 /* ui */
+:root {
+  --search-top-offset: 10px;
+  --search-left-offset: 10px;
+  --search-height: 34px;
+  --search-gap: 12px;
+}
+
 #search {
   position:absolute;
-  top:calc(10px + env(safe-area-inset-top, 0px));
-  left:50%;
-  transform:translateX(-50%);
+  top:calc(var(--search-top-offset) + env(safe-area-inset-top, 0px));
+  left:calc(var(--search-left-offset) + env(safe-area-inset-left, 0px));
+  transform:none;
   right:auto !important;
   z-index:1000; padding:6px;
   width:200px !important;
@@ -37,9 +44,9 @@ html, body, #map { height: 100%; width: 100%; }
 
 #search-results {
   position:absolute;
-  top:calc(42px + env(safe-area-inset-top, 0px));
-  left:50%;
-  transform:translateX(-50%);
+  top:calc(var(--search-top-offset) + var(--search-height) + env(safe-area-inset-top, 0px));
+  left:calc(var(--search-left-offset) + env(safe-area-inset-left, 0px));
+  transform:none;
   z-index:1001;
   width:260px;
   max-height:220px;
@@ -182,25 +189,29 @@ html, body, #map { height: 100%; width: 100%; }
 }
 
 @media (max-width: 900px) {
+  :root {
+    --search-top-offset: 8px;
+    --search-left-offset: 8px;
+    --search-height: 38px;
+  }
+
   #search {
-    left:50%;
+    left:calc(var(--search-left-offset) + env(safe-area-inset-left, 0px));
     right:auto !important;
     width:min(320px, calc(100vw - 16px)) !important;
     min-width:0;
     max-width:none;
-    top:calc(8px + env(safe-area-inset-top, 0px));
   }
 
   #search-results {
-    left:50%;
+    left:calc(var(--search-left-offset) + env(safe-area-inset-left, 0px));
     right:auto;
     width:min(320px, calc(100vw - 16px));
-    top:calc(46px + env(safe-area-inset-top, 0px));
     max-height:40vh;
   }
 
   .leaflet-control-layers {
-    margin-top:calc(56px + env(safe-area-inset-top, 0px));
+    margin-top:calc(var(--search-top-offset) + var(--search-height) + 10px + env(safe-area-inset-top, 0px));
     margin-right:8px;
   }
 
@@ -241,12 +252,14 @@ const map=L.map('map',{
  crs:L.CRS.Simple,
  tap:true,
  closePopupOnClick:false,
+ zoomControl:false,
  minZoom:-2,
  maxZoom:2,
  maxBounds:bounds,
  maxBoundsViscosity:1.0
 });
 map.fitBounds(bounds);
+L.control.zoom({position:'bottomleft'}).addTo(map);
 L.imageOverlay('images/testy2.png', imageBounds).addTo(map);
 const searchInput=document.getElementById('search');
 const searchResultsEl=document.getElementById('search-results');
