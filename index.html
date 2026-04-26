@@ -188,6 +188,16 @@ html, body, #map { height: 100%; width: 100%; }
   box-shadow:var(--ui-shadow);
 }
 
+.leaflet-top.leaflet-left .leaflet-control-zoom {
+  display:none !important;
+}
+
+.leaflet-bottom.leaflet-left .leaflet-control-zoom {
+  display:block !important;
+  margin-left:10px;
+  margin-bottom:10px;
+}
+
 @media (max-width: 900px) {
   :root {
     --search-top-offset: 8px;
