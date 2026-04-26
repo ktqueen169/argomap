@@ -11,6 +11,7 @@
 <link rel="preload" as="image" href="images/testy2.png"/>
 
 <style>
+:root { --ui-shadow: 0 2px 10px rgba(0,0,0,0.14); }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body, #map { height: 100%; width: 100%; }
 
@@ -22,7 +23,8 @@ html, body, #map { height: 100%; width: 100%; }
 #search {
   position:absolute;
   top:calc(10px + env(safe-area-inset-top, 0px));
-  left:140px;
+  left:50%;
+  transform:translateX(-50%);
   right:auto !important;
   z-index:1000; padding:6px;
   width:200px !important;
@@ -30,12 +32,14 @@ html, body, #map { height: 100%; width: 100%; }
   max-width:200px !important;
   display:block;
   box-sizing:border-box;
+  box-shadow:var(--ui-shadow);
 }
 
 #search-results {
   position:absolute;
   top:calc(42px + env(safe-area-inset-top, 0px));
-  left:140px;
+  left:50%;
+  transform:translateX(-50%);
   z-index:1001;
   width:260px;
   max-height:220px;
@@ -43,7 +47,7 @@ html, body, #map { height: 100%; width: 100%; }
   background:#fff;
   border:1px solid #c8c8c8;
   border-radius:6px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.15);
+  box-shadow:var(--ui-shadow);
   display:none;
 }
 
@@ -90,6 +94,7 @@ html, body, #map { height: 100%; width: 100%; }
   padding:10px;
   border-left:4px solid var(--region-accent,#888);
   background:var(--region-soft,#f8f8f8);
+  box-shadow:var(--ui-shadow);
 }
 .popup-title { font-weight:bold; }
 .popup-cat { font-size:11px; color:#888; }
@@ -116,6 +121,7 @@ html, body, #map { height: 100%; width: 100%; }
   padding:10px;
   border-left:4px solid var(--region-accent,#888);
   background:var(--region-soft,#f8f8f8);
+  box-shadow:var(--ui-shadow);
 }
 .popup-shell .popup-body {
   padding:0;
@@ -171,9 +177,13 @@ html, body, #map { height: 100%; width: 100%; }
   outline: none !important;
 }
 
+.leaflet-control-layers {
+  box-shadow:var(--ui-shadow);
+}
+
 @media (max-width: 900px) {
   #search {
-    left:8px;
+    left:50%;
     right:auto !important;
     width:min(320px, calc(100vw - 16px)) !important;
     min-width:0;
@@ -182,7 +192,7 @@ html, body, #map { height: 100%; width: 100%; }
   }
 
   #search-results {
-    left:8px;
+    left:50%;
     right:auto;
     width:min(320px, calc(100vw - 16px));
     top:calc(46px + env(safe-area-inset-top, 0px));
