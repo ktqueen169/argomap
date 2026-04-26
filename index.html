@@ -23,12 +23,13 @@ html, body, #map { height: 100%; width: 100%; }
   position:absolute;
   top:calc(10px + env(safe-area-inset-top, 0px));
   left:140px;
-  right:auto;
+  right:auto !important;
   z-index:1000; padding:6px;
-  width:200px;
-  min-width:200px;
-  max-width:200px;
+  width:200px !important;
+  min-width:200px !important;
+  max-width:200px !important;
   display:block;
+  box-sizing:border-box;
 }
 
 #search-results {
@@ -173,8 +174,8 @@ html, body, #map { height: 100%; width: 100%; }
 @media (max-width: 900px) {
   #search {
     left:8px;
-    right:8px;
-    width:calc(100% - 16px);
+    right:auto !important;
+    width:min(320px, calc(100vw - 16px)) !important;
     min-width:0;
     max-width:none;
     top:calc(8px + env(safe-area-inset-top, 0px));
@@ -182,8 +183,8 @@ html, body, #map { height: 100%; width: 100%; }
 
   #search-results {
     left:8px;
-    right:8px;
-    width:auto;
+    right:auto;
+    width:min(320px, calc(100vw - 16px));
     top:calc(46px + env(safe-area-inset-top, 0px));
     max-height:40vh;
   }
