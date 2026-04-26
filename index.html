@@ -14,13 +14,21 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body, #map { height: 100%; width: 100%; }
 
+.leaflet-container {
+  background: transparent !important;
+}
+
 /* ui */
 #search {
   position:absolute;
   top:calc(10px + env(safe-area-inset-top, 0px));
   left:140px;
+  right:auto;
   z-index:1000; padding:6px;
   width:200px;
+  min-width:200px;
+  max-width:200px;
+  display:block;
 }
 
 #search-results {
@@ -166,7 +174,9 @@ html, body, #map { height: 100%; width: 100%; }
   #search {
     left:8px;
     right:8px;
-    width:auto;
+    width:calc(100% - 16px);
+    min-width:0;
+    max-width:none;
     top:calc(8px + env(safe-area-inset-top, 0px));
   }
 
