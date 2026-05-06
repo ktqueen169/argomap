@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Build/cache artifacts
+*.log
+
+# Generated data artifact (rebuildable)
+data/locations.json

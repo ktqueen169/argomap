@@ -9,6 +9,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 REGIONS_PATH = DATA_DIR / "regions.json"
 LOCATIONS_PATH = DATA_DIR / "locations.json"
+LOCATIONS_SPLIT_DIR = DATA_DIR / "locations"
 ALLOWED_CATEGORIES = {"shop", "residence", "academy", "tavern", "dungeon"}
 
 
@@ -19,6 +20,27 @@ def load_json(path: pathlib.Path):
     except Exception as exc:
         fail(f"Failed to read {path}: {exc}")
         return None
+
+
+def load_locations():
+    if LOCATIONS_SPLIT_DIR.exists() and LOCATIONS_SPLIT_DIR.is_dir():
+        locations = []
+        json_files = sorted(
+            path for path in LOCATIONS_SPLIT_DIR.glob("*.json") if path.name != "index.json"
+        )
+        if not json_files:
+            fail("data/locations exists but has no .json files")
+            return None
+        for path in json_files:
+            payload = load_json(path)
+            if payload is None:
+                return None
+            if not isinstance(payload, list):
+                fail(f"{path.relative_to(ROOT)} must be a JSON array")
+                continue
+            locations.extend(payload)
+        return locations
+    return load_json(LOCATIONS_PATH)
 
 
 def fail(msg: str):
@@ -49,6 +71,17 @@ def check_image_path(value: str, where: str):
         fail(f"{where}: image path does not exist '{value}'")
 
 
+def validate_owner(owner, where: str):
+    if owner is None:
+        return
+    if not isinstance(owner, dict):
+        fail(f"{where}: must be an object")
+        return
+    if not isinstance(owner.get("name"), str) or not owner.get("name", "").strip():
+        fail(f"{where}.name: missing/invalid")
+    check_url(owner.get("url", ""), f"{where}.url")
+
+
 def validate_regions(regions):
     if not isinstance(regions, list):
         fail("data/regions.json must be a JSON array")
@@ -74,17 +107,33 @@ def validate_regions(regions):
         if not isinstance(label, str) or not label.strip():
             fail(f"{where}: missing/invalid label")
 
-        if not isinstance(points, list) or len(points) < 3:
-            fail(f"{where}: points must be an array of at least 3 [y,x] pairs")
+        if not isinstance(points, list) or len(points) == 0:
+            fail(
+                f"{where}: points must be either a ring [[y,x],...] or rings [[[y,x],...],...]"
+            )
         else:
-            for j, pt in enumerate(points):
-                if (
-                    not isinstance(pt, list)
-                    or len(pt) != 2
-                    or not isinstance(pt[0], (int, float))
-                    or not isinstance(pt[1], (int, float))
-                ):
-                    fail(f"{where}.points[{j}]: must be [number, number]")
+            first = points[0] if points else None
+            is_single_ring = (
+                isinstance(first, list)
+                and len(first) == 2
+                and isinstance(first[0], (int, float))
+                and isinstance(first[1], (int, float))
+            )
+
+            rings = [points] if is_single_ring else points
+            for j, ring in enumerate(rings):
+                ring_where = f"{where}.points[{j}]" if not is_single_ring else f"{where}.points"
+                if not isinstance(ring, list) or len(ring) < 3:
+                    fail(f"{ring_where}: must contain at least 3 [number, number] points")
+                    continue
+                for k, pt in enumerate(ring):
+                    if (
+                        not isinstance(pt, list)
+                        or len(pt) != 2
+                        or not isinstance(pt[0], (int, float))
+                        or not isinstance(pt[1], (int, float))
+                    ):
+                        fail(f"{ring_where}[{k}]: must be [number, number]")
 
         check_url(region.get("link", ""), f"{where}.link")
         check_image_path(region.get("img", ""), f"{where}.img")
@@ -101,19 +150,12 @@ def validate_floor(floor, where: str):
         fail(f"{where}: missing/invalid name")
     check_url(floor.get("link", ""), f"{where}.link")
     check_image_path(floor.get("img", ""), f"{where}.img")
-    owner = floor.get("owner")
-    if owner is not None:
-        if not isinstance(owner, dict):
-            fail(f"{where}.owner: must be an object")
-        else:
-            if not isinstance(owner.get("name"), str) or not owner.get("name", "").strip():
-                fail(f"{where}.owner.name: missing/invalid")
-            check_url(owner.get("url", ""), f"{where}.owner.url")
+    validate_owner(floor.get("owner"), f"{where}.owner")
 
 
 def validate_locations(locations, region_ids):
     if not isinstance(locations, list):
-        fail("data/locations.json must be a JSON array")
+        fail("locations data must be a JSON array")
         return
 
     ids = set()
@@ -154,14 +196,7 @@ def validate_locations(locations, region_ids):
         check_url(loc.get("link", ""), f"{where}.link")
         check_image_path(loc.get("img", ""), f"{where}.img")
 
-        owner = loc.get("owner")
-        if owner is not None:
-            if not isinstance(owner, dict):
-                fail(f"{where}.owner: must be an object")
-            else:
-                if not isinstance(owner.get("name"), str) or not owner.get("name", "").strip():
-                    fail(f"{where}.owner.name: missing/invalid")
-                check_url(owner.get("url", ""), f"{where}.owner.url")
+        validate_owner(loc.get("owner"), f"{where}.owner")
 
         floors = loc.get("floors")
         if floors is not None:
@@ -177,7 +212,7 @@ if __name__ == "__main__":
     WARNINGS = []
 
     regions = load_json(REGIONS_PATH)
-    locations = load_json(LOCATIONS_PATH)
+    locations = load_locations()
     if regions is None or locations is None:
         sys.exit(1)
 
@@ -193,4 +228,4 @@ if __name__ == "__main__":
         print(f"Validation failed with {len(ERRORS)} error(s).")
         sys.exit(1)
 
-    print("Validation passed for data/regions.json and data/locations.json.")
+    print("Validation passed for data/regions.json and data/locations/*.json.")

@@ -8,10 +8,13 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<link rel="preload" as="image" href="images/testy2.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="preload" as="image" href="images/pie.png"/>
 
 <style>
-:root { --ui-shadow: 0 2px 10px rgba(0,0,0,0.14); }
+:root { --ui-shadow: 0 12px 28px rgba(0,0,0,0.32); }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body, #map { height: 100%; width: 100%; }
 
@@ -92,87 +95,274 @@ html, body, #map { height: 100%; width: 100%; }
 /* popup */
 .leaflet-popup-content {
   width:300px !important;
+  margin:0;
   max-height:440px;
   overflow-y:auto;
-  font-family:Georgia;
+  overflow-x:hidden;
+}
+.leaflet-popup-tip {
+  background:transparent;
+  box-shadow:none;
 }
 .popup-img { width:100%; height:90px; object-fit:cover; }
-.popup-body {
-  padding:10px;
-  border-left:4px solid var(--region-accent,#888);
-  background:var(--region-soft,#f8f8f8);
-  box-shadow:var(--ui-shadow);
+.popup-body { padding:12px; }
+.popup-cat {
+  font-size:clamp(0.68rem, 0.62rem + 0.22vw, 0.75rem);
+  margin-top:5px;
 }
-.popup-title { font-weight:bold; }
-.popup-cat { font-size:11px; color:#888; }
-.popup-desc { font-size:12px; margin:6px 0; }
+.popup-desc { font-size:clamp(0.72rem, 0.66rem + 0.24vw, 0.82rem); margin:6px 0; }
 .popup-region {
   display:inline-block;
-  font-size:10px;
+  font-size:clamp(0.7rem, 0.62rem + 0.28vw, 0.84rem);
   text-transform:uppercase;
   letter-spacing:.4px;
-  margin:6px 0 2px;
   padding:2px 6px;
-  color:#fff;
-  background:var(--region-accent,#666);
-  border-radius:3px;
 }
 .popup-links {
-  display:flex; flex-direction:column; gap:3px;
-  font-size:12px; margin-top:6px;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  font-size:clamp(0.72rem, 0.66rem + 0.24vw, 0.82rem);
+  margin-top:6px;
 }
-.popup-links a { color:#2f5d9f; text-decoration:none; }
-.popup-links a:hover { text-decoration:underline; }
-.popup-owner { color:#555; }
-.popup-shell {
-  padding:10px;
-  border-left:4px solid var(--region-accent,#888);
-  background:var(--region-soft,#f8f8f8);
-  box-shadow:var(--ui-shadow);
+.popup-shell .popup-body { padding:8px; }
+.popup-shell { padding:12px; }
+.popup-shell .floor-panel { padding:8px 10px 0; }
+.popup-shell .vtab-container { margin-top:8px; }
+.popup-body,
+.popup-shell,
+.floor-panel {
+  overflow-x:hidden;
 }
-.popup-shell .popup-body {
-  padding:0;
-  border-left:none;
-  background:transparent;
-}
-.popup-shell .floor-panel {
-  padding:8px 10px 0;
-  border-left:none;
-  background:transparent;
-}
-.popup-shell .vtab-btn {
-  border-color:var(--region-accent,#aaa);
-}
-.popup-shell .vtab-btn.active {
-  background:var(--region-soft,#ddd);
-  color:#111;
-}
-.popup-shell .vtab-container {
-  margin-top:8px;
+.popup-cat,
+.popup-desc,
+.popup-owner,
+.popup-links,
+.popup-links a,
+.popup-region {
+  overflow-wrap:break-word;
+  word-break:normal;
 }
 
-.popup-theme-north-quarter .popup-title { color:#1f4f84; }
-.popup-theme-north-quarter .popup-links a { color:#1f5ea1; }
-.popup-theme-north-quarter .popup-region { box-shadow:0 0 0 1px rgba(255,255,255,0.45) inset; }
-
-.popup-theme-river-ward .popup-title { color:#1f6844; }
-.popup-theme-river-ward .popup-links a { color:#1a7a4c; }
-.popup-theme-river-ward .popup-region { box-shadow:0 0 0 1px rgba(255,255,255,0.4) inset; }
-
-.popup-theme-arcane-heights .popup-title { color:#5b2f8a; }
-.popup-theme-arcane-heights .popup-links a { color:#6a37a0; }
-.popup-theme-arcane-heights .popup-region { box-shadow:0 0 0 1px rgba(255,255,255,0.35) inset; }
+/* Sample3-inspired popup skin */
+.leaflet-popup-content-wrapper {
+  background:#1f2227;
+  border:1px solid rgba(170,178,188,0.3);
+  border-radius:0;
+  box-shadow:0 14px 34px rgba(0,0,0,0.52);
+}
+.popup-body,
+.popup-shell,
+.popup-theme-andromeda,
+.popup-theme-metis,
+.popup-theme-throat-of-the-world,
+.popup-theme-the-wall {
+  font-family:"Montserrat","Segoe UI",sans-serif;
+  background:#22252b !important;
+  border:1px solid rgba(170,178,188,0.28) !important;
+  border-left:1px solid rgba(170,178,188,0.28) !important;
+  border-radius:0;
+  box-shadow:none !important;
+  color:#e4e8ec;
+  --accent1:126, 163, 255;
+  --accent2:164, 123, 255;
+  --accent3:226, 102, 207;
+}
+.popup-title {
+  font-family:"Audiowide","Trebuchet MS",sans-serif;
+  font-weight:700;
+  font-size:clamp(1.1rem, 0.9rem + 0.9vw, 1.38rem);
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:#f3f7fb !important;
+  background:linear-gradient(
+    90deg,
+    rgb(var(--accent1)) 0%,
+    rgb(var(--accent2)) 45%,
+    rgb(var(--accent3)) 100%
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:none;
+  position:relative;
+  display:inline-block;
+  padding-bottom:4px;
+}
+.popup-title::after {
+  content:'';
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:1px;
+  background:linear-gradient(
+    90deg,
+    rgba(var(--accent2),0.95),
+    rgba(var(--accent1),0.55),
+    rgba(var(--accent1),0)
+  );
+}
+.floor-panel .popup-title {
+  font-family:"Audiowide","Trebuchet MS",sans-serif;
+  font-size:clamp(0.9rem, 0.78rem + 0.45vw, 1rem);
+  font-weight:700;
+  letter-spacing:.2px;
+  line-height:1.25;
+  display:block;
+  max-width:100%;
+  text-transform:none;
+  white-space:normal;
+  overflow-wrap:break-word;
+  word-break:normal;
+}
+.popup-cat,
+.popup-desc,
+.popup-owner {
+  font-family:"Montserrat","Segoe UI",sans-serif;
+  letter-spacing:.8px;
+  color:#fff !important;
+  text-shadow:none !important;
+}
+.popup-links .popup-details-link {
+  color:rgb(var(--accent2)) !important;
+  text-decoration:underline;
+}
+@supports ((-webkit-background-clip:text) or (background-clip:text)) {
+  .popup-links .popup-details-link {
+    color:transparent !important;
+    -webkit-text-fill-color:transparent;
+    background:linear-gradient(
+      90deg,
+      rgb(var(--accent1)) 0%,
+      rgb(var(--accent2)) 45%,
+      rgb(var(--accent3)) 100%
+    );
+    -webkit-background-clip:text;
+    background-clip:text;
+  }
+}
+.popup-links .popup-details-link:hover {
+  color:rgb(var(--accent2)) !important;
+  text-decoration:underline;
+}
+.popup-links .popup-owner-link,
+.popup-links .popup-owner-link:visited,
+.popup-links .popup-owner-link:active {
+  color:rgb(var(--accent3)) !important;
+  text-decoration:underline;
+  background:none !important;
+}
+.popup-links .popup-owner-link:hover {
+  color:rgb(var(--accent3)) !important;
+  text-decoration:underline;
+}
+.popup-cat.popup-cat-region {
+  display:inline-block;
+  margin-top:0;
+  padding:2px 6px;
+  font-size:clamp(0.7rem, 0.62rem + 0.26vw, 0.82rem);
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  color:#fff !important;
+  background:linear-gradient(
+    90deg,
+    rgb(var(--accent1)) 0%,
+    rgb(var(--accent2)) 45%,
+    rgb(var(--accent3)) 100%
+  );
+  border:1px solid rgba(113,194,255,0.36);
+  border-radius:0;
+}
+.popup-region {
+  background:linear-gradient(
+    90deg,
+    rgb(var(--accent1)) 0%,
+    rgb(var(--accent2)) 45%,
+    rgb(var(--accent3)) 100%
+  ) !important;
+  color:#fff !important;
+  -webkit-background-clip:border-box;
+  background-clip:border-box;
+  -webkit-text-fill-color:currentColor;
+  border-radius:0;
+  border:1px solid rgba(113,194,255,0.36);
+  box-shadow:none !important;
+  position:relative;
+}
+.popup-region-row {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:6px 0 2px;
+}
+.popup-region-row::after {
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(
+    90deg,
+    rgba(var(--accent2),0.9),
+    rgba(var(--accent1),0.52),
+    rgba(var(--accent1),0)
+  );
+}
 
 /* vertical tabs */
 .vtab-container { display:flex; gap:8px; }
 .vtab-list { width:80px; display:flex; flex-direction:column; gap:4px; }
 .vtab-btn {
-  font-size:10px; padding:10px 6px;
-  background:#eee; border:1px solid #ccc;
+  font-size:clamp(0.53rem, 0.49rem + 0.18vw, 0.63rem); padding:8px 6px;
+  background:#242830; border:1px solid rgba(167,176,186,0.28);
   cursor:pointer; text-align:center;
-  min-height:40px;
+  width:80px;
+  height:50px;
+  min-height:50px;
+  max-height:50px;
+  line-height:1.2;
+  white-space:normal;
+  overflow-wrap:break-word;
+  word-break:normal;
+  hyphens:none;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#c4cbd4;
+  text-transform:none;
+  letter-spacing:.2px;
+  font-family:"Montserrat","Segoe UI",sans-serif;
+  max-width:100%;
 }
-.vtab-btn.active { background:#ccc; font-weight:bold; }
+.vtab-btn.long-label { font-size:clamp(0.49rem, 0.45rem + 0.16vw, 0.56rem); line-height:1.1; }
+.vtab-btn.xlong-label { font-size:clamp(0.45rem, 0.42rem + 0.14vw, 0.52rem); line-height:1.05; }
+.vtab-btn.active {
+  background:linear-gradient(
+    90deg,
+    rgb(var(--accent1)) 0%,
+    rgb(var(--accent2)) 45%,
+    rgb(var(--accent3)) 100%
+  );
+  border-color:rgba(103,198,255,0.58);
+  color:#f2f8ff;
+  font-weight:bold;
+  box-shadow:inset 0 0 0 1px rgba(103,198,255,0.3);
+}
+.popup-theme-andromeda {
+  --accent1:42, 94, 8;
+  --accent2:128, 188, 69;
+  --accent3:225, 172, 71;
+}
+.popup-theme-the-wall {
+  --accent1:63, 93, 145;
+  --accent2:190, 35, 35;
+  --accent3:190, 71, 35;
+}
+.popup-theme-throat-of-the-world {
+  --accent1:130, 40, 114;
+  --accent2:101, 63, 212;
+  --accent3:190, 184, 217;
+}
 
 .map-pin-icon {
   background: transparent;
@@ -242,634 +432,10 @@ html, body, #map { height: 100%; width: 100%; }
 
 <div id="map"></div>
 
-<script>
-const MAP_WIDTH=3000, MAP_HEIGHT=3000;
-const MAP_BUFFER=400;
-const WORLD_WIDTH=MAP_WIDTH+(MAP_BUFFER*2);
-const WORLD_HEIGHT=MAP_HEIGHT+(MAP_BUFFER*2);
-const WORLD_CENTER_Y=MAP_BUFFER+(MAP_HEIGHT/2);
-const WORLD_CENTER_X=MAP_BUFFER+(MAP_WIDTH/2);
-
-/* center coords */
-function px([y,x]){
-  return [WORLD_CENTER_Y-y,WORLD_CENTER_X+x];
-}
-
-/* map deets */
-const bounds=[[0,0],[WORLD_HEIGHT,WORLD_WIDTH]];
-const imageBounds=[[MAP_BUFFER,MAP_BUFFER],[MAP_BUFFER+MAP_HEIGHT,MAP_BUFFER+MAP_WIDTH]];
-const map=L.map('map',{
- crs:L.CRS.Simple,
- tap:true,
- closePopupOnClick:false,
- zoomControl:false,
- minZoom:-2,
- maxZoom:2,
- maxBounds:bounds,
- maxBoundsViscosity:1.0
-});
-map.fitBounds(bounds);
-L.control.zoom({position:'bottomleft'}).addTo(map);
-L.imageOverlay('images/testy2.png', imageBounds).addTo(map);
-const searchInput=document.getElementById('search');
-const searchResultsEl=document.getElementById('search-results');
-
-/* coord clicker */
-let editorMode=false, debugMarker=null;
-function setEditorMode(enabled){
- editorMode=!!enabled;
- const box=document.getElementById('editor-mode-toggle');
- if(box) box.checked=editorMode;
- if(!editorMode && debugMarker){
-  map.removeLayer(debugMarker);
-  debugMarker=null;
- }
-}
-
-/* click */
-let suppressNextMapClick=false;
-map.on('click',e=>{
-  hideSearchResults();
-  if(editorMode){
-    const y=WORLD_CENTER_Y-e.latlng.lat;
-    const x=e.latlng.lng-WORLD_CENTER_X;
-    console.log(`pos: [${Math.round(y)}, ${Math.round(x)}]`);
-
-    if(debugMarker) map.removeLayer(debugMarker);
-    debugMarker=L.marker(e.latlng).addTo(map)
-      .bindPopup(`pos: [${Math.round(y)}, ${Math.round(x)}]`)
-      .openPopup();
-  } else {
-    if(suppressNextMapClick){
-      suppressNextMapClick=false;
-      return;
-    }
-    clearRegion();
-  }
-});
-
-/* categories */
-const CATEGORIES={
-  shop:{label:'Shop',e:'🪙',c:'#c89018'},
-  residence:{label:'Residence',e:'🏰',c:'#8a4e28'},
-  academy:{label:'Academy',e:'📜',c:'#6848a0'},
-  tavern:{label:'Tavern',e:'🍺',c:'#b04020'},
-  dungeon:{label:'Dungeon',e:'⚔️',c:'#2a2a38'}
-};
-
-/* regions */
-let REGIONS=[];
-let REGION_INDEX={};
-const DEFAULT_REGION={
- id:'wilds',label:'Outer Wilds',accent:'#5a6672',soft:'rgba(90,102,114,0.10)'
-};
-
-/* icons */
-function makeIcon(cat,region){
-  const cfg=CATEGORIES[cat];
-  const accent=(region&&region.accent)||DEFAULT_REGION.accent;
-  const halo=(region&&region.soft)||DEFAULT_REGION.soft;
-  return L.divIcon({
-    className:'map-pin-icon',
-    html:`<div style="width:24px;height:28px;display:flex;justify-content:center;">
-      <div style="width:22px;height:22px;border-radius:50% 50% 50% 0;
-      transform:rotate(-45deg);background:${cfg.c};
-      display:flex;align-items:center;justify-content:center;
-      border:2px solid ${accent}; box-shadow:0 0 0 2px ${halo};">
-      <span style="transform:rotate(45deg);font-size:10px;">${cfg.e}</span>
-      </div></div>`,
-    iconSize:[24,28], iconAnchor:[12,27]
-  });
-}
-
-/* data */
-let LOCATIONS=[];
-let searchResults=[];
-let searchActiveIndex=-1;
-let deepLinkApplied=false;
-
-function validNumber(v){
- return typeof v==='number' && Number.isFinite(v);
-}
-
-function normalizePoints(points){
- if(!Array.isArray(points)) return [];
- return points.filter(pt=>
-  Array.isArray(pt) && pt.length===2 && validNumber(pt[0]) && validNumber(pt[1]));
-}
-
-function sanitizeRegion(raw){
- if(!raw || typeof raw!=='object') return null;
- if(typeof raw.id!=='string' || !raw.id.trim()) return null;
- if(typeof raw.label!=='string' || !raw.label.trim()) return null;
- const points=normalizePoints(raw.points);
- if(points.length<3) return null;
- return {
-  id:raw.id.trim(),
-  label:raw.label,
-  img:typeof raw.img==='string'?raw.img:'',
-  desc:typeof raw.desc==='string'?raw.desc:'',
-  link:typeof raw.link==='string'?raw.link:'',
-  accent:typeof raw.accent==='string'?raw.accent:'#5a6672',
-  soft:typeof raw.soft==='string'?raw.soft:'rgba(90,102,114,0.10)',
-  overlay:typeof raw.overlay==='string'?raw.overlay:'rgba(90,102,114,0.14)',
-  stroke:typeof raw.stroke==='string'?raw.stroke:'#5a6672',
-  points
- };
-}
-
-function sanitizeOwner(raw){
- if(!raw || typeof raw!=='object') return null;
- if(typeof raw.name!=='string' || !raw.name.trim()) return null;
- return {name:raw.name.trim(),url:typeof raw.url==='string'?raw.url:''};
-}
-
-function sanitizeFloor(raw){
- if(!raw || typeof raw!=='object') return null;
- if(typeof raw.name!=='string' || !raw.name.trim()) return null;
- return {
-  name:raw.name.trim(),
-  img:typeof raw.img==='string'?raw.img:'',
-  desc:typeof raw.desc==='string'?raw.desc:'',
-  link:typeof raw.link==='string'?raw.link:'',
-  owner:sanitizeOwner(raw.owner),
-  aliases:Array.isArray(raw.aliases)?raw.aliases.filter(a=>typeof a==='string'):[]
- };
-}
-
-function sanitizeLocation(raw){
- if(!raw || typeof raw!=='object') return null;
- if(typeof raw.id!=='string' || !raw.id.trim()) return null;
- if(typeof raw.name!=='string' || !raw.name.trim()) return null;
- if(typeof raw.cat!=='string' || !CATEGORIES[raw.cat]) return null;
- if(!Array.isArray(raw.pos) || raw.pos.length!==2 || !validNumber(raw.pos[0]) || !validNumber(raw.pos[1])) return null;
- const floors=Array.isArray(raw.floors)?raw.floors.map(sanitizeFloor).filter(Boolean):null;
- return {
-  id:raw.id.trim(),
-  region:typeof raw.region==='string'?raw.region:'',
-  cat:raw.cat,
-  pos:[raw.pos[0],raw.pos[1]],
-  name:raw.name.trim(),
-  img:typeof raw.img==='string'?raw.img:'',
-  desc:typeof raw.desc==='string'?raw.desc:'',
-  link:typeof raw.link==='string'?raw.link:'',
-  owner:sanitizeOwner(raw.owner),
-  aliases:Array.isArray(raw.aliases)?raw.aliases.filter(a=>typeof a==='string'):[],
-  floors
- };
-}
-
-function parseWorldData(data){
- const rawRegions=Array.isArray(data&&data.regions)?data.regions:[];
- const rawLocations=Array.isArray(data&&data.locations)?data.locations:[];
- const regions=[];
- const regionIds=new Set();
- rawRegions.forEach((r,i)=>{
-  const region=sanitizeRegion(r);
-  if(!region){
-   console.warn(`Skipping invalid region at index ${i}`);
-   return;
-  }
-  if(regionIds.has(region.id)){
-   console.warn(`Duplicate region id "${region.id}" skipped`);
-   return;
-  }
-  regionIds.add(region.id);
-  regions.push(region);
- });
-
- const locations=[];
- const locIds=new Set();
- rawLocations.forEach((l,i)=>{
-  const loc=sanitizeLocation(l);
-  if(!loc){
-   console.warn(`Skipping invalid location at index ${i}`);
-   return;
-  }
-  if(locIds.has(loc.id)){
-   console.warn(`Duplicate location id "${loc.id}" skipped`);
-   return;
-  }
-  locIds.add(loc.id);
-  locations.push(loc);
- });
-
- return {regions,locations};
-}
-
-/* popup deets */
-function escapeHtml(value){
- return String(value??'')
-  .replace(/&/g,'&amp;')
-  .replace(/</g,'&lt;')
-  .replace(/>/g,'&gt;')
-  .replace(/"/g,'&quot;')
-  .replace(/'/g,'&#39;');
-}
-
-function escapeAttr(value){
- return escapeHtml(value).replace(/`/g,'&#96;');
-}
-
-function popupDetails(item, fallback={}){
- const image=item.img||fallback.img;
- const link=item.link||fallback.link;
- const owner=item.owner||fallback.owner;
- const safeDesc=escapeHtml(item.desc||'');
- const safeAlt=escapeAttr(item.name||fallback.name||'Location image');
- const imageHtml=image
-  ? `<img class="popup-img" src="${escapeAttr(image)}" alt="${safeAlt}" loading="lazy" decoding="async" fetchpriority="low"/>`
-  : '';
- const ownerHtml=owner
-  ? `<div class="popup-owner">Owned by: <a href="${escapeAttr(owner.url||'')}" target="_blank" rel="noopener">${escapeHtml(owner.name||'')}</a></div>`
-  : '';
- const linkHtml=link
-  ? `<a href="${escapeAttr(link)}" target="_blank" rel="noopener">More details</a>`
-  : '';
- const linksHtml=linkHtml||ownerHtml
-  ? `<div class="popup-links">${linkHtml}${ownerHtml}</div>`
-  : '';
-
- return `
-  ${imageHtml}
-  <div class="popup-desc">${safeDesc}</div>
-  ${linksHtml}`;
-}
-
-function pointInPolygon([y,x], polygon){
- let inside=false;
- for(let i=0,j=polygon.length-1;i<polygon.length;j=i++){
-  const [yi,xi]=polygon[i];
-  const [yj,xj]=polygon[j];
-  const edgeCross=((yi>y)!==(yj>y))
-   && (x<((xj-xi)*(y-yi))/(yj-yi)+xi);
-  if(edgeCross) inside=!inside;
- }
- return inside;
-}
-
-function regionForPos([y,x]){
- for(const region of REGIONS){
-  if(pointInPolygon([y,x], region.points)) return region;
- }
- return DEFAULT_REGION;
-}
-
-function regionForLocation(loc){
- if(loc.region && REGION_INDEX[loc.region]) return REGION_INDEX[loc.region];
- return regionForPos(loc.pos);
-}
-
-function popupThemeClass(region){
- return `popup-theme-${region.id||DEFAULT_REGION.id}`;
-}
-
-function updateUrlParams(params){
- const url=new URL(window.location.href);
- Object.entries(params).forEach(([k,v])=>{
-  if(v===null || v===undefined || v===''){
-   url.searchParams.delete(k);
-  } else {
-   url.searchParams.set(k,v);
-  }
- });
- window.history.replaceState({},'',url.toString());
-}
-
-function makePopup(loc){
- const cfg=CATEGORIES[loc.cat];
- const region=regionForLocation(loc);
- const themeClass=popupThemeClass(region);
- const regionStyle=`--region-accent:${region.accent};--region-soft:${region.soft};`;
-
- const base=`
-  <div class="popup-body ${themeClass}" style="${regionStyle}">
-   <div class="popup-title">${escapeHtml(loc.name)}</div>
-   <div class="popup-cat">${escapeHtml(cfg.e)} ${escapeHtml(cfg.label)}</div>
-   <div class="popup-region">${escapeHtml(region.label)}</div>
-   ${popupDetails(loc)}
-  </div>`;
-
- if(!loc.floors) return base;
-
- const tabs=loc.floors.map((f,i)=>
-  `<div class="vtab-btn ${i===0?'active':''}" data-i="${i}">${escapeHtml(f.name)}</div>`).join('');
-
- const content=loc.floors.map((f,i)=>
-  `<div class="floor-panel ${themeClass}" data-i="${i}" style="display:${i===0?'block':'none'}">
-   <div class="popup-title">${escapeHtml(f.name)}</div>
-   ${popupDetails(f,loc)}
-  </div>`).join('');
-
- return `<div class="popup-shell ${themeClass}" style="${regionStyle}">${base}
- <div class="vtab-container">
-  <div class="vtab-list">${tabs}</div>
-  <div>${content}</div>
- </div></div>`;
-}
-
-function makeRegionPopup(region){
- const themeClass=popupThemeClass(region);
- const regionStyle=`--region-accent:${region.accent};--region-soft:${region.soft};`;
- return `
-  <div class="popup-body ${themeClass}" style="${regionStyle}">
-   <div class="popup-title">${escapeHtml(region.label)}</div>
-   <div class="popup-cat">Region</div>
-   <div class="popup-region">${escapeHtml(region.label)}</div>
-   ${popupDetails(region)}
-  </div>`;
-}
-
-/* markers and filtering */
-const categoryGroups={}, markerMap={};
-Object.keys(CATEGORIES).forEach(c=>{
- categoryGroups[c]=L.layerGroup().addTo(map);
-});
-
-let activeRegion=null;
-let layersControl=null;
-const regionPolygons={};
-const regionsLayer=L.layerGroup().addTo(map);
-
-function regionStyle(region, selected){
- return {
-  color:region.stroke,
-  weight:selected?3:1,
-  fillColor:selected?region.accent:region.overlay,
-  fillOpacity:selected?0.5:0.22
- };
-}
-
-function applyRegionStyles(){
- REGIONS.forEach(region=>{
-  const polygon=regionPolygons[region.id];
-  if(!polygon) return;
-  polygon.setStyle(regionStyle(region, activeRegion===region.id));
- });
-}
-
-function clearRegion(){
- activeRegion=null;
- applyRegionStyles();
-}
-
-function openLocationById(locId, floorIndex=null, center=true){
- const entry=markerMap[locId];
- if(!entry) return false;
- const marker=entry.marker;
- if(Number.isInteger(floorIndex)){
-  marker._openFloorIndex=floorIndex;
- } else {
-  delete marker._openFloorIndex;
- }
- if(center) map.setView(marker.getLatLng(),1);
- marker.openPopup();
- updateUrlParams({loc:locId,region:null,floor:Number.isInteger(floorIndex)?String(floorIndex):null});
- return true;
-}
-
-function openRegionById(regionId){
- const polygon=regionPolygons[regionId];
- const region=REGION_INDEX[regionId];
- if(!polygon || !region) return false;
- activeRegion=region.id;
- applyRegionStyles();
- polygon.bringToFront();
- map.fitBounds(polygon.getBounds(),{maxZoom:1,padding:[30,30]});
- polygon.openPopup(polygon.getBounds().getCenter());
- updateUrlParams({region:regionId,loc:null,floor:null});
- return true;
-}
-
-function applyDeepLinkFromUrl(){
- const url=new URL(window.location.href);
- const loc=url.searchParams.get('loc');
- const region=url.searchParams.get('region');
- const floorRaw=url.searchParams.get('floor');
- const floor=floorRaw!==null ? Number.parseInt(floorRaw,10) : null;
- if(loc && openLocationById(loc, Number.isInteger(floor)?floor:null, true)) return;
- if(region) openRegionById(region);
-}
-
-function buildSearchIndex(query){
- const q=query.trim().toLowerCase();
- if(!q) return [];
- const out=[];
- LOCATIONS.forEach(loc=>{
-  const region=regionForLocation(loc);
-  const locText=[
-   loc.name,loc.desc||'',(loc.aliases||[]).join(' ')
-  ].join(' ').toLowerCase();
-  if(locText.includes(q)){
-   out.push({type:'location',loc,floorIndex:null,label:loc.name,meta:`${region.label} · ${CATEGORIES[loc.cat].label}`});
-  }
-  if(Array.isArray(loc.floors)){
-   loc.floors.forEach((f,i)=>{
-    const floorText=[f.name,f.desc||'',(f.aliases||[]).join(' ')].join(' ').toLowerCase();
-    if(floorText.includes(q)){
-      out.push({type:'floor',loc,floorIndex:i,label:f.name,meta:`${loc.name} · ${region.label}`});
-    }
-   });
-  }
- });
- return out.slice(0,12);
-}
-
-function setSearchActiveIndex(next){
- searchActiveIndex=next;
- const items=searchResultsEl.querySelectorAll('.search-item');
- items.forEach((el,i)=>el.classList.toggle('active',i===searchActiveIndex));
-}
-
-function hideSearchResults(){
- searchResultsEl.style.display='none';
- searchResultsEl.innerHTML='';
- searchResults=[];
- searchActiveIndex=-1;
-}
-
-function renderSearchResults(results){
- searchResults=results;
- if(!results.length){
-  hideSearchResults();
-  return;
- }
- searchResultsEl.innerHTML=results.map((r,i)=>`
-  <div class="search-item ${i===0?'active':''}" data-i="${i}">
-   <div class="search-name">${r.label}</div>
-   <div class="search-meta">${r.meta}</div>
-  </div>`).join('');
- searchResultsEl.style.display='block';
- searchActiveIndex=0;
- searchResultsEl.querySelectorAll('.search-item').forEach(el=>{
-  el.onclick=()=>{
-   const i=Number.parseInt(el.dataset.i,10);
-   const hit=searchResults[i];
-   if(!hit) return;
-   openLocationById(hit.loc.id,hit.floorIndex,true);
-   hideSearchResults();
-  };
- });
-}
-
-function renderMapData(){
- regionsLayer.clearLayers();
- Object.keys(regionPolygons).forEach(id=>delete regionPolygons[id]);
- Object.keys(markerMap).forEach(id=>delete markerMap[id]);
- Object.values(categoryGroups).forEach(group=>group.clearLayers());
- activeRegion=null;
-
- REGIONS.forEach(region=>{
-  const latLngs=region.points.map(pt=>px(pt));
- const polygon=L.polygon(latLngs,{
-   ...regionStyle(region,false),
-   className:'region-overlay'
-  })
-   .bindPopup(makeRegionPopup(region))
-   .bindTooltip(region.label,{sticky:true})
-   .addTo(regionsLayer);
-  polygon.on('click',e=>{
-   activeRegion=region.id;
-   applyRegionStyles();
-   polygon.bringToFront();
-   polygon.openPopup(e.latlng);
-   updateUrlParams({region:region.id,loc:null,floor:null});
-   suppressNextMapClick=true;
-   L.DomEvent.stop(e);
-  });
-  regionPolygons[region.id]=polygon;
- });
-
- LOCATIONS.forEach(loc=>{
-  const region=regionForLocation(loc);
-  const marker=L.marker(px(loc.pos),{icon:makeIcon(loc.cat,region)})
-   .bindPopup(makePopup(loc));
-  marker.on('click',()=>updateUrlParams({loc:loc.id,region:null,floor:null}));
-  categoryGroups[loc.cat].addLayer(marker);
-  markerMap[loc.id]={marker,loc};
- });
-
- const overlays={};
- Object.entries(CATEGORIES).forEach(([k,v])=>{
-  overlays[`${v.e} ${v.label}`]=categoryGroups[k];
- });
- overlays['Regions']=regionsLayer;
- if(layersControl) map.removeControl(layersControl);
- const isMobile=window.matchMedia('(max-width: 900px)').matches;
- layersControl=L.control.layers(null,overlays,{collapsed:isMobile}).addTo(map);
- const overlaysEl=layersControl.getContainer().querySelector('.leaflet-control-layers-overlays');
- if(overlaysEl && !document.getElementById('editor-mode-toggle')){
-  const row=document.createElement('div');
-  row.className='editor-toggle-row';
-  row.innerHTML='<label><input id="editor-mode-toggle" type="checkbox"/>Coord Click</label>';
-  overlaysEl.appendChild(row);
-  const box=row.querySelector('#editor-mode-toggle');
-  box.checked=editorMode;
-  box.addEventListener('change',e=>{
-   setEditorMode(e.target.checked);
-  });
- }
-}
-
-async function loadWorldData(){
- const [regionsRes,locationsRes]=await Promise.all([
-  fetch('./data/regions.json'),
-  fetch('./data/locations.json')
- ]);
- if(!regionsRes.ok) throw new Error(`Failed to load regions data: ${regionsRes.status}`);
- if(!locationsRes.ok) throw new Error(`Failed to load locations data: ${locationsRes.status}`);
- const raw={
-  regions:await regionsRes.json(),
-  locations:await locationsRes.json()
- };
- const data=parseWorldData(raw);
- REGIONS=data.regions;
- LOCATIONS=data.locations;
- REGION_INDEX=Object.fromEntries(REGIONS.map(r=>[r.id,r]));
- renderMapData();
- if(!deepLinkApplied){
-  applyDeepLinkFromUrl();
-  deepLinkApplied=true;
- }
-}
-
-loadWorldData().catch(err=>{
- console.error(err);
- alert('Could not load map data from data/regions.json or data/locations.json');
-});
-
-window.addEventListener('popstate',()=>{
- applyDeepLinkFromUrl();
-});
-
-/* search */
-function findSearchMatch(query){
- const hits=buildSearchIndex(query);
- return hits.length ? hits[0] : null;
-}
-
-searchInput.addEventListener('input',e=>{
- const results=buildSearchIndex(e.target.value);
- renderSearchResults(results);
-});
-
-searchInput.addEventListener('keydown',e=>{
- if(e.key==='ArrowDown' && searchResults.length){
-  e.preventDefault();
-  setSearchActiveIndex(Math.min(searchActiveIndex+1, searchResults.length-1));
-  return;
- }
- if(e.key==='ArrowUp' && searchResults.length){
-  e.preventDefault();
-  setSearchActiveIndex(Math.max(searchActiveIndex-1, 0));
-  return;
- }
- if(e.key==='Enter'){
-  e.preventDefault();
-  if(searchResults.length && searchActiveIndex>=0){
-   const hit=searchResults[searchActiveIndex];
-   openLocationById(hit.loc.id,hit.floorIndex,true);
-   hideSearchResults();
-   return;
-  }
-  const match=findSearchMatch(e.target.value);
-  if(match){
-   openLocationById(match.loc.id,match.floorIndex,true);
-   hideSearchResults();
-  }
- }
-});
-
-searchInput.addEventListener('blur',()=>{
- setTimeout(hideSearchResults,120);
-});
-
-/* tabs */
-map.on('popupopen',e=>{
- const el=e.popup.getElement();
- const btns=el.querySelectorAll('.vtab-btn');
- const panels=el.querySelectorAll('.floor-panel');
-
- btns.forEach(b=>{
-  b.onclick=()=>{
-    btns.forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-
-    panels.forEach(p=>{
-      p.style.display=p.dataset.i===b.dataset.i?'block':'none';
-    });
-  };
- });
-
- const source=e.popup._source;
- if(source && Number.isInteger(source._openFloorIndex)){
-  const targetBtn=el.querySelector(`.vtab-btn[data-i="${source._openFloorIndex}"]`);
-  if(targetBtn) targetBtn.click();
-  delete source._openFloorIndex;
- }
-});
-
-</script>
+<script src="./js/data.js"></script>
+<script src="./js/popups.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/map.js"></script>
 
 </body>
 </html>
