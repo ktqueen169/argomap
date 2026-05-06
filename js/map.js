@@ -1,17 +1,4 @@
-const SIZE_TO_IMAGE={
- 1000:'1k.png',
- 2000:'2k.png',
- 3000:'3k.png'
-};
-const DEFAULT_MAP_SIZE=2000;
-const DEFAULT_MAP_IMAGE=SIZE_TO_IMAGE[DEFAULT_MAP_SIZE];
-const urlParams=new URLSearchParams(window.location.search);
-const mapSizeParam=Number.parseInt(urlParams.get('map')||'',10);
-const mapSize=SIZE_TO_IMAGE[mapSizeParam] ? mapSizeParam : DEFAULT_MAP_SIZE;
-const mapImageParam=(urlParams.get('img')||'').trim();
-const mapImage=mapImageParam || SIZE_TO_IMAGE[mapSize] || DEFAULT_MAP_IMAGE;
-
-const MAP_WIDTH=mapSize, MAP_HEIGHT=mapSize;
+const MAP_WIDTH=3000, MAP_HEIGHT=3000;
 const MAP_BUFFER=400;
 const WORLD_WIDTH=MAP_WIDTH+(MAP_BUFFER*2);
 const WORLD_HEIGHT=MAP_HEIGHT+(MAP_BUFFER*2);
@@ -36,7 +23,7 @@ const map=L.map('map',{
 });
 map.fitBounds(bounds);
 L.control.zoom({position:'bottomleft'}).addTo(map);
-L.imageOverlay(`images/${mapImage}`, imageBounds).addTo(map);
+L.imageOverlay('images/3k.png', imageBounds).addTo(map);
 
 let editorMode=false, debugMarker=null;
 let suppressNextMapClick=false;
