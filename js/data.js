@@ -1,9 +1,13 @@
 const CATEGORIES={
-  shop:{label:'Shop',e:'🪙',c:'#c89018'},
-  residence:{label:'Residence',e:'🏰',c:'#8a4e28'},
-  academy:{label:'Academy',e:'📜',c:'#6848a0'},
-  tavern:{label:'Tavern',e:'🍺',c:'#b04020'},
-  dungeon:{label:'Dungeon',e:'⚔️',c:'#2a2a38'}
+  shop:{label:'Shop',icon:'images/shopicon.svg'},
+  'food-drink':{label:'Food & Drink',icon:'images/foodicon.svg'},
+  residences:{label:'Residences',icon:'images/resicon.svg'},
+  schools:{label:'Schools',icon:'images/schoolicon.svg'},
+  parks:{label:'Parks',icon:'images/parkicon.svg'},
+  farms:{label:'Farms',icon:'images/farmicon.svg'},
+  government:{label:'Government',icon:'images/govicon.svg'},
+  services:{label:'Services',icon:'images/servicesicon.svg'},
+  other:{label:'Other',icon:'images/othericon.svg'}
 };
 
 let REGIONS=[];
@@ -13,13 +17,6 @@ let deepLinkApplied=false;
 
 const DEFAULT_REGION={
  id:'wilds',label:'Outer Wilds',accent:'#5a6672',soft:'rgba(90,102,114,0.10)'
-};
-
-const REGION_ACCENTS={
- andromeda:{accent1:'rgb(42, 94, 8)',accent2:'rgb(128, 188, 69)',accent3:'rgb(225, 172, 71)'},
- 'the-wall':{accent1:'rgb(63, 93, 145)',accent2:'rgb(190, 35, 35)',accent3:'rgb(190, 71, 35)'},
- 'throat-of-the-world':{accent1:'rgb(130, 40, 114)',accent2:'rgb(101, 63, 212)',accent3:'rgb(190, 184, 217)'},
- metis:{accent1:'rgb(126, 163, 255)',accent2:'rgb(164, 123, 255)',accent3:'rgb(226, 102, 207)'}
 };
 
 function validNumber(v){
@@ -54,12 +51,15 @@ function sanitizeRegion(raw){
  if(typeof raw.label!=='string' || !raw.label.trim()) return null;
  const points=normalizePoints(raw.points);
  if(points.length===0) return null;
- return {
-  id:raw.id.trim(),
-  label:raw.label,
-  img:typeof raw.img==='string'?raw.img:'',
-  desc:typeof raw.desc==='string'?raw.desc:'',
-  link:typeof raw.link==='string'?raw.link:'',
+  return {
+   id:raw.id.trim(),
+   label:raw.label,
+   accent1:typeof raw.accent1==='string'?raw.accent1:'',
+   accent2:typeof raw.accent2==='string'?raw.accent2:'',
+   accent3:typeof raw.accent3==='string'?raw.accent3:'',
+   img:typeof raw.img==='string'?raw.img:'',
+   desc:typeof raw.desc==='string'?raw.desc:'',
+   link:typeof raw.link==='string'?raw.link:'',
   accent:typeof raw.accent==='string'?raw.accent:'#5a6672',
   soft:typeof raw.soft==='string'?raw.soft:'rgba(90,102,114,0.10)',
   overlay:typeof raw.overlay==='string'?raw.overlay:'rgba(90,102,114,0.14)',
@@ -188,10 +188,10 @@ function makeIcon(cat,region){
   className:'map-pin-icon',
   html:`<div style="width:24px;height:28px;display:flex;justify-content:center;">
     <div style="width:22px;height:22px;border-radius:50% 50% 50% 0;
-    transform:rotate(-45deg);background:${cfg.c};
+    transform:rotate(-45deg);background:#1f2430;
     display:flex;align-items:center;justify-content:center;
     border:2px solid ${accent}; box-shadow:0 0 0 2px ${halo};">
-    <span style="transform:rotate(45deg);font-size:10px;">${cfg.e}</span>
+    <img src="${cfg.icon}" alt="${cfg.label}" style="width:12px;height:12px;transform:rotate(45deg);" />
     </div></div>`,
   iconSize:[24,28], iconAnchor:[12,27]
  });

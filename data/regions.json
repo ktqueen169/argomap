@@ -2,6 +2,9 @@
   {
     "id": "throat-of-the-world",
     "label": "The Throat of the World",
+    "accent1": "rgb(130, 40, 114)",
+    "accent2": "rgb(101, 63, 212)",
+    "accent3": "rgb(190, 184, 217)",
     "img": "images/throat.png",
     "desc": "A giant, snow covered mountain in the center of the city.",
     "link": "https://example.com/regions/the-throat-of-the-world",
@@ -207,6 +210,9 @@
   {
     "id": "andromeda",
     "label": "Andromeda",
+    "accent1": "rgb(42, 94, 8)",
+    "accent2": "rgb(128, 188, 69)",
+    "accent3": "rgb(225, 172, 71)",
     "img": "images/magictower.jpg",
     "desc": "The western half of the city interior.",
     "link": "https://example.com/regions/andromeda",
@@ -420,6 +426,9 @@
   {
     "id": "metis",
     "label": "Metis",
+    "accent1": "rgb(126, 163, 255)",
+    "accent2": "rgb(164, 123, 255)",
+    "accent3": "rgb(226, 102, 207)",
     "img": "images/metis.png",
     "desc": "The high tech half of the city. From futuristic to modern, you'll find it here.",
     "link": "https://example.com/regions/metis",
@@ -633,6 +642,9 @@
   {
     "id": "the-wall",
     "label": "The Wall",
+    "accent1": "rgb(63, 93, 145)",
+    "accent2": "rgb(190, 35, 35)",
+    "accent3": "rgb(190, 71, 35)",
     "img": "images/wall.png",
     "desc": "A fortified ring around the city interior.",
     "link": "https://example.com/regions/the-wall",

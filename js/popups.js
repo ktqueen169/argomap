@@ -59,7 +59,7 @@ function makePopup(loc){
  const renderPopupBody=(extraClass='')=>`
   <div class="popup-body ${extraClass}">
    <div class="popup-title">${escapeHtml(loc.name)}</div>
-   <div class="popup-cat">${escapeHtml(cfg.e)} ${escapeHtml(cfg.label)}</div>
+   <div class="popup-cat"><img class="popup-cat-icon" src="${escapeAttr(cfg.icon)}" alt="${escapeAttr(cfg.label)} icon" /> ${escapeHtml(cfg.label)}</div>
    <div class="popup-region-row"><div class="popup-region">${escapeHtml(region.label)}</div></div>
    ${popupDetails(loc)}
   </div>`;

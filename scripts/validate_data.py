@@ -10,7 +10,7 @@ DATA_DIR = ROOT / "data"
 REGIONS_PATH = DATA_DIR / "regions.json"
 LOCATIONS_PATH = DATA_DIR / "locations.json"
 LOCATIONS_SPLIT_DIR = DATA_DIR / "locations"
-ALLOWED_CATEGORIES = {"shop", "residence", "academy", "tavern", "dungeon"}
+ALLOWED_CATEGORIES = {"shop", "food-drink", "residences", "schools", "parks", "farms", "government", "services", "other"}
 
 
 def load_json(path: pathlib.Path):

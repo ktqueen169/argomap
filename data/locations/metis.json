@@ -2,7 +2,7 @@
   {
     "id": "tower",
     "region": "metis",
-    "cat": "academy",
+    "cat": "schools",
     "pos": [
       200,
       200
@@ -63,7 +63,7 @@
   {
     "id": "example-castle",
     "region": "metis",
-    "cat": "residence",
+    "cat": "residences",
     "pos": [
       200,
       800

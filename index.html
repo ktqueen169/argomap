@@ -109,6 +109,14 @@ html, body, #map { height: 100%; width: 100%; }
 .popup-cat {
   font-size:clamp(0.68rem, 0.62rem + 0.22vw, 0.75rem);
   margin-top:5px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.popup-cat-icon {
+  width:14px;
+  height:14px;
+  flex:0 0 14px;
 }
 .popup-desc { font-size:clamp(0.72rem, 0.66rem + 0.24vw, 0.82rem); margin:6px 0; }
 .popup-region {
@@ -242,10 +250,6 @@ html, body, #map { height: 100%; width: 100%; }
     background-clip:text;
   }
 }
-.popup-links .popup-details-link:hover {
-  color:rgb(var(--accent2)) !important;
-  text-decoration:underline;
-}
 .popup-links .popup-owner-link,
 .popup-links .popup-owner-link:visited,
 .popup-links .popup-owner-link:active {
@@ -363,7 +367,6 @@ html, body, #map { height: 100%; width: 100%; }
   --accent2:101, 63, 212;
   --accent3:190, 184, 217;
 }
-
 .map-pin-icon {
   background: transparent;
   border: none;

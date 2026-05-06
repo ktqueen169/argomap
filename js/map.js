@@ -72,8 +72,7 @@ const regionPolygons={};
 const regionsLayer=L.layerGroup().addTo(map);
 
 function regionAccent1Color(region){
- const theme=REGION_ACCENTS[region.id];
- return (theme && theme.accent1) || region.accent || '#5a6672';
+ return region.accent1 || region.accent || '#5a6672';
 }
 
 function ensureEditorToggleRow(){
@@ -199,9 +198,9 @@ function renderMapData(){
  });
 
  const overlays={};
- Object.entries(CATEGORIES).forEach(([k,v])=>{
-  overlays[`${v.e} ${v.label}`]=categoryGroups[k];
- });
+Object.entries(CATEGORIES).forEach(([k,v])=>{
+  overlays[`<img src="${v.icon}" alt="" style="width:12px;height:12px;vertical-align:-2px;margin-right:6px;" />${v.label}`]=categoryGroups[k];
+});
  overlays['Regions']=regionsLayer;
  if(layersControl) map.removeControl(layersControl);
  layersControl=L.control.layers(null,overlays,{collapsed:true}).addTo(map);
