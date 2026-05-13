@@ -55,6 +55,7 @@
           "Observatory",
           "Upper Tower"
         ],
+        "vacant": true,
         "desc": "Archmage chamber used for private research and sky observations.",
         "link": "https://example.com/locations/mage-tower/top"
       }

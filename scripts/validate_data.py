@@ -10,7 +10,18 @@ DATA_DIR = ROOT / "data"
 REGIONS_PATH = DATA_DIR / "regions.json"
 LOCATIONS_PATH = DATA_DIR / "locations.json"
 LOCATIONS_SPLIT_DIR = DATA_DIR / "locations"
-ALLOWED_CATEGORIES = {"shop", "food-drink", "residences", "schools", "parks", "farms", "government", "services", "other"}
+ALLOWED_CATEGORIES = {
+    "shop",
+    "food-drink",
+    "residences",
+    "schools",
+    "parks",
+    "farms",
+    "government",
+    "services",
+    "entertainment",
+    "other",
+}
 
 
 def load_json(path: pathlib.Path):
@@ -26,7 +37,9 @@ def load_locations():
     if LOCATIONS_SPLIT_DIR.exists() and LOCATIONS_SPLIT_DIR.is_dir():
         locations = []
         json_files = sorted(
-            path for path in LOCATIONS_SPLIT_DIR.glob("*.json") if path.name != "index.json"
+            path
+            for path in LOCATIONS_SPLIT_DIR.glob("*.json")
+            if path.name != "index.json"
         )
         if not json_files:
             fail("data/locations exists but has no .json files")
@@ -122,9 +135,13 @@ def validate_regions(regions):
 
             rings = [points] if is_single_ring else points
             for j, ring in enumerate(rings):
-                ring_where = f"{where}.points[{j}]" if not is_single_ring else f"{where}.points"
+                ring_where = (
+                    f"{where}.points[{j}]" if not is_single_ring else f"{where}.points"
+                )
                 if not isinstance(ring, list) or len(ring) < 3:
-                    fail(f"{ring_where}: must contain at least 3 [number, number] points")
+                    fail(
+                        f"{ring_where}: must contain at least 3 [number, number] points"
+                    )
                     continue
                 for k, pt in enumerate(ring):
                     if (
