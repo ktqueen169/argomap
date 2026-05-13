@@ -62,24 +62,103 @@
     ]
   },
   {
-    "id": "example-castle",
+    "id": "sonus-radio-tower",
     "region": "metis",
-    "cat": "residences",
+    "cat": "other",
     "pos": [
-      200,
-      800
+      -312,
+      108
     ],
-    "name": "Castle Ironhold",
+    "name": "The Sonus Radio Tower",
     "aliases": [
-      "Ironhold",
-      "The Castle",
-      "House Ironhold"
+      "radio",
+      "The Sonus Radio Tower",
+      "radio tower",
+      "sonus",
+      "tower"
     ],
-    "desc": "Seat of House Ironhold.",
-    "link": "https://example.com/locations/castle-ironhold",
-    "owner": {
-      "name": "House Ironhold",
-      "url": "https://example.com/users/house-ironhold"
-    }
+    "img": "images/radio.png",
+    "desc": "A radio tower that broadcasts throughout all of Vela, with an assortment of radio shows and types of music.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry70"
+  },
+  {
+    "id": "the-institute",
+    "region": "metis",
+    "cat": "schools",
+    "pos": [
+      -320,
+      354
+    ],
+    "name": "The Institute",
+    "aliases": [
+      "school",
+      "metis schoool",
+      "academy",
+      "college",
+      "high school",
+      "elementary school",
+      "institute"
+    ],
+    "img": "images/institute.png",
+    "desc": "The Institute is a large and oddly shaped building, which was the primary educational center within Metis.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry71"
+  },
+  {
+    "id": "metis-aquarium-zoo",
+    "region": "metis",
+    "cat": "entertainment",
+    "pos": [
+      -570,
+      1084
+    ],
+    "name": "Metis Aquarium & Zoo",
+    "aliases": [
+      "aquarium",
+      "zoo",
+      "animals"
+    ],
+    "img": "images/zoo.png",
+    "desc": "Currently a holding tank for assorted wildlife within Vela, this center studies and cares for the many creatures of Vela",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry72"
+  },
+  {
+    "id": "black-hole-arcade",
+    "region": "metis",
+    "cat": "entertainment",
+    "pos": [
+      985,
+      860
+    ],
+    "name": "Black Hole Arcade",
+    "aliases": [
+      "Gaming",
+      "arcade",
+      "black hole"
+    ],
+    "img": "images/arcade.png",
+    "desc": "A small brick building that lacks windows, which is abasolutely packed with a wide variety of arcade games",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry73"
+  },
+  {
+    "id": "the-loose-screw",
+    "region": "metis",
+    "cat": "food-drink",
+    "pos": [
+      49,
+      991
+    ],
+    "name": "The Loose Screw",
+    "aliases": [
+      "bar",
+      "dive bar",
+      "alcohol",
+      "liqour",
+      "spirits",
+      "wine",
+      "beer"
+    ],
+    "img": "images/bar.png",
+    "desc": "A dive bar that always smells like old  beer, and will call you names if you ask for food.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry74"
   }
 ]
