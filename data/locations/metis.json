@@ -160,5 +160,24 @@
     "img": "images/bar.png",
     "desc": "A dive bar that always smells like old  beer, and will call you names if you ask for food.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry74"
+  },
+  {
+    "id": "metis-central-hospital",
+    "region": "metis",
+    "cat": "services",
+    "pos": [
+      84,
+      650
+    ],
+    "name": "Metis Central Hospital",
+    "aliases": [
+      "medicine",
+      "recovery",
+      "healing",
+      "doctors"
+    ],
+    "img": "images/hospital2.webp",
+    "desc": "MCH is the main medical facility in Metis, full of valuable equipment and medicine.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry80"
   }
 ]

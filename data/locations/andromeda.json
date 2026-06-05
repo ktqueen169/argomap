@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "id": "the-hollow-abyss",
+    "region": "andromeda",
+    "cat": "other",
+    "pos": [
+      14,
+      -227
+    ],
+    "name": "The Hollow Abyss",
+    "aliases": [
+      "crater",
+      "mine",
+      "abyss",
+      "hole",
+      "Gordianite",
+      "ore",
+      "rock"
+    ],
+    "img": "images/the_hole.png",
+    "desc": "A crater that contains an old mining village.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry82"
+  }
+]
