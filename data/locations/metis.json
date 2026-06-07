@@ -179,5 +179,41 @@
     "img": "images/hospital2.webp",
     "desc": "MCH is the main medical facility in Metis, full of valuable equipment and medicine.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry80"
+  },
+  {
+    "id": "shadow-gardens",
+    "region": "metis",
+    "cat": "parks",
+    "pos": [
+      1130,
+      264
+    ],
+    "name": "Shadow Gardens",
+    "aliases": [
+      "park",
+      "trees"
+    ],
+    "img": "images/park_mini.png",
+    "desc": "A large park with plenty of trees, picnic benches, and walking paths.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry87"
+  },
+  {
+    "id": "songbird-plaza",
+    "region": "metis",
+    "cat": "parks",
+    "pos": [
+      -114,
+      1104
+    ],
+    "name": "Songbird Plaza",
+    "aliases": [
+      "park",
+      "trees",
+      "playground",
+      "parties"
+    ],
+    "img": "images/park2_mini.png",
+    "desc": "The largest park in Metis which has a bit of everything for everyone!",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry88"
   }
 ]

@@ -1,5 +1,26 @@
 [
   {
+    "id": "the-whispering-mists-woodland",
+    "region": "andromeda",
+    "cat": "parks",
+    "pos": [
+      -360,
+      -884
+    ],
+    "name": "The Whispering Mists Woodland",
+    "aliases": [
+      "forest",
+      "trees",
+      "wilds",
+      "woodland",
+      "whispering mists",
+      "woods"
+    ],
+    "img": "images/forest.png",
+    "desc": "A thick forest on the West side of Andromeda.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry56"
+  },
+  {
     "id": "the-hollow-abyss",
     "region": "andromeda",
     "cat": "other",
