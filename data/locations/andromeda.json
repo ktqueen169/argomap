@@ -41,5 +41,97 @@
     "img": "images/the_hole.png",
     "desc": "A crater that contains an old mining village.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry82"
+  },
+  {
+    "id": "attica-theater",
+    "region": "andromeda",
+    "cat": "entertainment",
+    "pos": [
+      -388,
+      -306
+    ],
+    "name": "Attica Theater",
+    "aliases": [
+      "theater",
+      "performances",
+      "shows"
+    ],
+    "img": "images/attica.jpeg",
+    "desc": "A traditional but magical amphitheater on the outskirts of Andromeda",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry98"
+  },
+  {
+    "id": "library-of-aethiopia",
+    "region": "andromeda",
+    "cat": "schools",
+    "pos": [
+      -1104,
+      -528
+    ],
+    "name": "Library of Aethiopia",
+    "aliases": [
+      "library",
+      "learning",
+      "books",
+      "archive"
+    ],
+    "img": "images/library.jpg",
+    "desc": "A grand library with a book on anything one could desire.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry91"
+  },
+  {
+    "id": "elysian-bathhouse",
+    "region": "andromeda",
+    "cat": "services",
+    "pos": [
+      -318,
+      -48
+    ],
+    "name": "Elysian Bathhouse",
+    "aliases": [
+      "sauna",
+      "relaxation",
+      "bathing"
+    ],
+    "img": "images/bathhouse.jpg",
+    "desc": "Relax in luxury at the Elysian Bathhouse, built over a natural spring",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry90"
+  },
+  {
+    "id": "de-avibus",
+    "region": "andromeda",
+    "cat": "parks",
+    "pos": [
+      -102,
+      -912
+    ],
+    "name": "De Avibus",
+    "aliases": [
+      "park",
+      "aviary",
+      "animals"
+    ],
+    "img": "images/avibus.jpeg",
+    "desc": "A beautiful greenhouse garden that was once home to countless birds.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry89"
+  },
+  {
+    "id": "vela-courthouse",
+    "region": "andromeda",
+    "cat": "government",
+    "pos": [
+      -764,
+      -468
+    ],
+    "name": "Vela Courthouse",
+    "aliases": [
+      "courthouse",
+      "legal",
+      "judge",
+      "jail"
+    ],
+    "img": "images/courthouse.png",
+    "desc": "The judicial and legislative heart of Vela, the Courthouse serves a variety of functions.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry100"
   }
 ]
