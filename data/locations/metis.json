@@ -215,5 +215,25 @@
     "img": "images/park2_mini.png",
     "desc": "The largest park in Metis which has a bit of everything for everyone!",
     "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry88"
+  },
+  {
+    "id": "prism-palace",
+    "region": "metis",
+    "cat": "entertainment",
+    "pos": [
+      -1116,
+      120
+    ],
+    "name": "Prism Palace",
+    "aliases": [
+      "gambling",
+      "slots",
+      "betting",
+      "booze",
+      "racing"
+    ],
+    "img": "images/prism.png",
+    "desc": "The largest casino in Metis, filled with bright flashing holograms welcoming everyone to come gamble. Win or lose, you'll certainly have an adventure.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry83"
   }
 ]
