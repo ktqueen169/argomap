@@ -1,6 +1,6 @@
 const MAP_WIDTH = 3000,
 	MAP_HEIGHT = 3000;
-const MAP_BUFFER = 600;
+const MAP_BUFFER = 1000;
 const EDGE_POPUP_OPTIONS = {
 	autoPan: true,
 	keepInView: true,
@@ -33,7 +33,7 @@ const map = L.map("map", {
 	minZoom: -2,
 	maxZoom: 2,
 	maxBounds: bounds,
-	maxBoundsViscosity: 1.0,
+	maxBoundsViscosity: 0.3,
 });
 map.fitBounds(bounds);
 L.control.zoom({ position: "bottomleft" }).addTo(map);
