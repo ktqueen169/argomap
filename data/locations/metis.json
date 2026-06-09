@@ -1,63 +1,42 @@
 [
   {
-    "id": "tower",
+    "id": "vantage-point",
     "region": "metis",
-    "cat": "schools",
+    "cat": "residences",
     "pos": [
-      200,
-      200
+      -974,
+      138
     ],
-    "name": "Magic Thinky Tower",
+    "name": "Vantage Point",
     "aliases": [
-      "Mage Tower",
-      "Magic Tower",
-      "Thinky Tower",
-      "MTT"
+      "apartments",
+      "home",
+      "shops",
+      "skyscraper"
     ],
-    "img": "images/magictower.jpg",
-    "desc": "A towering spire of magic.",
-    "link": "https://example.com/locations/mage-tower",
-    "owner": {
-      "name": "Dokja Kim",
-      "url": "https://argonaut.jcink.net/index.php?showuser=23"
-    },
+    "img": "images/tower.png",
+    "desc": "Vantage Point is a 34 story skyscraper that was once a bustling hub for those who enjoy the city life.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry58",
     "floors": [
       {
-        "name": "Ground",
-        "aliases": [
-          "Lobby",
-          "Entrance",
-          "Front Hall"
-        ],
-        "desc": "Entrance hall with posted notices and visitor records.",
-        "link": "https://example.com/locations/mage-tower/ground"
-      },
-      {
-        "name": "Daye Investigations",
-        "aliases": [
-          "Daye PI",
-          "PI Office",
-          "Private Investigations",
-          "Toby Daye"
-        ],
-        "img": "images/pi.png",
-        "desc": "Chaotic PI firm.",
-        "link": "https://example.com/locations/mage-tower/library",
-        "owner": {
-          "name": "Toby Daye",
-          "url": "https://argonaut.jcink.net/index.php?showuser=19"
-        }
-      },
-      {
-        "name": "Top",
-        "aliases": [
-          "Archmage Chamber",
-          "Observatory",
-          "Upper Tower"
-        ],
+        "name": "Floor 1",
         "vacant": true,
-        "desc": "Archmage chamber used for private research and sky observations.",
-        "link": "https://example.com/locations/mage-tower/top"
+        "desc": "Vacant floor."
+      },
+      {
+        "name": "Floor 2",
+        "vacant": true,
+        "desc": "Vacant floor."
+      },
+      {
+        "name": "Floor 3",
+        "vacant": true,
+        "desc": "Vacant floor."
+      },
+      {
+        "name": "Floor 4",
+        "vacant": true,
+        "desc": "Vacant floor."
       }
     ]
   },

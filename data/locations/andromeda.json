@@ -116,6 +116,24 @@
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry89"
   },
   {
+    "id": "rusal-lake",
+    "region": "andromeda",
+    "cat": "parks",
+    "pos": [
+      184,
+      -1160
+    ],
+    "name": "Rusal Lake",
+    "aliases": [
+      "lake",
+      "water",
+      "island"
+    ],
+    "img": "images/lake.png",
+    "desc": "A foggy lake with an island in the center, known for its crystal-clear waters.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry103"
+  },
+  {
     "id": "vela-courthouse",
     "region": "andromeda",
     "cat": "government",
