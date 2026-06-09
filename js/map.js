@@ -1,6 +1,13 @@
 const MAP_WIDTH = 3000,
 	MAP_HEIGHT = 3000;
-const MAP_BUFFER = 400;
+const MAP_BUFFER = 600;
+const EDGE_POPUP_OPTIONS = {
+	autoPan: true,
+	keepInView: true,
+	autoPanPadding: L.point(80, 80),
+	autoPanPaddingTopLeft: L.point(80, 80),
+	autoPanPaddingBottomRight: L.point(80, 80),
+};
 const WORLD_WIDTH = MAP_WIDTH + MAP_BUFFER * 2;
 const WORLD_HEIGHT = MAP_HEIGHT + MAP_BUFFER * 2;
 const WORLD_CENTER_Y = MAP_BUFFER + MAP_HEIGHT / 2;
@@ -61,6 +68,7 @@ map.on("click", (e) => {
 			.addTo(map)
 			.bindPopup(
 				`<span style="color:#fff;">pos: [${Math.round(y)}, ${Math.round(x)}]</span>`,
+				EDGE_POPUP_OPTIONS,
 			)
 			.openPopup();
 	} else {
@@ -143,6 +151,22 @@ function applyRegionStyles() {
 	});
 }
 
+function collapseLayersControl() {
+	if (!layersControl) return;
+	const container = layersControl.getContainer?.();
+	if (!container) return;
+	if (container.classList.contains("leaflet-control-layers-expanded")) {
+		const toggle = container.querySelector(".leaflet-control-layers-toggle");
+		if (toggle) {
+			toggle.click();
+			return;
+		}
+	}
+	if (typeof layersControl.collapse === "function") layersControl.collapse();
+	else if (typeof layersControl._collapse === "function")
+		layersControl._collapse();
+}
+
 function clearRegion() {
 	activeRegion = null;
 	applyRegionStyles();
@@ -214,7 +238,7 @@ function renderMapData() {
 			...regionStyle(region, false),
 			className: "region-overlay",
 		})
-			.bindPopup(makeRegionPopup(region))
+			.bindPopup(makeRegionPopup(region), EDGE_POPUP_OPTIONS)
 			.bindTooltip(region.label, { sticky: true })
 			.addTo(regionsLayer);
 		polygon.on("click", (e) => {
@@ -239,7 +263,7 @@ function renderMapData() {
 		const region = regionForLocation(loc);
 		const marker = L.marker(px(loc.pos), {
 			icon: makeIcon(loc.cat, region),
-		}).bindPopup(makePopup(loc));
+		}).bindPopup(makePopup(loc), EDGE_POPUP_OPTIONS);
 		marker.on("click", () =>
 			updateUrlParams({ loc: loc.id, region: null, floor: null }),
 		);
@@ -334,6 +358,7 @@ map.on("overlayadd overlayremove", () => {
 bindSearchHandlers();
 
 map.on("popupopen", (e) => {
+	collapseLayersControl();
 	const el = e.popup.getElement();
 	const btns = el.querySelectorAll(".vtab-btn");
 	const panels = el.querySelectorAll(".floor-panel");
