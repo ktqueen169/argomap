@@ -1,7 +1,6 @@
 [
   {
     "id": "vantage-point",
-    "region": "metis",
     "cat": "residences",
     "pos": [
       -974,
@@ -38,11 +37,11 @@
         "vacant": true,
         "desc": "Vacant floor."
       }
-    ]
+    ],
+    "district": "metis"
   },
   {
     "id": "warehouses",
-    "region": "metis",
     "cat": "residences",
     "pos": [
       382,
@@ -56,11 +55,11 @@
     ],
     "img": "images/warehouse.png",
     "desc": "Warehouses both vaguely converted to apartments, as well as simply empty former industrial buildings.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=36&st=0&#entry113"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=36&st=0&#entry113",
+    "district": "metis"
   },
   {
     "id": "sonus-radio-tower",
-    "region": "metis",
     "cat": "other",
     "pos": [
       -312,
@@ -76,11 +75,11 @@
     ],
     "img": "images/radio.png",
     "desc": "A radio tower that broadcasts throughout all of Vela, with an assortment of radio shows and types of music.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry70"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry70",
+    "district": "metis"
   },
   {
     "id": "the-institute",
-    "region": "metis",
     "cat": "schools",
     "pos": [
       -320,
@@ -98,11 +97,11 @@
     ],
     "img": "images/institute.png",
     "desc": "The Institute is a large and oddly shaped building, which was the primary educational center within Metis.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry71"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry71",
+    "district": "metis"
   },
   {
     "id": "metis-aquarium-zoo",
-    "region": "metis",
     "cat": "entertainment",
     "pos": [
       -570,
@@ -116,11 +115,11 @@
     ],
     "img": "images/zoo.png",
     "desc": "Currently a holding tank for assorted wildlife within Vela, this center studies and cares for the many creatures of Vela",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry72"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry72",
+    "district": "metis"
   },
   {
     "id": "black-hole-arcade",
-    "region": "metis",
     "cat": "entertainment",
     "pos": [
       985,
@@ -134,11 +133,11 @@
     ],
     "img": "images/arcade.png",
     "desc": "A small brick building that lacks windows, which is abasolutely packed with a wide variety of arcade games",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry73"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry73",
+    "district": "metis"
   },
   {
     "id": "the-loose-screw",
-    "region": "metis",
     "cat": "food-drink",
     "pos": [
       49,
@@ -156,11 +155,11 @@
     ],
     "img": "images/bar.png",
     "desc": "A dive bar that always smells like old  beer, and will call you names if you ask for food.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry74"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry74",
+    "district": "metis"
   },
   {
     "id": "metis-central-hospital",
-    "region": "metis",
     "cat": "services",
     "pos": [
       84,
@@ -175,11 +174,11 @@
     ],
     "img": "images/hospital2.webp",
     "desc": "MCH is the main medical facility in Metis, full of valuable equipment and medicine.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry80"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry80",
+    "district": "metis"
   },
   {
     "id": "shadow-gardens",
-    "region": "metis",
     "cat": "parks",
     "pos": [
       1130,
@@ -192,11 +191,11 @@
     ],
     "img": "images/park_mini.png",
     "desc": "A large park with plenty of trees, picnic benches, and walking paths.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry87"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry87",
+    "district": "metis"
   },
   {
     "id": "songbird-plaza",
-    "region": "metis",
     "cat": "parks",
     "pos": [
       -114,
@@ -211,11 +210,11 @@
     ],
     "img": "images/park2_mini.png",
     "desc": "The largest park in Metis which has a bit of everything for everyone!",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry88"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry88",
+    "district": "metis"
   },
   {
     "id": "prism-palace",
-    "region": "metis",
     "cat": "entertainment",
     "pos": [
       -1116,
@@ -231,6 +230,7 @@
     ],
     "img": "images/prism.png",
     "desc": "The largest casino in Metis, filled with bright flashing holograms welcoming everyone to come gamble. Win or lose, you'll certainly have an adventure.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry83"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry83",
+    "district": "metis"
   }
 ]

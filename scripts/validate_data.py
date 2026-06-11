@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
-REGIONS_PATH = DATA_DIR / "regions.json"
+DISTRICTS_PATH = DATA_DIR / "districts.json"
 LOCATIONS_PATH = DATA_DIR / "locations.json"
 LOCATIONS_SPLIT_DIR = DATA_DIR / "locations"
 ALLOWED_CATEGORIES = {
@@ -95,26 +95,26 @@ def validate_owner(owner, where: str):
     check_url(owner.get("url", ""), f"{where}.url")
 
 
-def validate_regions(regions):
-    if not isinstance(regions, list):
-        fail("data/regions.json must be a JSON array")
+def validate_districts(districts):
+    if not isinstance(districts, list):
+        fail("data/districts.json must be a JSON array")
         return set()
 
     ids = set()
-    for i, region in enumerate(regions):
-        where = f"regions[{i}]"
-        if not isinstance(region, dict):
+    for i, district in enumerate(districts):
+        where = f"districts[{i}]"
+        if not isinstance(district, dict):
             fail(f"{where}: must be an object")
             continue
 
-        rid = region.get("id")
-        label = region.get("label")
-        points = region.get("points")
+        rid = district.get("id")
+        label = district.get("label")
+        points = district.get("points")
         if not isinstance(rid, str) or not rid.strip():
             fail(f"{where}: missing/invalid id")
             continue
         if rid in ids:
-            fail(f"{where}: duplicate region id '{rid}'")
+            fail(f"{where}: duplicate district id '{rid}'")
         ids.add(rid)
 
         if not isinstance(label, str) or not label.strip():
@@ -152,8 +152,8 @@ def validate_regions(regions):
                     ):
                         fail(f"{ring_where}[{k}]: must be [number, number]")
 
-        check_url(region.get("link", ""), f"{where}.link")
-        check_image_path(region.get("img", ""), f"{where}.img")
+        check_url(district.get("link", ""), f"{where}.link")
+        check_image_path(district.get("img", ""), f"{where}.img")
 
     return ids
 
@@ -170,7 +170,7 @@ def validate_floor(floor, where: str):
     validate_owner(floor.get("owner"), f"{where}.owner")
 
 
-def validate_locations(locations, region_ids):
+def validate_locations(locations, district_ids):
     if not isinstance(locations, list):
         fail("locations data must be a JSON array")
         return
@@ -197,9 +197,9 @@ def validate_locations(locations, region_ids):
         if cat not in ALLOWED_CATEGORIES:
             fail(f"{where}: invalid category '{cat}'")
 
-        region = loc.get("region")
-        if region and region not in region_ids:
-            fail(f"{where}: unknown region '{region}'")
+        district = loc.get("district")
+        if district and district not in district_ids:
+            fail(f"{where}: unknown district '{district}'")
 
         pos = loc.get("pos")
         if (
@@ -228,13 +228,13 @@ if __name__ == "__main__":
     ERRORS = []
     WARNINGS = []
 
-    regions = load_json(REGIONS_PATH)
+    districts = load_json(DISTRICTS_PATH)
     locations = load_locations()
-    if regions is None or locations is None:
+    if districts is None or locations is None:
         sys.exit(1)
 
-    region_ids = validate_regions(regions)
-    validate_locations(locations, region_ids)
+    district_ids = validate_districts(districts)
+    validate_locations(locations, district_ids)
 
     for msg in WARNINGS:
         print(f"[WARN] {msg}")
@@ -245,4 +245,4 @@ if __name__ == "__main__":
         print(f"Validation failed with {len(ERRORS)} error(s).")
         sys.exit(1)
 
-    print("Validation passed for data/regions.json and data/locations/*.json.")
+    print("Validation passed for data/districts.json and data/locations/*.json.")

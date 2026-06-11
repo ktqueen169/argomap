@@ -1,7 +1,6 @@
 [
   {
     "id": "the-whispering-mists-woodland",
-    "region": "andromeda",
     "cat": "parks",
     "pos": [
       -360,
@@ -18,11 +17,11 @@
     ],
     "img": "images/forest.png",
     "desc": "A thick forest on the West side of Andromeda.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry56"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry56",
+    "district": "andromeda"
   },
   {
     "id": "misty-cabins",
-    "region": "andromeda",
     "cat": "residences",
     "pos": [
       -356,
@@ -35,13 +34,13 @@
       "housing",
       "woods"
     ],
-    "img": "images/mistycabins.png",
+    "img": "images/mistycabins.jpg",
     "desc": "Old cabins in the thick of the Whispering Mists, comfortable in solitude.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=32&st=0&#entry106"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=32&st=0&#entry106",
+    "district": "andromeda"
   },
   {
     "id": "the-hollow-abyss",
-    "region": "andromeda",
     "cat": "other",
     "pos": [
       14,
@@ -59,11 +58,11 @@
     ],
     "img": "images/the_hole.png",
     "desc": "A crater that contains an old mining village.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry82"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry82",
+    "district": "andromeda"
   },
   {
     "id": "attica-theater",
-    "region": "andromeda",
     "cat": "entertainment",
     "pos": [
       -114,
@@ -77,11 +76,11 @@
     ],
     "img": "images/attica.jpeg",
     "desc": "A traditional but magical amphitheater on the outskirts of Andromeda",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry98"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry98",
+    "district": "andromeda"
   },
   {
     "id": "the-clocktower",
-    "region": "andromeda",
     "cat": "other",
     "pos": [
       -631,
@@ -95,11 +94,11 @@
     ],
     "img": "images/clocktower.png",
     "desc": "A clocktower that always shows the wrong time in a way that mocks you.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry53"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry53",
+    "district": "andromeda"
   },
   {
     "id": "the-drunken-pony",
-    "region": "andromeda",
     "cat": "food-drink",
     "pos": [
       -902,
@@ -118,11 +117,11 @@
     ],
     "img": "images/yaypony.png",
     "desc": "A tavern that has both fresh brews and delicious meals.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry49"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry49",
+    "district": "andromeda"
   },
   {
     "id": "the-bazaar",
-    "region": "andromeda",
     "cat": "shop",
     "pos": [
       -807,
@@ -136,11 +135,26 @@
     ],
     "img": "images/thatsbazaar.png",
     "desc": "In Andromeda's most populated area, a marketplace hides in plain sight.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry48"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry48",
+    "floors": [
+      {
+        "name": "All Around",
+        "aliases": [
+          "Damask Rose",
+          "residences",
+          "apartments",
+          "housing",
+          "downtown"
+        ],
+        "img": "images/damaskrose.png",
+        "desc": "Cramped but cozy apartments squeezed over and inbetween Andromeda's Baazar.",
+        "link": "https://argonaut.jcink.net/index.php?showtopic=32&st=0&#entry99"
+      }
+    ],
+    "district": "andromeda"
   },
   {
     "id": "jasmine-terrace",
-    "region": "andromeda",
     "cat": "residences",
     "pos": [
       -1107,
@@ -155,11 +169,11 @@
     ],
     "img": "images/richhouseandromeda.png",
     "desc": "Beautiful houses that are covered covered in blossoms year round.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=32&st=0&#entry115"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=32&st=0&#entry115",
+    "district": "andromeda"
   },
   {
     "id": "library-of-aethiopia",
-    "region": "andromeda",
     "cat": "schools",
     "pos": [
       -1104,
@@ -174,11 +188,50 @@
     ],
     "img": "images/library.jpg",
     "desc": "A grand library with a book on anything one could desire.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry91"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry91",
+    "district": "andromeda"
+  },
+  {
+    "id": "cassiopeia-university",
+    "cat": "schools",
+    "pos": [
+      -1079,
+      -697
+    ],
+    "name": "Cassiopeia University",
+    "aliases": [
+      "Uni",
+      "School",
+      "magic",
+      "academy",
+      "learning",
+      "teaching"
+    ],
+    "img": "images/uni.png",
+    "desc": "A beautiful university for learning every subject imaginable that sits along the edge of the Misty Woods. It's magically bigger on the inside.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry114",
+    "district": "andromeda"
+  },
+  {
+    "id": "cassiopeia-university-dorms",
+    "cat": "residences",
+    "pos": [
+      -968,
+      -521
+    ],
+    "name": "Cassiopeia University Dorms",
+    "aliases": [
+      "residences",
+      "dorms",
+      "student housing"
+    ],
+    "img": "images/cass_dorms.jpg",
+    "desc": "Mystical dorms for students of Cassiopeia University.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=32&st=0&#entry107",
+    "district": "andromeda"
   },
   {
     "id": "elysian-bathhouse",
-    "region": "andromeda",
     "cat": "services",
     "pos": [
       -1268,
@@ -192,11 +245,11 @@
     ],
     "img": "images/bathhouse.jpg",
     "desc": "Relax in luxury at the Elysian Bathhouse, built over a natural spring",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry90"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry90",
+    "district": "andromeda"
   },
   {
     "id": "de-avibus",
-    "region": "andromeda",
     "cat": "parks",
     "pos": [
       -102,
@@ -210,11 +263,11 @@
     ],
     "img": "images/avibus.jpeg",
     "desc": "A beautiful greenhouse garden that was once home to countless birds.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry89"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry89",
+    "district": "andromeda"
   },
   {
     "id": "rusal-lake",
-    "region": "andromeda",
     "cat": "parks",
     "pos": [
       184,
@@ -228,11 +281,11 @@
     ],
     "img": "images/lake.png",
     "desc": "A foggy lake with an island in the center, known for its crystal-clear waters.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry103"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry103",
+    "district": "andromeda"
   },
   {
     "id": "vela-courthouse",
-    "region": "andromeda",
     "cat": "government",
     "pos": [
       -764,
@@ -247,6 +300,25 @@
     ],
     "img": "images/courthouse.png",
     "desc": "The judicial and legislative heart of Vela, the Courthouse serves a variety of functions.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry100"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry100",
+    "district": "andromeda"
+  },
+  {
+    "id": "old-crypt",
+    "cat": "other",
+    "pos": [
+      -24,
+      -1296
+    ],
+    "name": "Old Crypt",
+    "aliases": [
+      "graveyard",
+      "crypt",
+      "tombstones"
+    ],
+    "img": "images/crypt.jpg",
+    "desc": "An old crypt on the edge of the woods, it's most definitely haunted.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry101",
+    "district": "andromeda"
   }
 ]

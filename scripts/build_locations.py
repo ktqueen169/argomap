@@ -29,7 +29,7 @@ def main():
             return 1
         merged.extend(payload)
 
-    merged.sort(key=lambda loc: ((loc.get("region") or "").lower(), (loc.get("name") or "").lower(), loc.get("id") or ""))
+    merged.sort(key=lambda loc: ((loc.get("district") or "").lower(), (loc.get("name") or "").lower(), loc.get("id") or ""))
     OUT_PATH.write_text(json.dumps(merged, indent=2) + "\n", encoding="utf-8")
     print(f"Wrote {len(merged)} locations to {OUT_PATH.relative_to(ROOT)} from {len(files)} split files.")
     return 0

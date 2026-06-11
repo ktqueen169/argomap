@@ -48,7 +48,7 @@ function setEditorMode(enabled) {
 	const box = document.getElementById("editor-mode-toggle");
 	if (box) box.checked = editorMode;
 	if (editorMode) {
-		if (map.hasLayer(regionsLayer)) map.removeLayer(regionsLayer);
+		if (map.hasLayer(districtsLayer)) map.removeLayer(districtsLayer);
 	}
 	if (!editorMode && debugMarker) {
 		map.removeLayer(debugMarker);
@@ -76,7 +76,7 @@ map.on("click", (e) => {
 			suppressNextMapClick = false;
 			return;
 		}
-		clearRegion();
+		clearDistrict();
 	}
 });
 
@@ -86,19 +86,19 @@ Object.keys(CATEGORIES).forEach((c) => {
 	categoryGroups[c] = L.layerGroup().addTo(map);
 });
 
-let activeRegion = null;
+let activeDistrict = null;
 let layersControl = null;
-const regionPolygons = {};
-const regionsLayer = L.layerGroup().addTo(map);
+const districtPolygons = {};
+const districtsLayer = L.layerGroup().addTo(map);
 
 map.on("overlayadd", (e) => {
-	if (e.layer === regionsLayer && editorMode) {
+	if (e.layer === districtsLayer && editorMode) {
 		setEditorMode(false);
 	}
 });
 
-function regionAccent1Color(region) {
-	return region.accent1 || region.accent || "#5a6672";
+function districtAccent1Color(district) {
+	return district.accent1 || district.accent || "#5a6672";
 }
 
 function ensureEditorToggleRow() {
@@ -118,12 +118,12 @@ function ensureEditorToggleRow() {
 	label.appendChild(document.createTextNode("Coord Click"));
 	row.appendChild(label);
 
-	const regionsLabel = Array.from(overlaysEl.querySelectorAll("label")).find(
-		(el) => el.textContent?.trim().endsWith("Regions"),
+	const districtsLabel = Array.from(overlaysEl.querySelectorAll("label")).find(
+		(el) => el.textContent?.trim().endsWith("Districts"),
 	);
-	const regionsRow = regionsLabel?.parentElement;
-	if (regionsRow?.parentElement === overlaysEl && regionsRow.nextSibling) {
-		overlaysEl.insertBefore(row, regionsRow.nextSibling);
+	const districtsRow = districtsLabel?.parentElement;
+	if (districtsRow?.parentElement === overlaysEl && districtsRow.nextSibling) {
+		overlaysEl.insertBefore(row, districtsRow.nextSibling);
 	} else {
 		overlaysEl.appendChild(row);
 	}
@@ -133,8 +133,8 @@ function ensureEditorToggleRow() {
 	});
 }
 
-function regionStyle(region, selected) {
-	const base = regionAccent1Color(region);
+function districtStyle(district, selected) {
+	const base = districtAccent1Color(district);
 	return {
 		color: base,
 		weight: selected ? 3 : 1,
@@ -143,11 +143,11 @@ function regionStyle(region, selected) {
 	};
 }
 
-function applyRegionStyles() {
-	REGIONS.forEach((region) => {
-		const polygon = regionPolygons[region.id];
+function applyDistrictStyles() {
+	DISTRICTS.forEach((district) => {
+		const polygon = districtPolygons[district.id];
 		if (!polygon) return;
-		polygon.setStyle(regionStyle(region, activeRegion === region.id));
+		polygon.setStyle(districtStyle(district, activeDistrict === district.id));
 	});
 }
 
@@ -167,9 +167,9 @@ function collapseLayersControl() {
 		layersControl._collapse();
 }
 
-function clearRegion() {
-	activeRegion = null;
-	applyRegionStyles();
+function clearDistrict() {
+	activeDistrict = null;
+	applyDistrictStyles();
 }
 
 function openLocationById(locId, floorIndex = null, center = true) {
@@ -192,29 +192,29 @@ function openLocationById(locId, floorIndex = null, center = true) {
 	marker.openPopup();
 	updateUrlParams({
 		loc: locId,
-		region: null,
+		district: null,
 		floor: Number.isInteger(floorIndex) ? String(floorIndex) : null,
 	});
 	return true;
 }
 
-function openRegionById(regionId) {
-	const polygon = regionPolygons[regionId];
-	const region = REGION_INDEX[regionId];
-	if (!polygon || !region) return false;
-	activeRegion = region.id;
-	applyRegionStyles();
+function openDistrictById(districtId) {
+	const polygon = districtPolygons[districtId];
+	const district = DISTRICT_INDEX[districtId];
+	if (!polygon || !district) return false;
+	activeDistrict = district.id;
+	applyDistrictStyles();
 	polygon.bringToFront();
 	map.fitBounds(polygon.getBounds(), { maxZoom: 1, padding: [30, 30] });
 	polygon.openPopup(polygon.getBounds().getCenter());
-	updateUrlParams({ region: regionId, loc: null, floor: null });
+	updateUrlParams({ district: districtId, loc: null, floor: null });
 	return true;
 }
 
 function applyDeepLinkFromUrl() {
 	const url = new URL(window.location.href);
 	const loc = url.searchParams.get("loc");
-	const region = url.searchParams.get("region");
+	const district = url.searchParams.get("district");
 	const floorRaw = url.searchParams.get("floor");
 	const floor = floorRaw !== null ? Number.parseInt(floorRaw, 10) : null;
 	if (
@@ -222,25 +222,25 @@ function applyDeepLinkFromUrl() {
 		openLocationById(loc, Number.isInteger(floor) ? floor : null, true)
 	)
 		return;
-	if (region) openRegionById(region);
+	if (district) openDistrictById(district);
 }
 
 function renderMapData() {
-	regionsLayer.clearLayers();
-	Object.keys(regionPolygons).forEach((id) => delete regionPolygons[id]);
+	districtsLayer.clearLayers();
+	Object.keys(districtPolygons).forEach((id) => delete districtPolygons[id]);
 	Object.keys(markerMap).forEach((id) => delete markerMap[id]);
 	Object.values(categoryGroups).forEach((group) => group.clearLayers());
-	activeRegion = null;
+	activeDistrict = null;
 
-	REGIONS.forEach((region) => {
-		const latLngs = region.points.map((ring) => ring.map((pt) => px(pt)));
+	DISTRICTS.forEach((district) => {
+		const latLngs = district.points.map((ring) => ring.map((pt) => px(pt)));
 		const polygon = L.polygon(latLngs, {
-			...regionStyle(region, false),
-			className: "region-overlay",
+			...districtStyle(district, false),
+			className: "district-overlay",
 		})
-			.bindPopup(makeRegionPopup(region), EDGE_POPUP_OPTIONS)
-			.bindTooltip(region.label, { sticky: true })
-			.addTo(regionsLayer);
+			.bindPopup(makeDistrictPopup(district), EDGE_POPUP_OPTIONS)
+			.bindTooltip(district.label, { sticky: true })
+			.addTo(districtsLayer);
 		polygon.on("click", (e) => {
 			if (editorMode) {
 				polygon.closePopup();
@@ -248,24 +248,24 @@ function renderMapData() {
 				L.DomEvent.stop(e);
 				return;
 			}
-			activeRegion = region.id;
-			applyRegionStyles();
+			activeDistrict = district.id;
+			applyDistrictStyles();
 			polygon.bringToFront();
 			polygon.openPopup(e.latlng);
-			updateUrlParams({ region: region.id, loc: null, floor: null });
+			updateUrlParams({ district: district.id, loc: null, floor: null });
 			suppressNextMapClick = true;
 			L.DomEvent.stop(e);
 		});
-		regionPolygons[region.id] = polygon;
+		districtPolygons[district.id] = polygon;
 	});
 
 	LOCATIONS.forEach((loc) => {
-		const region = regionForLocation(loc);
+		const district = districtForLocation(loc);
 		const marker = L.marker(px(loc.pos), {
-			icon: makeIcon(loc.cat, region),
+			icon: makeIcon(loc.cat, district),
 		}).bindPopup(makePopup(loc), EDGE_POPUP_OPTIONS);
 		marker.on("click", () =>
-			updateUrlParams({ loc: loc.id, region: null, floor: null }),
+			updateUrlParams({ loc: loc.id, district: null, floor: null }),
 		);
 		categoryGroups[loc.cat].addLayer(marker);
 		markerMap[loc.id] = { marker, loc };
@@ -282,7 +282,7 @@ function renderMapData() {
 			`<img src="${v.icon}" alt="" style="width:12px;height:12px;vertical-align:-2px;margin-right:6px;" />${v.label}`
 		] = categoryGroups[k];
 	});
-	overlays["Regions"] = regionsLayer;
+	overlays["Districts"] = districtsLayer;
 	if (layersControl) map.removeControl(layersControl);
 	layersControl = L.control
 		.layers(null, overlays, { collapsed: true })
@@ -291,12 +291,12 @@ function renderMapData() {
 }
 
 async function loadWorldData() {
-	const [regionsRes, locationsIndexRes] = await Promise.all([
-		fetch("./data/regions.json"),
+	const [districtsRes, locationsIndexRes] = await Promise.all([
+		fetch("./data/districts.json"),
 		fetch("./data/locations/index.json"),
 	]);
-	if (!regionsRes.ok)
-		throw new Error(`Failed to load regions data: ${regionsRes.status}`);
+	if (!districtsRes.ok)
+		throw new Error(`Failed to load districts data: ${districtsRes.status}`);
 	if (!locationsIndexRes.ok)
 		throw new Error(
 			`Failed to load locations index: ${locationsIndexRes.status}`,
@@ -325,13 +325,13 @@ async function loadWorldData() {
 		mergedLocations.push(...payload);
 	});
 	const raw = {
-		regions: await regionsRes.json(),
+		districts: await districtsRes.json(),
 		locations: mergedLocations,
 	};
 	const data = parseWorldData(raw);
-	REGIONS = data.regions;
+	DISTRICTS = data.districts;
 	LOCATIONS = data.locations;
-	REGION_INDEX = Object.fromEntries(REGIONS.map((r) => [r.id, r]));
+	DISTRICT_INDEX = Object.fromEntries(DISTRICTS.map((r) => [r.id, r]));
 	renderMapData();
 	if (!deepLinkApplied) {
 		applyDeepLinkFromUrl();
@@ -343,7 +343,7 @@ loadWorldData().catch((err) => {
 	console.error(err);
 	const details = err && err.message ? `\n\nDetails: ${err.message}` : "";
 	alert(
-		`Could not load map data from data/regions.json or data/locations/index.json.${details}`,
+		`Could not load map data from data/districts.json or data/locations/index.json.${details}`,
 	);
 });
 

@@ -14,12 +14,12 @@ const CATEGORIES = {
 	other: { label: "Other", icon: "images/othericon.svg" },
 };
 
-var REGIONS = [];
-var REGION_INDEX = {};
+var DISTRICTS = [];
+var DISTRICT_INDEX = {};
 var LOCATIONS = [];
 var deepLinkApplied = false;
 
-const DEFAULT_REGION = {
+const DEFAULT_DISTRICT = {
 	id: "wilds",
 	label: "Outer Wilds",
 	accent: "#5a6672",
@@ -55,7 +55,7 @@ function normalizePoints(points) {
 	return rings.length ? rings : [];
 }
 
-function sanitizeRegion(raw) {
+function sanitizeDistrict(raw) {
 	if (!raw || typeof raw !== "object") return null;
 	if (typeof raw.id !== "string" || !raw.id.trim()) return null;
 	if (typeof raw.label !== "string" || !raw.label.trim()) return null;
@@ -121,7 +121,12 @@ function sanitizeLocation(raw) {
 		: null;
 	return {
 		id: raw.id.trim(),
-		region: typeof raw.region === "string" ? raw.region : "",
+		district:
+			typeof raw.district === "string"
+				? raw.district
+				: typeof raw.district === "string"
+					? raw.district
+					: "",
 		cat: raw.cat,
 		pos: [raw.pos[0], raw.pos[1]],
 		name: raw.name.trim(),
@@ -137,24 +142,28 @@ function sanitizeLocation(raw) {
 }
 
 function parseWorldData(data) {
-	const rawRegions = Array.isArray(data && data.regions) ? data.regions : [];
+	const rawDistricts = Array.isArray(data && data.districts)
+		? data.districts
+		: Array.isArray(data && data.districts)
+			? data.districts
+			: [];
 	const rawLocations = Array.isArray(data && data.locations)
 		? data.locations
 		: [];
-	const regions = [];
-	const regionIds = new Set();
-	rawRegions.forEach((r, i) => {
-		const region = sanitizeRegion(r);
-		if (!region) {
-			console.warn(`Skipping invalid region at index ${i}`);
+	const districts = [];
+	const districtIds = new Set();
+	rawDistricts.forEach((r, i) => {
+		const district = sanitizeDistrict(r);
+		if (!district) {
+			console.warn(`Skipping invalid district at index ${i}`);
 			return;
 		}
-		if (regionIds.has(region.id)) {
-			console.warn(`Duplicate region id "${region.id}" skipped`);
+		if (districtIds.has(district.id)) {
+			console.warn(`Duplicate district id "${district.id}" skipped`);
 			return;
 		}
-		regionIds.add(region.id);
-		regions.push(region);
+		districtIds.add(district.id);
+		districts.push(district);
 	});
 
 	const locations = [];
@@ -173,7 +182,7 @@ function parseWorldData(data) {
 		locations.push(loc);
 	});
 
-	return { regions, locations };
+	return { districts, locations };
 }
 
 function pointInPolygon([y, x], polygon) {
@@ -188,8 +197,8 @@ function pointInPolygon([y, x], polygon) {
 	return inside;
 }
 
-function pointInRegion([y, x], region) {
-	const [outer, ...holes] = region.points;
+function pointInDistrict([y, x], district) {
+	const [outer, ...holes] = district.points;
 	if (!pointInPolygon([y, x], outer)) return false;
 	for (const hole of holes) {
 		if (pointInPolygon([y, x], hole)) return false;
@@ -197,22 +206,23 @@ function pointInRegion([y, x], region) {
 	return true;
 }
 
-function regionForPos([y, x]) {
-	for (const region of REGIONS) {
-		if (pointInRegion([y, x], region)) return region;
+function districtForPos([y, x]) {
+	for (const district of DISTRICTS) {
+		if (pointInDistrict([y, x], district)) return district;
 	}
-	return DEFAULT_REGION;
+	return DEFAULT_DISTRICT;
 }
 
-function regionForLocation(loc) {
-	if (loc.region && REGION_INDEX[loc.region]) return REGION_INDEX[loc.region];
-	return regionForPos(loc.pos);
+function districtForLocation(loc) {
+	if (loc.district && DISTRICT_INDEX[loc.district]) return DISTRICT_INDEX[loc.district];
+	if (loc.district && DISTRICT_INDEX[loc.district]) return DISTRICT_INDEX[loc.district];
+	return districtForPos(loc.pos);
 }
 
-function makeIcon(cat, region) {
+function makeIcon(cat, district) {
 	const cfg = CATEGORIES[cat];
-	const accent = (region && region.accent) || DEFAULT_REGION.accent;
-	const halo = (region && region.soft) || DEFAULT_REGION.soft;
+	const accent = (district && district.accent) || DEFAULT_DISTRICT.accent;
+	const halo = (district && district.soft) || DEFAULT_DISTRICT.soft;
 	return L.divIcon({
 		className: "map-pin-icon",
 		html: `<div style="width:24px;height:28px;display:flex;justify-content:center;">

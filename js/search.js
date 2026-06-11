@@ -8,7 +8,7 @@ function buildSearchIndex(query) {
 	if (!q) return [];
 	const out = [];
 	LOCATIONS.forEach((loc) => {
-		const region = regionForLocation(loc);
+		const district = districtForLocation(loc);
 		const locText = [loc.name, loc.desc || "", (loc.aliases || []).join(" ")]
 			.join(" ")
 			.toLowerCase();
@@ -18,7 +18,7 @@ function buildSearchIndex(query) {
 				loc,
 				floorIndex: null,
 				label: loc.name,
-				meta: `${region.label} · ${CATEGORIES[loc.cat].label}`,
+				meta: `${district.label} · ${CATEGORIES[loc.cat].label}`,
 			});
 		}
 		if (Array.isArray(loc.floors)) {
@@ -32,7 +32,7 @@ function buildSearchIndex(query) {
 						loc,
 						floorIndex: i,
 						label: f.name,
-						meta: `${loc.name} · ${region.label}`,
+						meta: `${loc.name} · ${district.label}`,
 					});
 				}
 			});

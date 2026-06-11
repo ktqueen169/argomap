@@ -43,8 +43,8 @@ function popupDetails(item, fallback = {}) {
   ${linksHtml}`;
 }
 
-function popupThemeClass(region) {
-	return `popup-theme-${region.id || DEFAULT_REGION.id}`;
+function popupThemeClass(district) {
+	return `popup-theme-${district.id || DEFAULT_DISTRICT.id}`;
 }
 
 function updateUrlParams(params) {
@@ -61,13 +61,13 @@ function updateUrlParams(params) {
 
 function makePopup(loc) {
 	const cfg = CATEGORIES[loc.cat];
-	const region = regionForLocation(loc);
-	const themeClass = popupThemeClass(region);
+	const district = districtForLocation(loc);
+	const themeClass = popupThemeClass(district);
 	const renderPopupBody = (extraClass = "") => `
   <div class="popup-body ${extraClass}">
    <div class="popup-title">${escapeHtml(loc.name)}</div>
    <div class="popup-cat"><img class="popup-cat-icon" src="${escapeAttr(cfg.icon)}" alt="${escapeAttr(cfg.label)} icon" /> ${escapeHtml(cfg.label)}</div>
-   <div class="popup-region-row"><div class="popup-region">${escapeHtml(region.label)}</div></div>
+   <div class="popup-district-row"><div class="popup-district">${escapeHtml(district.label)}</div></div>
    ${popupDetails(loc)}
   </div>`;
 
@@ -107,12 +107,12 @@ function makePopup(loc) {
  </div></div>`;
 }
 
-function makeRegionPopup(region) {
-	const themeClass = popupThemeClass(region);
+function makeDistrictPopup(district) {
+	const themeClass = popupThemeClass(district);
 	return `
   <div class="popup-body ${themeClass}">
-   <div class="popup-title">${escapeHtml(region.label)}</div>
-   <div class="popup-region-row"><div class="popup-cat popup-cat-region">Region</div></div>
-   ${popupDetails(region)}
+   <div class="popup-title">${escapeHtml(district.label)}</div>
+   <div class="popup-district-row"><div class="popup-cat popup-cat-district">District</div></div>
+   ${popupDetails(district)}
   </div>`;
 }

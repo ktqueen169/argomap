@@ -1,7 +1,6 @@
 [
   {
     "id": "flux",
-    "region": "Throat",
     "cat": "other",
     "pos": [
       -664,
@@ -12,11 +11,11 @@
       "coming soon"
     ],
     "img": "images/flux.png",
-    "desc": "An extremely destabilized area not far from the base of the mountain - currently unavailable."
+    "desc": "An extremely destabilized area not far from the base of the mountain - currently unavailable.",
+    "district": "Throat"
   },
   {
     "id": "nebula",
-    "region": "Throat",
     "cat": "government",
     "pos": [
       2,
@@ -31,11 +30,11 @@
     ],
     "img": "images/nebula.png",
     "desc": "Where it all begins.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=50&st=0&#entry102"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=50&st=0&#entry102",
+    "district": "Throat"
   },
   {
     "id": "lux-river",
-    "region": "Throat",
     "cat": "parks",
     "pos": [
       413,
@@ -48,6 +47,7 @@
     ],
     "img": "images/lux.png",
     "desc": "A glowing river that cuts through the center of Vela.",
-    "link": "https://argonaut.jcink.net/index.php?showtopic=50&st=0&#entry104"
+    "link": "https://argonaut.jcink.net/index.php?showtopic=50&st=0&#entry104",
+    "district": "Throat"
   }
 ]
