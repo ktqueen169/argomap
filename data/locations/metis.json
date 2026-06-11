@@ -41,6 +41,24 @@
     ]
   },
   {
+    "id": "warehouses",
+    "region": "metis",
+    "cat": "residences",
+    "pos": [
+      382,
+      174
+    ],
+    "name": "Warehouses",
+    "aliases": [
+      "warehouses",
+      "lofts",
+      "open floorplan"
+    ],
+    "img": "images/warehouse.png",
+    "desc": "Warehouses both vaguely converted to apartments, as well as simply empty former industrial buildings.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=36&st=0&#entry113"
+  },
+  {
     "id": "sonus-radio-tower",
     "region": "metis",
     "cat": "other",

@@ -21,6 +21,25 @@
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry56"
   },
   {
+    "id": "misty-cabins",
+    "region": "andromeda",
+    "cat": "residences",
+    "pos": [
+      -356,
+      -1002
+    ],
+    "name": "Misty Cabins",
+    "aliases": [
+      "residences",
+      "cabins",
+      "housing",
+      "woods"
+    ],
+    "img": "images/mistycabins.png",
+    "desc": "Old cabins in the thick of the Whispering Mists, comfortable in solitude.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=32&st=0&#entry106"
+  },
+  {
     "id": "the-hollow-abyss",
     "region": "andromeda",
     "cat": "other",
@@ -47,8 +66,8 @@
     "region": "andromeda",
     "cat": "entertainment",
     "pos": [
-      -388,
-      -306
+      -114,
+      -256
     ],
     "name": "Attica Theater",
     "aliases": [
@@ -59,6 +78,84 @@
     "img": "images/attica.jpeg",
     "desc": "A traditional but magical amphitheater on the outskirts of Andromeda",
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry98"
+  },
+  {
+    "id": "the-clocktower",
+    "region": "andromeda",
+    "cat": "other",
+    "pos": [
+      -631,
+      -166
+    ],
+    "name": "The Clocktower",
+    "aliases": [
+      "clock",
+      "clocktower",
+      "big clock"
+    ],
+    "img": "images/clocktower.png",
+    "desc": "A clocktower that always shows the wrong time in a way that mocks you.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry53"
+  },
+  {
+    "id": "the-drunken-pony",
+    "region": "andromeda",
+    "cat": "food-drink",
+    "pos": [
+      -902,
+      -300
+    ],
+    "name": "The Drunken Pony",
+    "aliases": [
+      "bar",
+      "tavern",
+      "alcohol",
+      "food",
+      "stew",
+      "soup",
+      "salad",
+      "sandwiches"
+    ],
+    "img": "images/yaypony.png",
+    "desc": "A tavern that has both fresh brews and delicious meals.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry49"
+  },
+  {
+    "id": "the-bazaar",
+    "region": "andromeda",
+    "cat": "shop",
+    "pos": [
+      -807,
+      -182
+    ],
+    "name": "The Bazaar",
+    "aliases": [
+      "shops",
+      "stores",
+      "downtown"
+    ],
+    "img": "images/thatsbazaar.png",
+    "desc": "In Andromeda's most populated area, a marketplace hides in plain sight.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry48"
+  },
+  {
+    "id": "jasmine-terrace",
+    "region": "andromeda",
+    "cat": "residences",
+    "pos": [
+      -1107,
+      -404
+    ],
+    "name": "Jasmine Terrace",
+    "aliases": [
+      "residences",
+      "neighborhood",
+      "houses",
+      "housing"
+    ],
+    "img": "images/richhouseandromeda.png",
+    "desc": "Beautiful houses that are covered covered in blossoms year round.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=32&st=0&#entry115"
   },
   {
     "id": "library-of-aethiopia",
@@ -84,8 +181,8 @@
     "region": "andromeda",
     "cat": "services",
     "pos": [
-      -318,
-      -48
+      -1268,
+      -93
     ],
     "name": "Elysian Bathhouse",
     "aliases": [
