@@ -231,6 +231,36 @@
     "district": "andromeda"
   },
   {
+    "id": "sibylline-sunsets",
+    "cat": "farms",
+    "pos": [
+      428,
+      -716
+    ],
+    "name": "Sibylline Sunsets",
+    "aliases": [
+      "small",
+      "magic",
+      "supplies"
+    ],
+    "img": "images/sibsun.png",
+    "desc": "A small farm along the edge of the lake specializing in magic supplies.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry152",
+    "district": "andromeda"
+  },
+  {
+    "id": "wildwood-acres",
+    "cat": "farms",
+    "pos": [
+      848,
+      -152
+    ],
+    "name": "Wildwood Acres",
+    "img": "images/wildwood.png",
+    "desc": "A larger farm that was once tended to with great care and provided a lot of food to Vela.",
+    "district": "andromeda"
+  },
+  {
     "id": "elysian-bathhouse",
     "cat": "services",
     "pos": [
