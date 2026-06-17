@@ -14,12 +14,15 @@ function escapeAttr(value) {
 const VACANT_FLOOR_DESC =
 	"Please contact the owner of this building for more information";
 
-function popupDetails(item, fallback = {}) {
+function popupDetails(item, fallback = {}, options = {}) {
 	const isVacant = item?.vacant === true;
 	const image = isVacant
 		? "images/vacancy.png"
 		: (item.img ?? fallback.img ?? "");
-	const link = isVacant ? "" : (item.link ?? fallback.link ?? "");
+	const link =
+		isVacant || options.hideDetailsLink
+			? ""
+			: (item.link ?? fallback.link ?? "");
 	const owner = item.owner ?? fallback.owner;
 	const safeDesc = escapeHtml(isVacant ? VACANT_FLOOR_DESC : (item.desc ?? ""));
 	const safeAlt = escapeAttr(item.name || fallback.name || "Location image");
@@ -113,6 +116,6 @@ function makeDistrictPopup(district) {
   <div class="popup-body ${themeClass}">
    <div class="popup-title">${escapeHtml(district.label)}</div>
    <div class="popup-district-row"><div class="popup-cat popup-cat-district">District</div></div>
-   ${popupDetails(district)}
+   ${popupDetails(district, {}, { hideDetailsLink: true })}
   </div>`;
 }

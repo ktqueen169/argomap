@@ -127,9 +127,7 @@
       .leaflet-popup-content {
         width: 300px !important;
         margin: 0;
-        max-height: 440px;
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow: visible;
       }
       .leaflet-popup-tip {
         background: transparent;
@@ -141,7 +139,10 @@
         object-fit: cover;
       }
       .popup-body {
-        padding: 12px;
+        padding: 12px 28px 12px 12px;
+        max-height: 440px;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
       .popup-cat {
         font-size: clamp(0.68rem, 0.62rem + 0.22vw, 0.75rem);
@@ -177,7 +178,10 @@
         padding: 8px;
       }
       .popup-shell {
-        padding: 12px;
+        padding: 12px 28px 12px 12px;
+        max-height: 440px;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
       .popup-shell .floor-panel {
         padding: 8px 10px 0;
@@ -185,8 +189,6 @@
       .popup-shell .vtab-container {
         margin-top: 8px;
       }
-      .popup-body,
-      .popup-shell,
       .floor-panel {
         overflow-x: hidden;
       }
@@ -494,8 +496,12 @@
 
         .leaflet-popup-content {
           width: min(82vw, 320px) !important;
+          overflow: visible;
+        }
+
+        .popup-body,
+        .popup-shell {
           max-height: 46vh;
-          overflow-y: auto;
         }
       }
     </style>

@@ -214,8 +214,10 @@ function districtForPos([y, x]) {
 }
 
 function districtForLocation(loc) {
-	if (loc.district && DISTRICT_INDEX[loc.district]) return DISTRICT_INDEX[loc.district];
-	if (loc.district && DISTRICT_INDEX[loc.district]) return DISTRICT_INDEX[loc.district];
+	if (loc.district && DISTRICT_INDEX[loc.district])
+		return DISTRICT_INDEX[loc.district];
+	if (loc.district && DISTRICT_INDEX[loc.district])
+		return DISTRICT_INDEX[loc.district];
 	return districtForPos(loc.pos);
 }
 
@@ -225,14 +227,14 @@ function makeIcon(cat, district) {
 	const halo = (district && district.soft) || DEFAULT_DISTRICT.soft;
 	return L.divIcon({
 		className: "map-pin-icon",
-		html: `<div style="width:24px;height:28px;display:flex;justify-content:center;">
-    <div style="width:22px;height:22px;border-radius:50% 50% 50% 0;
+		html: `<div style="width:30px;height:35px;display:flex;justify-content:center;">
+    <div style="width:28px;height:28px;border-radius:50% 50% 50% 0;
     transform:rotate(-45deg);background:#1f2430;
     display:flex;align-items:center;justify-content:center;
     border:2px solid ${accent}; box-shadow:0 0 0 2px ${halo};">
-    <img src="${cfg.icon}" alt="${cfg.label}" style="width:12px;height:12px;transform:rotate(45deg);" />
+    <img src="${cfg.icon}" alt="${cfg.label}" style="width:16px;height:16px;transform:rotate(45deg);" />
     </div></div>`,
-		iconSize: [24, 28],
-		iconAnchor: [12, 27],
+		iconSize: [30, 35],
+		iconAnchor: [15, 34],
 	});
 }
