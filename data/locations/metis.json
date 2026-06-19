@@ -178,6 +178,26 @@
     "district": "metis"
   },
   {
+    "id": "vela-postal-service",
+    "cat": "services",
+    "pos": [
+      244,
+      456
+    ],
+    "name": "Vela Postal Service",
+    "aliases": [
+      "Post Office"
+    ],
+    "img": "images/postoffice.jpg",
+    "desc": "A brick building in Metis that all mail goes through before delivery. There is a service office and PO boxes available for those without a fixed address.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry345",
+    "owner": {
+      "name": "Ming Shuo",
+      "url": "https://argonaut.jcink.net/index.php?showuser=94"
+    },
+    "district": "metis"
+  },
+  {
     "id": "shadow-gardens",
     "cat": "parks",
     "pos": [
