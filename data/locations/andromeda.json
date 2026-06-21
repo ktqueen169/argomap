@@ -40,6 +40,25 @@
     "district": "andromeda"
   },
   {
+    "id": "briarwood",
+    "cat": "residences",
+    "pos": [
+      -360,
+      -274
+    ],
+    "name": "Briarwood",
+    "aliases": [
+      "residences",
+      "neighborhood",
+      "cottages",
+      "housing"
+    ],
+    "img": "images/briar.png",
+    "desc": "A wooded neighborhood featuring cottages of varying sizes tucked into the heart of downtown Andromeda.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=32&st=0&#entry79",
+    "district": "andromeda"
+  },
+  {
     "id": "the-hollow-abyss",
     "cat": "other",
     "pos": [
