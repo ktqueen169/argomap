@@ -62,15 +62,15 @@
     "id": "central-bugway-station",
     "cat": "services",
     "pos": [
-      -356,
-      -140
+      -429,
+      -192
     ],
     "name": "Central Bugway Station",
     "aliases": [
       "Bugway",
       "Bugway station"
     ],
-    "img": "images/bugway.png",
+    "img": "images/bug.png",
     "desc": "The Central Station of the Bugway, public transport provided by the Bell Beast. All stations can be identified by the bell on display - but only Central has other amenities available, as well.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=15&#entry382",
     "owner": {
