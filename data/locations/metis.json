@@ -98,6 +98,10 @@
     "img": "images/institute.png",
     "desc": "The Institute is a large and oddly shaped building, which was the primary educational center within Metis.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry71",
+    "owner": {
+      "name": "Dorothy Franks",
+      "url": "https://argonaut.jcink.net/index.php?showuser=10"
+    },
     "district": "metis"
   },
   {
@@ -175,6 +179,10 @@
     "img": "images/hospital2.webp",
     "desc": "MCH is the main medical facility in Metis, full of valuable equipment and medicine.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry80",
+    "owner": {
+      "name": "Sohma Hatori",
+      "url": "https://argonaut.jcink.net/index.php?showuser=114"
+    },
     "district": "metis"
   },
   {
