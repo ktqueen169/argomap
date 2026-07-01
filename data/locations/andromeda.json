@@ -229,6 +229,10 @@
     "img": "images/library.jpg",
     "desc": "A grand library with a book on anything one could desire.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry91",
+    "owner": {
+      "name": "Ienzo",
+      "url": "https://argonaut.jcink.net/index.php?showuser=122"
+    },
     "district": "andromeda"
   },
   {
@@ -317,6 +321,10 @@
     "img": "images/bathhouse.jpg",
     "desc": "Relax in luxury at the Elysian Bathhouse, built over a natural spring",
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry90",
+    "owner": {
+      "name": "Deivirra",
+      "url": "https://argonaut.jcink.net/index.php?showuser=110"
+    },
     "district": "andromeda"
   },
   {
@@ -372,6 +380,10 @@
     "img": "images/courthouse.png",
     "desc": "The judicial and legislative heart of Vela, the Courthouse serves a variety of functions.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry100",
+    "owner": {
+      "name": "Princess Leia Organa",
+      "url": "https://argonaut.jcink.net/index.php?showuser=42"
+    },
     "district": "andromeda"
   },
   {
