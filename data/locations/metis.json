@@ -259,6 +259,10 @@
     "img": "images/prism.png",
     "desc": "The largest casino in Metis, filled with bright flashing holograms welcoming everyone to come gamble. Win or lose, you'll certainly have an adventure.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry83",
+    "owner": {
+      "name": "Shion",
+      "url": "https://argonaut.jcink.net/index.php?showuser=123"
+    },
     "district": "metis"
   }
 ]
