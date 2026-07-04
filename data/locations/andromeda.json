@@ -306,6 +306,26 @@
     "district": "andromeda"
   },
   {
+    "id": "insomnia-ranch",
+    "cat": "farms",
+    "pos": [
+      976,
+      -539
+    ],
+    "name": "Insomnia Ranch",
+    "aliases": [
+      "Farm"
+    ],
+    "img": "images/ranch.png",
+    "desc": "A sprawling farm that is home to large, opinionated and intelligent birds known as chocobos.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=15&#entry768",
+    "owner": {
+      "name": "Noctis Lucis Caelum",
+      "url": "https://argonaut.jcink.net/index.php?showuser=29"
+    },
+    "district": "andromeda"
+  },
+  {
     "id": "elysian-bathhouse",
     "cat": "services",
     "pos": [

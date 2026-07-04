@@ -206,6 +206,24 @@
     "district": "metis"
   },
   {
+    "id": "the-crossroads",
+    "cat": "services",
+    "pos": [
+      822,
+      1024
+    ],
+    "name": "The Crossroads",
+    "aliases": [
+      "youth center",
+      "after school",
+      "kids"
+    ],
+    "img": "images/small.png",
+    "desc": "A once school, now youth center, does what it can to give the kids of Vela a place to go.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry767",
+    "district": "metis"
+  },
+  {
     "id": "shadow-gardens",
     "cat": "parks",
     "pos": [
