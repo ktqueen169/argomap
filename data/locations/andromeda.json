@@ -363,6 +363,10 @@
     "img": "images/avibus.jpeg",
     "desc": "A beautiful greenhouse garden that was once home to countless birds.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry89",
+    "owner": {
+      "name": "Zhongli",
+      "url": "https://argonaut.jcink.net/index.php?showuser=83"
+    },
     "district": "andromeda"
   },
   {
