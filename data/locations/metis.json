@@ -282,5 +282,24 @@
       "url": "https://argonaut.jcink.net/index.php?showuser=123"
     },
     "district": "metis"
+  },
+  {
+    "id": "420-fuel",
+    "cat": "shop",
+    "pos": [
+      396,
+      717
+    ],
+    "name": "4/20 Fuel",
+    "aliases": [
+      "gas station",
+      "convenience store",
+      "shop",
+      "general store"
+    ],
+    "img": "images/420fuel.jpg",
+    "desc": "A definitely NOT haunted convenience store.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry912",
+    "district": "metis"
   }
 ]

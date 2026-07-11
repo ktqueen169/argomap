@@ -373,8 +373,8 @@
     "id": "rusal-lake",
     "cat": "parks",
     "pos": [
-      184,
-      -1160
+      172,
+      -800
     ],
     "name": "Rusal Lake",
     "aliases": [
@@ -426,6 +426,27 @@
     "img": "images/crypt.jpg",
     "desc": "An old crypt on the edge of the woods, it's most definitely haunted.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry101",
+    "district": "andromeda"
+  },
+  {
+    "id": "portunus-island",
+    "cat": "other",
+    "pos": [
+      196,
+      -1214
+    ],
+    "name": "Portunus Island",
+    "aliases": [
+      "Portunus",
+      "Guiding Flames HQ"
+    ],
+    "img": "images/GFHQ.jpg",
+    "desc": "Headquarters of the Guiding Flames, this island is where members converge to share their findings and discuss future explorations.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=15&#entry923",
+    "owner": {
+      "name": "Cid Telamon",
+      "url": "https://argonaut.jcink.net/index.php?showuser=76"
+    },
     "district": "andromeda"
   }
 ]
