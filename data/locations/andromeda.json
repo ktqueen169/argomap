@@ -448,5 +448,22 @@
       "url": "https://argonaut.jcink.net/index.php?showuser=76"
     },
     "district": "andromeda"
+  },
+  {
+    "id": "misty-training-grounds",
+    "cat": "other",
+    "pos": [
+      -655,
+      -946
+    ],
+    "name": "Misty Training Grounds",
+    "aliases": [
+      "Training Field",
+      "Practice Range"
+    ],
+    "img": "images/mistytrainingrounds.jpg",
+    "desc": "A training grounds in the Whispering Mists, popular with Blades.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=15&#entry1027",
+    "district": "andromeda"
   }
 ]

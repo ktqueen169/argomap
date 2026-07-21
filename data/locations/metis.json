@@ -301,5 +301,25 @@
     "desc": "A definitely NOT haunted convenience store.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry912",
     "district": "metis"
+  },
+  {
+    "id": "dreamjolt-bar",
+    "cat": "food-drink",
+    "pos": [
+      -624,
+      531
+    ],
+    "name": "Dreamjolt Bar",
+    "aliases": [
+      "Dreamjolt"
+    ],
+    "img": "images/dreamjolt.png",
+    "desc": "A jazz-style bar filled with flowing fizzy drinks and live performances.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry1155",
+    "owner": {
+      "name": "Gallagher",
+      "url": "https://argonaut.jcink.net/index.php?showuser=92"
+    },
+    "district": "metis"
   }
 ]
