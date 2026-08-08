@@ -39,6 +39,49 @@
         background: transparent !important;
       }
 
+      .gate-map-image {
+        -webkit-mask-image:
+          linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.75) 5%,
+            #000 10%,
+            #000 94%,
+            rgba(0, 0, 0, 0.75) 98%,
+            transparent 100%
+          ),
+          linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.75) 6%,
+            #000 12%,
+            #000 88%,
+            rgba(0, 0, 0, 0.75) 94%,
+            transparent 100%
+          );
+        -webkit-mask-composite: source-in;
+        mask-image:
+          linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.75) 5%,
+            #000 10%,
+            #000 94%,
+            rgba(0, 0, 0, 0.75) 98%,
+            transparent 100%
+          ),
+          linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.75) 6%,
+            #000 12%,
+            #000 88%,
+            rgba(0, 0, 0, 0.75) 94%,
+            transparent 100%
+          );
+        mask-composite: intersect;
+      }
+
       /* ui */
       :root {
         --search-top-offset: 10px;
@@ -440,6 +483,11 @@
         --accent1: 130, 40, 114;
         --accent2: 101, 63, 212;
         --accent3: 190, 184, 217;
+      }
+      .popup-theme-western {
+        --accent1: 156, 128, 237;
+        --accent2: 46, 161, 255;
+        --accent3: 177, 201, 205;
       }
       .map-pin-icon {
         background: transparent;

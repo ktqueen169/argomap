@@ -1,0 +1,266 @@
+[
+  {
+    "id": "cerulean-beach",
+    "cat": "parks",
+    "pos": [
+      1256,
+      -2957
+    ],
+    "name": "Cerulean Beach",
+    "aliases": [
+      "Seafront",
+      "Shore",
+      "Water"
+    ],
+    "img": "images/CeruleanBeach.png",
+    "desc": "A beach that practically glitters from its bioluminescent water and crystal rocks.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry1202",
+    "district": "western"
+  },
+  {
+    "id": "abandoned-vessel",
+    "cat": "other",
+    "pos": [
+      516,
+      -3955
+    ],
+    "name": "Abandoned Vessel",
+    "aliases": [
+      "Research Ship",
+      "Water",
+      "Boat",
+      "Hades"
+    ],
+    "img": "images/hades.jpg",
+    "desc": "A mysterious research vessel lost in the Magus Sea",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry1236",
+    "district": "western"
+  },
+  {
+    "id": "madesco-boardwalk",
+    "cat": "parks",
+    "pos": [
+      357,
+      -2462
+    ],
+    "name": "Madesco Boardwalk",
+    "aliases": [
+      "boardwalk"
+    ],
+    "img": "images/boardwalk.png",
+    "desc": "A massive boardwalk along the shore of Western Hyalos.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry943",
+    "district": "western"
+  },
+  {
+    "id": "magus-sea",
+    "cat": "other",
+    "pos": [
+      484,
+      -3202
+    ],
+    "name": "Magus Sea",
+    "aliases": [
+      "ocean",
+      "sea",
+      "water"
+    ],
+    "img": "images/sea.png",
+    "desc": "The open ocean of Western Hyalos.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry945",
+    "district": "western"
+  },
+  {
+    "id": "zoom-zoom-land",
+    "cat": "entertainment",
+    "pos": [
+      532,
+      -2356
+    ],
+    "name": "Zoom Zoom Land",
+    "aliases": [
+      "gocarts",
+      "go carts",
+      "cars"
+    ],
+    "img": "images/zoom.png",
+    "desc": "A track for crashing into each other in a vaguely safe way. Bad music included!",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry947",
+    "district": "western"
+  },
+  {
+    "id": "persephone",
+    "cat": "residences",
+    "pos": [
+      -1326,
+      -2064
+    ],
+    "name": "Persephone",
+    "aliases": [
+      "cruise ship",
+      "ship",
+      "boat",
+      "shows",
+      "entertainment",
+      "food",
+      "apartments"
+    ],
+    "img": "images/boat.png",
+    "desc": "A forever docked cruise ship with endless suites, and plenty of amenities for entertainment.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry1380",
+    "floors": [
+      {
+        "name": "Persephone Suites",
+        "img": "images/bed.png",
+        "desc": "The many varieties of suites within the ship.",
+        "link": "https://argonaut.jcink.net/index.php?showtopic=316&st=0&#entry1381"
+      },
+      {
+        "name": "Shops",
+        "vacant": true,
+        "desc": "shops",
+        "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry1380"
+      }
+    ],
+    "district": "western"
+  },
+  {
+    "id": "inlumino-lighthouse",
+    "cat": "other",
+    "pos": [
+      -24,
+      -2900
+    ],
+    "name": "Inlumino Lighthouse",
+    "aliases": [
+      "lighthouse"
+    ],
+    "img": "images/lighthouse.png",
+    "desc": "A light that keeps the shores safe.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry1383",
+    "district": "western"
+  },
+  {
+    "id": "attollo-cottages",
+    "cat": "residences",
+    "pos": [
+      402,
+      -1962
+    ],
+    "name": "Attollo Cottages",
+    "aliases": [
+      "house",
+      "cottage",
+      "home",
+      "waterside"
+    ],
+    "img": "images/cottage.png",
+    "desc": "Beautiful homes built directly onto the water.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=316&st=0&#entry950",
+    "district": "western"
+  },
+  {
+    "id": "cloud-nine",
+    "cat": "entertainment",
+    "pos": [
+      176,
+      -2594
+    ],
+    "name": "Cloud Nine",
+    "aliases": [
+      "ferris wheel"
+    ],
+    "img": "images/ferriswheel.png",
+    "desc": "A fairly large ferris wheel, featuring numerous light shows.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry944",
+    "district": "western"
+  },
+  {
+    "id": "port-aequora",
+    "cat": "services",
+    "pos": [
+      -1010,
+      -1916
+    ],
+    "name": "Port Aequora",
+    "aliases": [
+      "port"
+    ],
+    "img": "images/docks.png",
+    "desc": "A large sea port - boats of all sizes are docked here.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry946",
+    "district": "western"
+  },
+  {
+    "id": "abyssos",
+    "cat": "other",
+    "pos": [
+      -1198,
+      -1466
+    ],
+    "name": "Abyssos",
+    "aliases": [
+      "cave"
+    ],
+    "img": "images/caves.png",
+    "desc": "A sea cave, flooded during high tide - explorable during low tide.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry1446",
+    "district": "western"
+  },
+  {
+    "id": "jumbos-dock",
+    "cat": "food-drink",
+    "pos": [
+      549,
+      -2598
+    ],
+    "name": "Jumbo's Dock",
+    "aliases": [
+      "restaurant",
+      "cafe",
+      "eatery",
+      "dock",
+      "seafood"
+    ],
+    "img": "images/jumborestaurant.jpg",
+    "desc": "Seafood restaurant that overlooks the sea.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry948",
+    "district": "western"
+  },
+  {
+    "id": "thriae-island",
+    "cat": "other",
+    "pos": [
+      -864,
+      -3740
+    ],
+    "name": "Thriae Island",
+    "aliases": [
+      "flying",
+      "floating"
+    ],
+    "img": "images/Thriaeisland.jpg",
+    "desc": "A floating island in the Magus Sea, where magic thrives alongside nature.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry949",
+    "district": "western"
+  },
+  {
+    "id": "thriae-temple",
+    "cat": "other",
+    "pos": [
+      -1068,
+      -3956
+    ],
+    "name": "Thriae Temple",
+    "aliases": [
+      "abandoned",
+      "overgrown",
+      "temple",
+      "monastery"
+    ],
+    "img": "images/Thriaetemple.jpg",
+    "desc": "An overgrown temple in the heart of the Thriae Island.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry952",
+    "district": "western"
+  }
+]

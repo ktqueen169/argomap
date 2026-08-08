@@ -19,3 +19,6 @@ venv/
 
 # Generated data artifact (rebuildable)
 data/locations.json
+
+# Local notes
+notes/

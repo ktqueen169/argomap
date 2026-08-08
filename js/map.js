@@ -1,6 +1,10 @@
 const MAP_WIDTH = 3000,
 	MAP_HEIGHT = 3000;
 const MAP_BUFFER = 1000;
+const GATE_WIDTH = 3000,
+	GATE_HEIGHT = 3000,
+	GATE_OFFSET_X = 150,
+	GATE_OFFSET_Y = 0;
 const EDGE_POPUP_OPTIONS = {
 	autoPan: true,
 	keepInView: true,
@@ -8,8 +12,12 @@ const EDGE_POPUP_OPTIONS = {
 	autoPanPaddingTopLeft: L.point(80, 80),
 	autoPanPaddingBottomRight: L.point(80, 80),
 };
-const WORLD_WIDTH = MAP_WIDTH + MAP_BUFFER * 2;
-const WORLD_HEIGHT = MAP_HEIGHT + MAP_BUFFER * 2;
+const TOP_EDGE_POPUP_Y = -1200;
+const TOP_EDGE_POPUP_OFFSET = L.point(0, 300);
+const WORLD_MIN_X = MAP_BUFFER - GATE_WIDTH + GATE_OFFSET_X;
+const WORLD_MAX_X = MAP_BUFFER + MAP_WIDTH + (GATE_WIDTH - GATE_OFFSET_X);
+const WORLD_MIN_Y = 0;
+const WORLD_MAX_Y = MAP_HEIGHT + MAP_BUFFER * 2;
 const WORLD_CENTER_Y = MAP_BUFFER + MAP_HEIGHT / 2;
 const WORLD_CENTER_X = MAP_BUFFER + MAP_WIDTH / 2;
 
@@ -17,9 +25,21 @@ function px([y, x]) {
 	return [WORLD_CENTER_Y - y, WORLD_CENTER_X + x];
 }
 
+function popupOptionsForLocation(loc) {
+	const options = { ...EDGE_POPUP_OPTIONS };
+	if (Array.isArray(loc.pos) && loc.pos[0] <= TOP_EDGE_POPUP_Y) {
+		options.offset = TOP_EDGE_POPUP_OFFSET;
+	}
+	return options;
+}
+
 const bounds = [
-	[0, 0],
-	[WORLD_HEIGHT, WORLD_WIDTH],
+	[WORLD_MIN_Y, WORLD_MIN_X],
+	[WORLD_MAX_Y, WORLD_MAX_X],
+];
+const gateImageBounds = [
+	[MAP_BUFFER + GATE_OFFSET_Y, MAP_BUFFER - GATE_WIDTH + GATE_OFFSET_X],
+	[MAP_BUFFER + GATE_HEIGHT + GATE_OFFSET_Y, MAP_BUFFER + GATE_OFFSET_X],
 ];
 const imageBounds = [
 	[MAP_BUFFER, MAP_BUFFER],
@@ -35,8 +55,11 @@ const map = L.map("map", {
 	maxBounds: bounds,
 	maxBoundsViscosity: 0.3,
 });
-map.fitBounds(bounds);
+map.setView([WORLD_CENTER_Y, WORLD_CENTER_X], map.getBoundsZoom(imageBounds));
 L.control.zoom({ position: "bottomleft" }).addTo(map);
+L.imageOverlay("images/gate.png", gateImageBounds, {
+	className: "gate-map-image",
+}).addTo(map);
 L.imageOverlay("images/3k.png", imageBounds).addTo(map);
 
 let editorMode = false,
@@ -138,6 +161,8 @@ function districtStyle(district, selected) {
 	return {
 		color: base,
 		weight: selected ? 3 : 1,
+		lineCap: "round",
+		lineJoin: "round",
 		fillColor: base,
 		fillOpacity: selected ? 0.5 : 0.22,
 	};
@@ -212,7 +237,12 @@ function openDistrictById(districtId) {
 }
 
 function applyDeepLinkFromUrl() {
-	const url = new URL(window.location.href);
+	let url;
+	try {
+		url = new URL(window.location.href);
+	} catch {
+		return;
+	}
 	const loc = url.searchParams.get("loc");
 	const district = url.searchParams.get("district");
 	const floorRaw = url.searchParams.get("floor");
@@ -263,7 +293,7 @@ function renderMapData() {
 		const district = districtForLocation(loc);
 		const marker = L.marker(px(loc.pos), {
 			icon: makeIcon(loc.cat, district),
-		}).bindPopup(makePopup(loc), EDGE_POPUP_OPTIONS);
+		}).bindPopup(makePopup(loc), popupOptionsForLocation(loc));
 		marker.on("click", () =>
 			updateUrlParams({ loc: loc.id, district: null, floor: null }),
 		);
