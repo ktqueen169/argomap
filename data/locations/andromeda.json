@@ -167,7 +167,7 @@
       -807,
       -182
     ],
-    "name": "Damask Rose",
+    "name": "The Bazaar",
     "aliases": [
       "shops",
       "stores",
@@ -178,7 +178,7 @@
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=0&#entry48",
     "floors": [
       {
-        "name": "All Around",
+        "name": "Damask Rose",
         "aliases": [
           "Damask Rose",
           "residences",
@@ -191,6 +191,30 @@
         "link": "https://argonaut.jcink.net/index.php?showtopic=32&st=0&#entry99"
       }
     ],
+    "district": "andromeda"
+  },
+  {
+    "id": "pandoras-box",
+    "cat": "shop",
+    "pos": [
+      -822,
+      -92
+    ],
+    "name": "Pandora's Box",
+    "aliases": [
+      "magic",
+      "fortune telling",
+      "potions",
+      "spells",
+      "crafts"
+    ],
+    "img": "images/pandora.png",
+    "desc": "A magic shop right next to the Lux River which offers everything from spells, to fortunes, to a cute little carved figure of a rat.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=15&#entry1521",
+    "owner": {
+      "name": "ASRA ALNAZAR",
+      "url": "https://argonaut.jcink.net/index.php?showuser=140"
+    },
     "district": "andromeda"
   },
   {
