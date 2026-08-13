@@ -49,5 +49,23 @@
     "desc": "A glowing river that cuts through the center of Vela.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=50&st=0&#entry104",
     "district": "Throat"
+  },
+  {
+    "id": "throat-of-the-world",
+    "cat": "parks",
+    "pos": [
+      88,
+      24
+    ],
+    "name": "Throat of the World",
+    "aliases": [
+      "Mountain",
+      "Throat",
+      "Geography"
+    ],
+    "img": "images/ThroatoftheWorld.jpg",
+    "desc": "At the heart of Vela is a cold mountain full of mystery.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=50&st=0&#entry1601",
+    "district": "Throat"
   }
 ]
