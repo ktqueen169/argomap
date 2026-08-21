@@ -76,6 +76,10 @@
     "img": "images/radio.png",
     "desc": "A radio tower that broadcasts throughout all of Vela, with an assortment of radio shows and types of music.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=0&#entry70",
+    "owner": {
+      "name": "Bruce Wayne",
+      "url": "https://argonaut.jcink.net/index.php?showuser=161"
+    },
     "district": "metis"
   },
   {
