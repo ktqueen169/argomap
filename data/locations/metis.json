@@ -116,12 +116,12 @@
     "img": "images/batman.png",
     "desc": "Wayne Manor, housing both Bruce Wayne and the Batman’s Batcave.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=15&#entry1766",
-    "owner": {
-    "name": "Bruce Wayne",
-    "url": "https://argonaut.jcink.net/index.php?showuser=161"
-}
+      "owner": {
+      "name": "Bruce Wayne",
+      "url": "https://argonaut.jcink.net/index.php?showuser=161"
+    },
     "district": "metis"
-},
+  },
   {
     "id": "metis-aquarium-zoo",
     "cat": "entertainment",
