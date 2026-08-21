@@ -322,4 +322,24 @@
     },
     "district": "metis"
   }
+ {
+    "id": "wayne-manor",
+    "cat": "other",
+    "pos": [
+      1308,
+      144
+    ],
+    "name": "Wayne Manor",
+    "aliases": [
+      "batcave"
+    ],
+    "img": "images/batman.png",
+    "desc": "Wayne Manor, housing both Bruce Wayne and the Batman’s Batcave.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=15&#entry1766",
+    "owner": {
+      "name": "Bruce Wayne",
+      "url": "https://argonaut.jcink.net/index.php?showuser=161"
+    },
+    "district": "metis"
+  }
 ]
