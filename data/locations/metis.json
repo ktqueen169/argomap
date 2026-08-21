@@ -341,5 +341,27 @@
       "url": "https://argonaut.jcink.net/index.php?showuser=161"
     },
     "district": "metis"
+  },
+  {
+    "id": "hotcake-house",
+    "cat": "food-drink",
+    "pos": [
+      -265,
+      1210
+    ],
+    "name": "Hotcake House",
+    "aliases": [
+      "waffle",
+      "pancake",
+      "egg",
+      "hangover",
+      "diner",
+      "breakfast",
+      "grease"
+    ],
+    "img": "images/notwafflehouse.png",
+    "desc": "A greasy food staple that never closes!",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=15&#entry1725",
+    "district": "metis"
   }
 ]
