@@ -489,5 +489,22 @@
     "desc": "A training grounds in the Whispering Mists, popular with Blades.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=15&#entry1027",
     "district": "andromeda"
+  },
+  {
+    "id": "western-gate",
+    "cat": "other",
+    "pos": [
+      -88,
+      -1432
+    ],
+    "name": "Western Gate",
+    "aliases": [
+      "gate",
+      "door"
+    ],
+    "img": "images/westgate.png",
+    "desc": "The south gate, which is unlocked!",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry803",
+    "district": "andromeda"
   }
 ]
