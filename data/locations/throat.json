@@ -67,5 +67,22 @@
     "desc": "At the heart of Vela is a cold mountain full of mystery.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=50&st=0&#entry1601",
     "district": "Throat"
+  },
+  {
+    "id": "north-gate",
+    "cat": "parks",
+    "pos": [
+      -1372,
+      -4
+    ],
+    "name": "Northern Gate",
+    "aliases": [
+      "gate",
+      "door"
+    ],
+    "img": "images/northgate.png",
+    "desc": "The north gate, which is currently locked.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry800",
+    "district": "Throat"
   }
 ]
