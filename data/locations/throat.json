@@ -70,10 +70,10 @@
   },
   {
     "id": "north-gate",
-    "cat": "parks",
+    "cat": "other",
     "pos": [
-      -1372,
-      -4
+      -1440,
+      -7
     ],
     "name": "Northern Gate",
     "aliases": [
@@ -83,6 +83,23 @@
     "img": "images/northgate.png",
     "desc": "The north gate, which is currently locked.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry800",
+    "district": "Throat"
+  },
+  {
+    "id": "south-gate",
+    "cat": "other",
+    "pos": [
+      1449,
+      45
+    ],
+    "name": "Southern Gate",
+    "aliases": [
+      "gate",
+      "door"
+    ],
+    "img": "images/southgate.png",
+    "desc": "The south gate, which is currently locked.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry802",
     "district": "Throat"
   }
 ]
