@@ -367,5 +367,22 @@
     "desc": "A greasy food staple that never closes!",
     "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=15&#entry1725",
     "district": "metis"
+  },
+  {
+    "id": "eastern-gate",
+    "cat": "other",
+    "pos": [
+      -106,
+      1438
+    ],
+    "name": "Eastern Gate",
+    "aliases": [
+      "gate",
+      "door"
+    ],
+    "img": "images/eastgate.png",
+    "desc": "The east gate, which is currently locked.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry801",
+    "district": "metis"
   }
 ]
