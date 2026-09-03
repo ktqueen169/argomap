@@ -262,5 +262,29 @@
     "desc": "An overgrown temple in the heart of the Thriae Island.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry952",
     "district": "western"
+  },
+  {
+    "id": "seaside-palace",
+    "cat": "other",
+    "pos": [
+      -430,
+      -3822
+    ],
+    "name": "Seaside Palace",
+    "aliases": [
+      "ruins",
+      "history",
+      "treasure",
+      "adventure",
+      "exploration"
+    ],
+    "img": "images/seaside.png",
+    "desc": "The ancient ruins of this coastal palace invoke a divine sense of wisdom and valor.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry2032",
+    "owner": {
+      "name": "Odysseus",
+      "url": "https://argonaut.jcink.net/index.php?showuser=181"
+    },
+    "district": "western"
   }
 ]
