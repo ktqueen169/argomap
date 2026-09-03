@@ -384,5 +384,27 @@
     "desc": "The east gate, which is currently locked.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry801",
     "district": "metis"
+  },
+  {
+    "id": "point-blank",
+    "cat": "service",
+    "pos": [
+      -1248,
+      339
+    ],
+    "name": "Point Blank",
+    "aliases": [
+      "combat sim",
+      "shooting range",
+      "shooting gallery"
+    ],
+    "img": "images/pointblank.png",
+    "desc": "A high-tech recreational shooting and combat simulation facility.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=15&#entry2060",
+    "owner": {
+      "name": "Jane Shepard",
+      "url": "https://argonaut.jcink.net/index.php?showuser=175"
+    },
+    "district": "metis"
   }
 ]
