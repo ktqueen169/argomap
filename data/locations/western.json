@@ -54,7 +54,7 @@
   },
   {
     "id": "magus-sea",
-    "cat": "other",
+    "cat": "park",
     "pos": [
       484,
       -3202
@@ -126,7 +126,7 @@
   },
   {
     "id": "inlumino-lighthouse",
-    "cat": "other",
+    "cat": "service",
     "pos": [
       -24,
       -2900
