@@ -197,6 +197,18 @@ function clearDistrict() {
 	applyDistrictStyles();
 }
 
+function prefersReducedMotion() {
+	return window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+}
+
+function centerMapOn(latLng, zoom) {
+	map.setView(latLng, zoom, {
+		animate: !prefersReducedMotion(),
+		duration: 0.9,
+		easeLinearity: 0.18,
+	});
+}
+
 function openLocationById(locId, floorIndex = null, center = true) {
 	const entry = markerMap[locId];
 	if (!entry) return false;
@@ -206,7 +218,7 @@ function openLocationById(locId, floorIndex = null, center = true) {
 	} else {
 		delete marker._openFloorIndex;
 	}
-	if (center) map.setView(marker.getLatLng(), 1);
+	if (center) centerMapOn(marker.getLatLng(), 1);
 	if (
 		Number.isInteger(floorIndex) &&
 		typeof marker.isPopupOpen === "function" &&
