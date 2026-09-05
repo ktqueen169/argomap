@@ -14,6 +14,9 @@ const EDGE_POPUP_OPTIONS = {
 };
 const TOP_EDGE_POPUP_Y = -1200;
 const TOP_EDGE_POPUP_OFFSET = L.point(0, 300);
+const LEFT_EDGE_POPUP_X = -1200;
+const RIGHT_EDGE_POPUP_X = 1200;
+const SIDE_EDGE_POPUP_OFFSET_X = 180;
 const WORLD_MIN_X = MAP_BUFFER - GATE_WIDTH + GATE_OFFSET_X;
 const WORLD_MAX_X = MAP_BUFFER + MAP_WIDTH + (GATE_WIDTH - GATE_OFFSET_X);
 const WORLD_MIN_Y = 0;
@@ -27,9 +30,25 @@ function px([y, x]) {
 
 function popupOptionsForLocation(loc) {
 	const options = { ...EDGE_POPUP_OPTIONS };
-	if (Array.isArray(loc.pos) && loc.pos[0] <= TOP_EDGE_POPUP_Y) {
-		options.offset = TOP_EDGE_POPUP_OFFSET;
+	if (!Array.isArray(loc.pos)) return options;
+
+	const [y, x] = loc.pos;
+	let offsetX = 0;
+	let offsetY = 0;
+
+	if (y <= TOP_EDGE_POPUP_Y) {
+		offsetY = TOP_EDGE_POPUP_OFFSET.y;
 	}
+	if (x <= LEFT_EDGE_POPUP_X) {
+		offsetX = SIDE_EDGE_POPUP_OFFSET_X;
+	}
+	if (x >= RIGHT_EDGE_POPUP_X) {
+		offsetX = -SIDE_EDGE_POPUP_OFFSET_X;
+	}
+	if (offsetX || offsetY) {
+		options.offset = L.point(offsetX, offsetY);
+	}
+
 	return options;
 }
 
