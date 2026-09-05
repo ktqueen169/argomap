@@ -7,10 +7,10 @@ const GATE_WIDTH = 3000,
 	GATE_OFFSET_Y = 0;
 const EDGE_POPUP_OPTIONS = {
 	autoPan: true,
-	keepInView: false,
-	autoPanPadding: L.point(80, 80),
-	autoPanPaddingTopLeft: L.point(80, 80),
-	autoPanPaddingBottomRight: L.point(80, 80),
+	keepInView: true,
+	autoPanPadding: L.point(140, 140),
+	autoPanPaddingTopLeft: L.point(140, 140),
+	autoPanPaddingBottomRight: L.point(140, 140),
 };
 const TOP_EDGE_POPUP_Y = -1200;
 const TOP_EDGE_POPUP_OFFSET = L.point(0, 300);
