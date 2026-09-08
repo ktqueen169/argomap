@@ -1,0 +1,27 @@
+{
+  "id": "lithos",
+  "title": "Lithos",
+  "image": "images/submaps/lithos.png",
+  "width": 439,
+  "height": 525,
+  "accent": {
+    "accent1": "130, 40, 114",
+    "accent2": "101, 63, 212",
+    "accent3": "190, 184, 217"
+  },
+  "categories": {
+    "test": {
+      "label": "Test",
+      "icon": "images/othericon.svg"
+    }
+  },
+  "locations": [
+    {
+      "id": "lithos-test-pin",
+      "name": "Lithos Test Pin",
+      "cat": "test",
+      "pos": [260, 220],
+      "desc": "Temporary test pin inside Lithos."
+    }
+  ]
+}

@@ -521,6 +521,73 @@
         margin-bottom: 10px;
       }
 
+      #submap-modal {
+        position: absolute;
+        inset: 0;
+        z-index: 1300;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        background: rgba(7, 9, 13, 0.45);
+      }
+
+      #submap-modal[hidden] {
+        display: none !important;
+      }
+
+      #submap-window {
+        position: relative;
+        width: 90%;
+        height: 90%;
+        background: #1f2227;
+        border: 1px solid rgba(170, 178, 188, 0.38);
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.58);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      #submap-title {
+        min-height: 42px;
+        padding: 10px 48px 10px 14px;
+        font-family: "Audiowide", "Trebuchet MS", sans-serif;
+        color: #f3f7fb;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      #submap-close {
+        position: absolute;
+        top: 9px;
+        right: 10px;
+        z-index: 2;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: 1px solid rgba(170, 178, 188, 0.35);
+        background: #1f2227;
+        color: #dce3ea;
+        cursor: pointer;
+        line-height: 1;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      }
+
+      #submap {
+        flex: 1;
+        min-height: 0;
+        background: #15181d;
+      }
+
+      body.submap-open #search,
+      body.submap-open #search-results {
+        z-index: 1500;
+      }
+
+      body.submap-open .leaflet-control-layers {
+        z-index: 1500;
+      }
+
       @media (max-width: 900px) {
         :root {
           --search-top-offset: 8px;
@@ -560,6 +627,11 @@
           max-height: 46vh;
           overflow-y: auto;
         }
+
+        #submap-window {
+          width: calc(100% - 16px);
+          height: calc(100% - 16px);
+        }
       }
     </style>
   </head>
@@ -568,11 +640,22 @@
     <input id="search" placeholder="Search..." />
     <div id="search-results"></div>
 
+    <div id="submap-modal" hidden>
+      <div id="submap-window">
+        <button id="submap-close" type="button" aria-label="Close detail map">
+          ×
+        </button>
+        <div id="submap-title"></div>
+        <div id="submap"></div>
+      </div>
+    </div>
+
     <div id="map"></div>
 
     <script src="./js/data.js"></script>
     <script src="./js/popups.js"></script>
     <script src="./js/search.js"></script>
+    <script src="./js/submaps.js"></script>
     <script src="./js/map.js"></script>
   </body>
 </html>
