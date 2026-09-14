@@ -506,5 +506,25 @@
     "desc": "The west gate, which is unlocked!",
     "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry803",
     "district": "andromeda"
+  },
+  {
+    "id": "garden-of-grotesquqeries",
+    "cat": "other",
+    "pos": [
+      -457,
+      -628
+    ],
+    "name": "Garden of Grotesquqeries",
+    "aliases": [
+      "The Garden"
+    ],
+    "img": "images/GoG.png",
+    "desc": "Painted in myriad colors, one will find gorgeous flora and fauna alike, many of which seem to be grown and raised by Yi themself. Anyone is welcome within, whether they be there for a stroll, or to find new quarry to hunt within.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=27&st=15&#entry2537",
+    "owner": {
+      "name": "Yi",
+      "url": "https://argonaut.jcink.net/index.php?showuser=178"
+    },
+    "district": "andromeda"
   }
 ]
