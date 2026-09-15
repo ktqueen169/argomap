@@ -130,7 +130,6 @@ async function openSubmap(submapId) {
 		submap.invalidateSize();
 		submap.fitBounds(bounds, {
 			animate: false,
-			padding: [mapEl.clientWidth * 0.05, mapEl.clientHeight * 0.05],
 		});
 	}, 0);
 }
