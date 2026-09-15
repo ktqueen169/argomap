@@ -1,9 +1,9 @@
 {
   "id": "lithos",
   "title": "Lithos",
-  "image": "images/submaps/lithos.png",
-  "width": 439,
-  "height": 525,
+  "image": "images/submaps/lithos2.png",
+  "width": 2826,
+  "height": 2000,
   "accent": {
     "accent1": "130, 40, 114",
     "accent2": "101, 63, 212",

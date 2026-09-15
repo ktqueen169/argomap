@@ -116,6 +116,8 @@ async function openSubmap(submapId) {
 				zoomControl: true,
 				minZoom: -2,
 				maxZoom: 5,
+				zoomSnap: 0.1,
+				zoomDelta: 0.5,
 			});
 		}
 
