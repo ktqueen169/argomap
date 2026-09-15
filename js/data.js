@@ -7,6 +7,7 @@ const CATEGORIES = {
 	farms: { label: "Farms", icon: "images/farmicon.svg" },
 	government: { label: "Government", icon: "images/govicon.svg" },
 	services: { label: "Services", icon: "images/servicesicon.svg" },
+	portals: { label: "Portals", icon: "images/portalicon.svg" },
 	entertainment: {
 		label: "Entertainment",
 		icon: "images/entertainmenticon.svg",

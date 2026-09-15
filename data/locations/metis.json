@@ -426,5 +426,22 @@
       "url": "https://argonaut.jcink.net/index.php?showuser=229"
     },
     "district": "metis"
+  },
+  {
+    "id": "lithos",
+    "cat": "portals",
+    "pos": [
+      207,
+      32
+    ],
+    "name": "Lithos",
+    "aliases": [
+      "Lithos"
+    ],
+    "img": "images/submaps/lithos2.png",
+    "desc": "A pocket outside of reality itself.",
+    "submap": "lithos",
+    "hidden": true,
+    "district": "metis"
   }
 ]

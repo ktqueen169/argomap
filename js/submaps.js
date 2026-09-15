@@ -135,6 +135,7 @@ async function openSubmap(submapId) {
 }
 
 function openTestSubmap() {
+	if (window.openHiddenLocationById?.("lithos")) return;
 	openSubmap("lithos");
 }
 

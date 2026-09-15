@@ -82,8 +82,10 @@ L.imageOverlay("images/gate.png", gateImageBounds, {
 L.imageOverlay("images/3k.png", imageBounds).addTo(map);
 
 let editorMode = false,
-	debugMarker = null;
+	debugMarker = null,
+	hiddenPreviewMarker = null;
 let suppressNextMapClick = false;
+let RAW_LOCATIONS = [];
 
 function setEditorMode(enabled) {
 	editorMode = !!enabled;
@@ -254,6 +256,29 @@ function openLocationById(locId, floorIndex = null, center = true) {
 	return true;
 }
 
+function openHiddenLocationById(locId) {
+	const raw = RAW_LOCATIONS.find(
+		(loc) => loc?.id === locId && loc.hidden === true,
+	);
+	const loc = sanitizeLocation(raw);
+	if (!loc) return false;
+	if (hiddenPreviewMarker) {
+		map.removeLayer(hiddenPreviewMarker);
+		hiddenPreviewMarker = null;
+	}
+	const district = districtForLocation(loc);
+	hiddenPreviewMarker = L.marker(px(loc.pos), {
+		icon: makeIcon(loc.cat, district),
+	})
+		.bindPopup(makePopup(loc), popupOptionsForLocation(loc))
+		.addTo(map);
+	centerMapOn(hiddenPreviewMarker.getLatLng(), 1);
+	hiddenPreviewMarker.openPopup();
+	return true;
+}
+
+window.openHiddenLocationById = openHiddenLocationById;
+
 function openDistrictById(districtId) {
 	const polygon = districtPolygons[districtId];
 	const district = DISTRICT_INDEX[districtId];
@@ -335,7 +360,7 @@ function renderMapData() {
 	const overlays = {};
 	const categoryEntries = Object.entries(CATEGORIES);
 	const sortedCategoryEntries = categoryEntries
-		.filter(([k]) => k !== "other")
+		.filter(([k]) => k !== "other" && k !== "portals")
 		.sort((a, b) => a[1].label.localeCompare(b[1].label));
 	if (CATEGORIES.other) sortedCategoryEntries.push(["other", CATEGORIES.other]);
 	sortedCategoryEntries.forEach(([k, v]) => {
@@ -389,6 +414,7 @@ async function loadWorldData() {
 		districts: await districtsRes.json(),
 		locations: mergedLocations,
 	};
+	RAW_LOCATIONS = mergedLocations;
 	const data = parseWorldData(raw);
 	DISTRICTS = data.districts;
 	LOCATIONS = data.locations;
