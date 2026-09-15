@@ -133,6 +133,7 @@ function sanitizeLocation(raw) {
 		img: typeof raw.img === "string" ? raw.img : "",
 		desc: typeof raw.desc === "string" ? raw.desc : "",
 		link: typeof raw.link === "string" ? raw.link : "",
+		submap: typeof raw.submap === "string" ? raw.submap : "",
 		owner: sanitizeOwner(raw.owner),
 		aliases: Array.isArray(raw.aliases)
 			? raw.aliases.filter((a) => typeof a === "string")
@@ -169,6 +170,7 @@ function parseWorldData(data) {
 	const locations = [];
 	const locIds = new Set();
 	rawLocations.forEach((l, i) => {
+		if (l && l.hidden === true) return;
 		const loc = sanitizeLocation(l);
 		if (!loc) {
 			console.warn(`Skipping invalid location at index ${i}`);

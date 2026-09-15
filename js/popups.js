@@ -11,6 +11,10 @@ function escapeAttr(value) {
 	return escapeHtml(value).replace(/`/g, "&#96;");
 }
 
+function escapeJsStringAttr(value) {
+	return escapeAttr(JSON.stringify(String(value ?? "")));
+}
+
 const VACANT_FLOOR_DESC =
 	"Please contact the owner of this building for more information";
 
@@ -48,27 +52,35 @@ function popupThemeClass(district) {
 }
 
 function updateUrlParams(params) {
-	const url = new URL(window.location.href);
-	Object.entries(params).forEach(([k, v]) => {
-		if (v === null || v === undefined || v === "") {
-			url.searchParams.delete(k);
-		} else {
-			url.searchParams.set(k, v);
-		}
-	});
-	window.history.replaceState({}, "", url.toString());
+	try {
+		const url = new URL(window.location.href);
+		Object.entries(params).forEach(([k, v]) => {
+			if (v === null || v === undefined || v === "") {
+				url.searchParams.delete(k);
+			} else {
+				url.searchParams.set(k, v);
+			}
+		});
+		window.history.replaceState({}, "", url.toString());
+	} catch (error) {
+		console.error("Unable to update URL params", error);
+	}
 }
 
 function makePopup(loc) {
 	const cfg = CATEGORIES[loc.cat];
 	const district = districtForLocation(loc);
 	const themeClass = popupThemeClass(district);
+	const submapLink = loc.submap
+		? `<div class="popup-links"><button type="button" class="popup-details-link popup-submap-link" onclick="window.openSubmap && window.openSubmap(${escapeJsStringAttr(loc.submap)})">Open detail map</button></div>`
+		: "";
 	const renderPopupBody = (extraClass = "") => `
   <div class="popup-body ${extraClass}">
    <div class="popup-title">${escapeHtml(loc.name)}</div>
    <div class="popup-cat"><img class="popup-cat-icon" src="${escapeAttr(cfg.icon)}" alt="${escapeAttr(cfg.label)} icon" /> ${escapeHtml(cfg.label)}</div>
    <div class="popup-district-row"><div class="popup-district">${escapeHtml(district.label)}</div></div>
    ${popupDetails(loc)}
+   ${submapLink}
   </div>`;
 
 	const base = renderPopupBody(themeClass);
