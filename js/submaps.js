@@ -115,7 +115,7 @@ async function openSubmap(submapId) {
 				crs: L.CRS.Simple,
 				zoomControl: true,
 				minZoom: -2,
-				maxZoom: 2,
+				maxZoom: 5,
 			});
 		}
 
@@ -125,8 +125,11 @@ async function openSubmap(submapId) {
 
 		submapImageLayer = L.imageOverlay(data.image, bounds).addTo(submap);
 		renderSubmapMarkers(data);
-		submap.fitBounds(bounds);
 		submap.invalidateSize();
+		submap.fitBounds(bounds, {
+			animate: false,
+			padding: [mapEl.clientWidth * 0.05, mapEl.clientHeight * 0.05],
+		});
 	}, 0);
 }
 
