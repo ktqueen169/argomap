@@ -406,5 +406,25 @@
       "url": "https://argonaut.jcink.net/index.php?showuser=175"
     },
     "district": "metis"
+  },
+  {
+    "id": "the-northland-bank",
+    "cat": "services",
+    "pos": [
+      609,
+      591
+    ],
+    "name": "The Northland Bank",
+    "aliases": [
+      "Northland Bank"
+    ],
+    "img": "images/bank.png",
+    "desc": "Providing services such as account creation and management, wire transfers, security deposit boxes, personal investment funds and foreign currency exchange, the Northland Bank caters to a variety of clientele both on and off the books. Discretion is encouraged, for the bank always makes good on its promises.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=15&#entry2610",
+    "owner": {
+      "name": "Pantalone",
+      "url": "https://argonaut.jcink.net/index.php?showuser=229"
+    },
+    "district": "metis"
   }
 ]
