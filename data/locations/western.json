@@ -286,5 +286,23 @@
       "url": "https://argonaut.jcink.net/index.php?showuser=181"
     },
     "district": "western"
+  },
+  {
+    "id": "olive-palace",
+    "cat": "residences",
+    "pos": [
+      -429,
+      -3815
+    ],
+    "name": "Olive Palace",
+    "aliases": [],
+    "img": "images/olive.jpg",
+    "desc": "A palace that has survived in the heart of ancient ruins. The building sits on the cliffside, overlooking the ocean expanse. It is rich with a culture of an era long ago, and now the home of those who belong to it.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=316&st=0&#entry2248",
+    "owner": {
+      "name": "Telemachus",
+      "url": "https://argonaut.jcink.net/index.php?showuser=186"
+    },
+    "district": "western"
   }
 ]

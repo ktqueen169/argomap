@@ -4,7 +4,6 @@ import pathlib
 import sys
 from urllib.parse import urlparse
 
-
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 DISTRICTS_PATH = DATA_DIR / "districts.json"
@@ -21,6 +20,7 @@ ALLOWED_CATEGORIES = {
     "services",
     "entertainment",
     "other",
+    "portals",
 }
 
 
