@@ -60,7 +60,7 @@
   },
   {
     "id": "sonus-radio-tower",
-    "cat": "other",
+    "cat": "services",
     "pos": [
       -312,
       108
@@ -425,6 +425,25 @@
       "name": "Pantalone",
       "url": "https://argonaut.jcink.net/index.php?showuser=229"
     },
+    "district": "metis"
+  },
+  {
+    "id": "hbn",
+    "cat": "services",
+    "pos": [
+      -521,
+      104
+    ],
+    "name": "Hyalos Broadcast Network",
+    "aliases": [
+      "television",
+      "movies",
+      "broadcast",
+      "tv"
+    ],
+    "img": "images/tv.png",
+    "desc": "Constantly broadcasting television and movies, both familiar and new.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=15&#entry2761",
     "district": "metis"
   },
   {
