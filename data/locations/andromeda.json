@@ -526,5 +526,59 @@
       "url": "https://argonaut.jcink.net/index.php?showuser=178"
     },
     "district": "andromeda"
+  },
+  {
+    "id": "west-train",
+    "cat": "services",
+    "pos": [
+      -180,
+      -1360
+    ],
+    "name": "Western Gate Station",
+    "aliases": [
+      "train",
+      "public trainsit",
+      "transportation"
+    ],
+    "img": "images/choochoo.png",
+    "desc": "A train station right next to the Western Gate.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry2892",
+    "district": "andromeda"
+  },
+  {
+    "id": "ager-train",
+    "cat": "services",
+    "pos": [
+      -1292,
+      -447
+    ],
+    "name": "Ager Station",
+    "aliases": [
+      "train",
+      "public trainsit",
+      "transportation"
+    ],
+    "img": "images/choochoo.png",
+    "desc": "A train station that drops you off right at the Bazaar.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry2892",
+    "district": "andromeda"
+  },
+  {
+    "id": "tabernam-train",
+    "cat": "services",
+    "pos": [
+      1081,
+      -858
+    ],
+    "name": "Tabernam Station",
+    "aliases": [
+      "train",
+      "public trainsit",
+      "transportation"
+    ],
+    "img": "images/choochoo.png",
+    "desc": "A train station that leads directly to Andromeda's farmland",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry2892",
+    "district": "andromeda"
   }
 ]
