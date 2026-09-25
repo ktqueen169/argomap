@@ -447,6 +447,60 @@
     "district": "metis"
   },
   {
+    "id": "urbi-train",
+    "cat": "services",
+    "pos": [
+      -1106,
+      799
+    ],
+    "name": "Urbi Station",
+    "aliases": [
+      "train",
+      "public trainsit",
+      "transportation"
+    ],
+    "img": "images/choochoo.png",
+    "desc": "A train station that lands directly in the main city area of Metis.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry2892",
+    "district": "metis"
+  },
+  {
+    "id": "eastern-train",
+    "cat": "services",
+    "pos": [
+      160,
+      1361
+    ],
+    "name": "Eastern Gate Station",
+    "aliases": [
+      "train",
+      "public trainsit",
+      "transportation"
+    ],
+    "img": "images/choochoo.png",
+    "desc": "A train station that brings you directly to the Eastern Gate.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry2892",
+    "district": "metis"
+  },
+  {
+    "id": "industrialis-train",
+    "cat": "services",
+    "pos": [
+      1102,
+      822
+    ],
+    "name": "Industrialis Station",
+    "aliases": [
+      "train",
+      "public trainsit",
+      "transportation"
+    ],
+    "img": "images/choochoo.png",
+    "desc": "A train station that leads directly to the more industrial southern part of Metis.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry2892",
+    "district": "metis"
+  },
+  {
     "id": "lithos",
     "cat": "portals",
     "pos": [
