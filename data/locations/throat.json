@@ -102,5 +102,41 @@
     "desc": "The south gate, which is currently locked.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry802",
     "district": "Throat"
+  },
+  {
+    "id": "northern-train",
+    "cat": "services",
+    "pos": [
+      -1375,
+      90
+    ],
+    "name": "Northern Gate Station",
+    "aliases": [
+      "train",
+      "public trainsit",
+      "transportation"
+    ],
+    "img": "images/choochoo.png",
+    "desc": "A train station that is directly next to the Nothern Gate",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry2892",
+    "district": "Throat"
+  },
+  {
+    "id": "southern-train",
+    "cat": "services",
+    "pos": [
+      1375,
+      90
+    ],
+    "name": "Southern Gate Station",
+    "aliases": [
+      "train",
+      "public trainsit",
+      "transportation"
+    ],
+    "img": "images/choochoo.png",
+    "desc": "A train station that is directly next to the Southern Gate",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry2892",
+    "district": "Throat"
   }
 ]
