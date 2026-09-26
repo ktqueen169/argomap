@@ -500,6 +500,28 @@
     "link": "https://argonaut.jcink.net/index.php?showtopic=272&st=0&#entry2892",
     "district": "metis"
   },
+ {
+    "id": "lehigh-workshop",
+    "cat": "services",
+    "pos": [
+      216,
+      880
+    ],
+    "name": "Lehigh Workshop",
+    "aliases": [
+      "garage",
+      "repair",
+      "mechanic shop"
+    ],
+    "img": "images/carr.jpg",
+    "desc": "An old-school garage for all your vehicle repair needs.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&view=findpost&p=2920",
+    "owner": {
+      "name": "James Bucky Barnes",
+      "url": "https://argonaut.jcink.net/index.php?showuser=159"
+    },
+    "district": "metis"
+  },
   {
     "id": "lithos",
     "cat": "portals",
