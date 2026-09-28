@@ -261,6 +261,10 @@
     "img": "images/Thriaetemple.jpg",
     "desc": "An overgrown temple in the heart of the Thriae Island.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry952",
+    "owner": {
+      "name": "Zelda",
+      "url": "https://argonaut.jcink.net/index.php?showuser=195"
+    },
     "district": "western"
   },
   {
