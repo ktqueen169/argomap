@@ -546,6 +546,31 @@
     "district": "metis"
   },
   {
+    "id": "oizys-hotel",
+    "cat": "services",
+    "pos": [
+      365,
+      890
+    ],
+    "name": "The Oizys Hotel",
+    "aliases": [
+      "hotel",
+      "beds",
+      "overnight",
+      "accommodation",
+      "high-end",
+      "luxury"
+    ],
+    "img": "images/oiz.jpg",
+    "desc": "A luxury French-Neoclassical hotel that sits seven stories tall. Despite recent renovations, appears to be not yet open to the public.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=15&#entry3063",
+    "owner": {
+      "name": "Kamukura Izuru",
+      "url": "https://argonaut.jcink.net/index.php?showuser=192"
+    },
+    "district": "metis"
+  },
+  {
     "id": "lithos",
     "cat": "portals",
     "pos": [
