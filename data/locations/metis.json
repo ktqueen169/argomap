@@ -564,10 +564,16 @@
     "img": "images/oiz.jpg",
     "desc": "A luxury French-Neoclassical hotel that sits seven stories tall. Despite recent renovations, appears to be not yet open to the public.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=15&#entry3063",
-    "owner": {
-      "name": "Kamukura Izuru",
-      "url": "https://argonaut.jcink.net/index.php?showuser=192"
-    },
+    "owners": [
+      {
+        "name": "Kamukura Izuru",
+        "url": "https://argonaut.jcink.net/index.php?showuser=192"
+      },
+      {
+        "name": "Enoshima Junko",
+        "url": "https://argonaut.jcink.net/index.php?showuser=223"
+      }
+    ],
     "district": "metis"
   },
   {
