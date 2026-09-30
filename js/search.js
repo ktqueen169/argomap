@@ -6,6 +6,10 @@ let searchActiveIndex = -1;
 function buildSearchIndex(query) {
 	const q = query.trim().toLowerCase();
 	if (!q) return [];
+	const activeSubmap = document.body.classList.contains("submap-open")
+		? window.getActiveSubmapData?.()
+		: null;
+	if (activeSubmap) return buildSubmapSearchIndex(q, activeSubmap);
 	const out = [];
 	LOCATIONS.forEach((loc) => {
 		const district = districtForLocation(loc);
@@ -39,6 +43,33 @@ function buildSearchIndex(query) {
 		}
 	});
 	return out.slice(0, 12);
+}
+
+function buildSubmapSearchIndex(query, data) {
+	const out = [];
+	(data.locations || []).forEach((loc) => {
+		const locText = [loc.name, loc.desc || "", (loc.aliases || []).join(" ")]
+			.join(" ")
+			.toLowerCase();
+		if (!locText.includes(query)) return;
+		out.push({
+			type: "submap-location",
+			loc,
+			label: loc.name,
+			meta: `${data.title} · ${data.categories?.[loc.cat]?.label || "Location"}`,
+		});
+	});
+	return out.slice(0, 12);
+}
+
+function openSearchHit(hit) {
+	if (hit.type === "submap-location") {
+		window.openSubmapLocationById?.(hit.loc.id);
+	} else {
+		openLocationById(hit.loc.id, hit.floorIndex, true);
+	}
+	searchInput.value = "";
+	hideSearchResults();
 }
 
 function setSearchActiveIndex(next) {
@@ -82,8 +113,7 @@ function renderSearchResults(results) {
 			const idx = Number.parseInt(row.dataset.i, 10);
 			const hit = searchResults[idx];
 			if (!hit) return;
-			openLocationById(hit.loc.id, hit.floorIndex, true);
-			hideSearchResults();
+			openSearchHit(hit);
 		};
 
 		searchResultsEl.appendChild(row);
@@ -120,15 +150,11 @@ function bindSearchHandlers() {
 			e.preventDefault();
 			if (searchResults.length && searchActiveIndex >= 0) {
 				const hit = searchResults[searchActiveIndex];
-				openLocationById(hit.loc.id, hit.floorIndex, true);
-				hideSearchResults();
+				openSearchHit(hit);
 				return;
 			}
 			const match = findSearchMatch(e.target.value);
-			if (match) {
-				openLocationById(match.loc.id, match.floorIndex, true);
-				hideSearchResults();
-			}
+			if (match) openSearchHit(match);
 		}
 	});
 
@@ -136,3 +162,6 @@ function bindSearchHandlers() {
 		setTimeout(hideSearchResults, 120);
 	});
 }
+
+window.hideSearchResults = hideSearchResults;
+window.bindSearchHandlers = bindSearchHandlers;

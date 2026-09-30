@@ -18,20 +18,34 @@ function escapeJsStringAttr(value) {
 const VACANT_FLOOR_DESC =
 	"Please contact the owner of this building for more information";
 
+function ownerList(item, fallback = {}) {
+	const owners = item?.owners ?? fallback.owners;
+	if (Array.isArray(owners)) return owners.filter(Boolean);
+	const owner = item?.owner ?? fallback.owner;
+	return owner ? [owner] : [];
+}
+
+function ownerLink(owner) {
+	const name = escapeHtml(owner.name || "");
+	return owner.url
+		? `<a class="popup-owner-link" href="${escapeAttr(owner.url)}" target="_blank" rel="noopener">${name}</a>`
+		: name;
+}
+
 function popupDetails(item, fallback = {}) {
 	const isVacant = item?.vacant === true;
 	const image = isVacant
 		? "images/vacancy.png"
 		: (item.img ?? fallback.img ?? "");
 	const link = isVacant ? "" : (item.link ?? fallback.link ?? "");
-	const owner = item.owner ?? fallback.owner;
+	const owners = ownerList(item, fallback);
 	const safeDesc = escapeHtml(isVacant ? VACANT_FLOOR_DESC : (item.desc ?? ""));
 	const safeAlt = escapeAttr(item.name || fallback.name || "Location image");
 	const imageHtml = image
 		? `<img class="popup-img" src="${escapeAttr(image)}" alt="${safeAlt}" loading="lazy" decoding="async" fetchpriority="low"/>`
 		: "";
-	const ownerHtml = owner
-		? `<div class="popup-owner">Owned by: <a class="popup-owner-link" href="${escapeAttr(owner.url || "")}" target="_blank" rel="noopener">${escapeHtml(owner.name || "")}</a></div>`
+	const ownerHtml = owners.length
+		? `<div class="popup-owner">Owned by: ${owners.map(ownerLink).join(", ")}</div>`
 		: "";
 	const linkHtml = link
 		? `<a class="popup-details-link" href="${escapeAttr(link)}" target="_blank" rel="noopener">More details</a>`
@@ -91,7 +105,9 @@ function makePopup(loc) {
 	const tabs = loc.floors
 		.map((f, i) => {
 			const len = f.name.length;
-			const sizeClass = len > 24 ? "xlong-label" : len > 16 ? "long-label" : "";
+			let sizeClass = "";
+			if (len > 24) sizeClass = "xlong-label";
+			else if (len > 16) sizeClass = "long-label";
 			return `<div class="vtab-btn ${i === 0 ? "active" : ""} ${sizeClass}" data-i="${i}">${escapeHtml(f.name)}</div>`;
 		})
 		.join("");
@@ -102,6 +118,7 @@ function makePopup(loc) {
 				? {
 						...f,
 						owner: f.owner || loc.owner,
+						owners: f.owners || loc.owners,
 					}
 				: f;
 
@@ -128,3 +145,6 @@ function makeDistrictPopup(district) {
    ${popupDetails(district)}
   </div>`;
 }
+
+window.makePopup = makePopup;
+window.makeDistrictPopup = makeDistrictPopup;

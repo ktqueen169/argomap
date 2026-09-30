@@ -2,6 +2,8 @@ let submap = null;
 let submapImageLayer = null;
 let submapMarkerLayer = null;
 let activeSubmapId = null;
+let activeSubmapData = null;
+const submapMarkerMap = {};
 
 async function loadSubmapData(submapId) {
 	const response = await fetch(`data/submaps/${submapId}.json`);
@@ -61,10 +63,11 @@ function renderSubmapMarkers(data) {
 		submapMarkerLayer = L.layerGroup().addTo(submap);
 	}
 	submapMarkerLayer.clearLayers();
+	Object.keys(submapMarkerMap).forEach((key) => delete submapMarkerMap[key]);
 
 	(data.locations || []).forEach((location) => {
 		if (!Array.isArray(location.pos)) return;
-		L.marker(submapPoint(location.pos), {
+		const marker = L.marker(submapPoint(location.pos), {
 			icon: makeSubmapIcon(location, data),
 		})
 			.bindPopup(makeSubmapPopup(location, data), {
@@ -73,7 +76,19 @@ function renderSubmapMarkers(data) {
 				autoPanPadding: L.point(80, 80),
 			})
 			.addTo(submapMarkerLayer);
+		if (location.id) submapMarkerMap[location.id] = marker;
 	});
+}
+
+function openSubmapLocationById(locId) {
+	const marker = submapMarkerMap[locId];
+	if (!marker || !submap) return false;
+	submap.setView(marker.getLatLng(), Math.max(submap.getZoom(), 1), {
+		animate: !prefersReducedMotion(),
+		duration: 0.6,
+	});
+	marker.openPopup();
+	return true;
 }
 
 function closeSubmap() {
@@ -83,6 +98,8 @@ function closeSubmap() {
 	modal.hidden = true;
 	document.body.classList.remove("submap-open");
 	activeSubmapId = null;
+	activeSubmapData = null;
+	hideSearchResults();
 }
 
 async function openSubmap(submapId) {
@@ -100,6 +117,8 @@ async function openSubmap(submapId) {
 	}
 
 	activeSubmapId = data.id;
+	activeSubmapData = data;
+	hideSearchResults();
 	title.textContent = data.title;
 	modal.hidden = false;
 	document.body.classList.add("submap-open");
@@ -140,6 +159,8 @@ function openTestSubmap() {
 }
 
 window.openSubmap = openSubmap;
+window.openSubmapLocationById = openSubmapLocationById;
+window.getActiveSubmapData = () => activeSubmapData;
 window.openTestSubmap = openTestSubmap;
 window.closeSubmap = closeSubmap;
 
