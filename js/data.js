@@ -89,6 +89,12 @@ function sanitizeOwner(raw) {
 	};
 }
 
+function sanitizeOwners(raw) {
+	if (!Array.isArray(raw)) return null;
+	const owners = raw.map(sanitizeOwner).filter(Boolean);
+	return owners.length ? owners : null;
+}
+
 function sanitizeFloor(raw) {
 	if (!raw || typeof raw !== "object") return null;
 	if (typeof raw.name !== "string" || !raw.name.trim()) return null;
@@ -98,6 +104,7 @@ function sanitizeFloor(raw) {
 		desc: typeof raw.desc === "string" ? raw.desc : "",
 		link: typeof raw.link === "string" ? raw.link : "",
 		owner: sanitizeOwner(raw.owner),
+		owners: sanitizeOwners(raw.owners),
 		aliases: Array.isArray(raw.aliases)
 			? raw.aliases.filter((a) => typeof a === "string")
 			: [],
@@ -136,6 +143,7 @@ function sanitizeLocation(raw) {
 		link: typeof raw.link === "string" ? raw.link : "",
 		submap: typeof raw.submap === "string" ? raw.submap : "",
 		owner: sanitizeOwner(raw.owner),
+		owners: sanitizeOwners(raw.owners),
 		aliases: Array.isArray(raw.aliases)
 			? raw.aliases.filter((a) => typeof a === "string")
 			: [],
@@ -241,3 +249,7 @@ function makeIcon(cat, district) {
 		iconAnchor: [15, 34],
 	});
 }
+
+window.parseWorldData = parseWorldData;
+window.districtForLocation = districtForLocation;
+window.makeIcon = makeIcon;
