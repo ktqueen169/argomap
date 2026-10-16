@@ -1,8 +1,3 @@
-const searchInput = document.getElementById("search");
-const searchResultsEl = document.getElementById("search-results");
-let searchResults = [];
-let searchActiveIndex = -1;
-
 function buildSearchIndex(query) {
 	const q = query.trim().toLowerCase();
 	if (!q) return [];
@@ -62,6 +57,12 @@ function buildSubmapSearchIndex(query, data) {
 	return out.slice(0, 12);
 }
 
+const searchControllers = [];
+
+function createSearchController(searchInput, searchResultsEl) {
+let searchResults = [];
+let searchActiveIndex = -1;
+
 function openSearchHit(hit) {
 	if (hit.type === "submap-location") {
 		window.openSubmapLocationById?.(hit.loc.id);
@@ -109,7 +110,8 @@ function renderSearchResults(results) {
 
 		row.appendChild(name);
 		row.appendChild(meta);
-		row.onclick = () => {
+		row.onclick = (event) => {
+			event.stopPropagation();
 			const idx = Number.parseInt(row.dataset.i, 10);
 			const hit = searchResults[idx];
 			if (!hit) return;
@@ -160,6 +162,22 @@ function bindSearchHandlers() {
 
 	searchInput.addEventListener("blur", () => {
 		setTimeout(hideSearchResults, 120);
+	});
+}
+
+bindSearchHandlers();
+return { hideSearchResults };
+}
+
+function hideSearchResults() {
+	searchControllers.forEach((controller) => controller.hideSearchResults());
+}
+
+function bindSearchHandlers() {
+	[["search", "search-results"], ["submap-search", "submap-search-results"]].forEach(([input, results]) => {
+		searchControllers.push(createSearchController(
+			document.getElementById(input), document.getElementById(results),
+		));
 	});
 }
 

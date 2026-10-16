@@ -89,8 +89,8 @@ let RAW_LOCATIONS = [];
 
 function setEditorMode(enabled) {
 	editorMode = !!enabled;
-	const box = document.getElementById("editor-mode-toggle");
-	if (box) box.checked = editorMode;
+	const button = document.getElementById("editor-mode-toggle");
+	if (button) button.setAttribute("aria-pressed", String(editorMode));
 	if (editorMode) {
 		if (map.hasLayer(districtsLayer)) map.removeLayer(districtsLayer);
 	}
@@ -145,35 +145,48 @@ function districtAccent1Color(district) {
 	return district.accent1 || district.accent || "#5a6672";
 }
 
-function ensureEditorToggleRow() {
-	if (!layersControl) return;
-	const overlaysEl = layersControl
-		.getContainer()
-		.querySelector(".leaflet-control-layers-overlays");
-	if (!overlaysEl || document.getElementById("editor-mode-toggle")) return;
-	const row = document.createElement("div");
-	row.className = "editor-toggle-row";
-	const label = document.createElement("label");
-	const box = document.createElement("input");
-	box.id = "editor-mode-toggle";
-	box.type = "checkbox";
-	box.checked = editorMode;
-	label.appendChild(box);
-	label.appendChild(document.createTextNode("Coord Click"));
-	row.appendChild(label);
+function addWorldFilterUtilities(container) {
+	const utilities = document.createElement("div");
+	utilities.className = "filter-utilities";
+	const details = document.createElement("details");
+	const summary = document.createElement("summary");
+	summary.textContent = "Districts";
+	details.append(summary);
+	DISTRICTS.forEach((district) => {
+		const button = document.createElement("button");
+		button.type = "button";
+		button.className = "district-toggle";
+		button.dataset.district = district.id;
+		const text = document.createElement("span");
+		text.className = "district-toggle-text";
+		text.textContent = district.id === "Throat" ? "The Throat" : district.label;
+		button.appendChild(text);
+		button.style.setProperty("--district-color", districtAccent1Color(district));
+		button.style.setProperty("--district-accent2", district.accent2 || districtAccent1Color(district));
+		button.style.setProperty("--district-accent3", district.accent3 || districtAccent1Color(district));
+		button.addEventListener("click", () => {
+			const polygon = districtPolygons[district.id];
+			if (map.hasLayer(districtsLayer) && districtsLayer.hasLayer(polygon)) {
+				districtsLayer.removeLayer(polygon);
+			} else {
+				setEditorMode(false);
+				districtsLayer.addLayer(polygon);
+				districtsLayer.addTo(map);
+			}
+			syncDistrictButtons();
+		});
+		details.appendChild(button);
+	});
+	utilities.append(details);
+	container.append(utilities);
+}
 
-	const districtsLabel = Array.from(overlaysEl.querySelectorAll("label")).find(
-		(el) => el.textContent?.trim().endsWith("Districts"),
-	);
-	const districtsRow = districtsLabel?.parentElement;
-	if (districtsRow?.parentElement === overlaysEl && districtsRow.nextSibling) {
-		overlaysEl.insertBefore(row, districtsRow.nextSibling);
-	} else {
-		overlaysEl.appendChild(row);
-	}
-
-	box.addEventListener("change", (e) => {
-		setEditorMode(e.target.checked);
+function syncDistrictButtons() {
+	const visible = map.hasLayer(districtsLayer);
+	document.querySelectorAll(".district-toggle[data-district]").forEach((button) => {
+		button.setAttribute("aria-pressed", String(visible && districtsLayer.hasLayer(
+			districtPolygons[button.dataset.district],
+		)));
 	});
 }
 
@@ -198,19 +211,8 @@ function applyDistrictStyles() {
 }
 
 function collapseLayersControl() {
-	if (!layersControl) return;
-	const container = layersControl.getContainer?.();
-	if (!container) return;
-	if (container.classList.contains("leaflet-control-layers-expanded")) {
-		const toggle = container.querySelector(".leaflet-control-layers-toggle");
-		if (toggle) {
-			toggle.click();
-			return;
-		}
-	}
-	if (typeof layersControl.collapse === "function") layersControl.collapse();
-	else if (typeof layersControl._collapse === "function")
-		layersControl._collapse();
+	const details = layersControl?.getContainer().querySelector("details");
+	if (details) details.open = false;
 }
 
 function clearDistrict() {
@@ -357,23 +359,14 @@ function renderMapData() {
 		markerMap[loc.id] = { marker, loc };
 	});
 
-	const overlays = {};
-	const categoryEntries = Object.entries(CATEGORIES);
-	const sortedCategoryEntries = categoryEntries
-		.filter(([k]) => k !== "other" && k !== "portals")
-		.sort((a, b) => a[1].label.localeCompare(b[1].label));
-	if (CATEGORIES.other) sortedCategoryEntries.push(["other", CATEGORIES.other]);
-	sortedCategoryEntries.forEach(([k, v]) => {
-		overlays[
-			`<img src="${v.icon}" alt="" style="width:12px;height:12px;vertical-align:-2px;margin-right:6px;" />${v.label}`
-		] = categoryGroups[k];
-	});
-	overlays["Districts"] = districtsLayer;
 	if (layersControl) map.removeControl(layersControl);
-	layersControl = L.control
-		.layers(null, overlays, { collapsed: true })
-		.addTo(map);
-	ensureEditorToggleRow();
+	const categories = Object.fromEntries(
+		Object.entries(CATEGORIES).filter(([id]) => id !== "portals"),
+	);
+	layersControl = createMapFilters(map, categories, categoryGroups, {
+		addUtilities: addWorldFilterUtilities,
+		sync: syncDistrictButtons,
+	});
 }
 
 async function loadWorldData() {
@@ -438,8 +431,8 @@ window.addEventListener("popstate", () => {
 	applyDeepLinkFromUrl();
 });
 
-map.on("overlayadd overlayremove", () => {
-	ensureEditorToggleRow();
+document.getElementById("editor-mode-toggle").addEventListener("click", () => {
+	setEditorMode(!editorMode);
 });
 
 bindSearchHandlers();

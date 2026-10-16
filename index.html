@@ -90,7 +90,7 @@
         --search-gap: 12px;
       }
 
-      #search {
+      #search, #submap-search {
         position: absolute;
         top: calc(var(--search-top-offset) + env(safe-area-inset-top, 0px));
         left: calc(var(--search-left-offset) + env(safe-area-inset-left, 0px));
@@ -106,7 +106,7 @@
         box-shadow: var(--ui-shadow);
       }
 
-      #search-results {
+      #search-results, #submap-search-results {
         position: absolute;
         top: calc(
           var(--search-top-offset) + var(--search-height) +
@@ -147,24 +147,155 @@
         margin-top: 2px;
       }
 
-      .editor-toggle-row {
-        padding: 6px 8px;
-        border-top: 1px solid #e6e6e6;
+      .map-filters {
+        width: 152px;
+        padding: 6px;
+        border-radius: 8px;
+        background: #1f2430;
+        color: #edf2f8;
+        box-shadow: var(--ui-shadow);
+        max-height: calc(100dvh - 100px);
+        overflow-y: auto;
       }
-
-      .editor-toggle-row label {
+      .map-filters:not(.filters-expanded) { width: 56px; }
+      .filter-panel-toggle {
         display: flex;
         align-items: center;
-        gap: 8px;
-        min-height: 36px;
-        font-size: 12px;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 0;
+        border-radius: 6px;
+        background: #303744;
+        color: #edf2f8;
         cursor: pointer;
+        touch-action: manipulation;
       }
-
-      .editor-toggle-row input {
-        width: 16px;
-        height: 16px;
+      .filters-expanded .filter-panel-toggle { display: none; }
+      .filter-panel-toggle:focus-visible { outline: 3px solid #98c6ff; }
+      .filter-panel-contents { padding-top: 0; }
+      .filter-panel-contents[hidden] { display: none; }
+      .filter-tooltip {
+        position: fixed;
+        z-index: 2000;
+        max-width: calc(100vw - 16px);
+        padding: 7px 10px;
+        border: 1px solid #98c6ff;
+        border-radius: 5px;
+        background: #131720;
+        color: #fff;
+        font: 13px "Montserrat", "Segoe UI", sans-serif;
+        box-shadow: var(--ui-shadow);
+        pointer-events: none;
       }
+      .filter-tooltip[hidden] { display: none; }
+      .filter-icons {
+        display: grid;
+        grid-template-columns: repeat(3, 44px);
+        gap: 4px;
+      }
+      .filter-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border: 2px solid transparent;
+        border-radius: 6px;
+        background: #303744;
+        color: #fff;
+        font-size: 22px;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+      .filter-icon img { width: 24px; height: 24px; }
+      .filter-icon[aria-pressed="true"] {
+        background: #445876;
+        border-color: #98c6ff;
+      }
+      .filter-icon[aria-pressed="false"] { opacity: 0.5; }
+      .filter-icon:focus-visible, .district-toggle:focus-visible, .filter-utilities summary:focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: -3px;
+      }
+      .filter-utilities {
+        display: flex;
+        align-items: flex-start;
+        gap: 4px;
+        border-top: 1px solid #59616d;
+        margin-top: 6px;
+        padding-top: 6px;
+      }
+      .filter-utilities details { flex: 1; min-width: 0; }
+      .filter-utilities summary {
+        min-height: 44px;
+        padding: 12px 2px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      .district-toggle {
+        display: block;
+        width: 100%;
+        min-height: 44px;
+        margin-bottom: 4px;
+        padding: 8px;
+        border: 2px solid transparent;
+        border-radius: 6px;
+        background: #131720;
+        color: #edf2f8;
+        font-family: "Audiowide", "Trebuchet MS", sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        text-shadow: 0 0 1px currentColor;
+        text-align: left;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+      .district-toggle-text {
+        display: inline-block;
+        background: linear-gradient(90deg, var(--district-color) 0%, var(--district-accent2) 45%, var(--district-accent3) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        text-shadow: none;
+      }
+      .district-toggle[aria-pressed="true"] {
+        border-color: var(--district-color, currentColor);
+        background: #252d3a;
+      }
+      .district-toggle[aria-pressed="false"] {
+        border-style: dashed;
+        border-color: var(--district-color, #59616d);
+      }
+      .coordinate-tool {
+        position: absolute;
+        top: calc(var(--search-top-offset) + env(safe-area-inset-top, 0px));
+        left: calc(var(--search-left-offset) + env(safe-area-inset-left, 0px) + min(200px, calc(100vw - 78px)) + 8px);
+        z-index: 1250;
+        box-shadow: var(--ui-shadow);
+      }
+      .coordinate-tool svg { width: 24px; height: 24px; }
+      .coordinate-hint {
+        display: none;
+        position: absolute;
+        top: calc(var(--search-top-offset) + env(safe-area-inset-top, 0px) + 48px);
+        left: calc(var(--search-left-offset) + env(safe-area-inset-left, 0px));
+        z-index: 1240;
+        font-size: 12px;
+        padding: 6px 8px;
+        background: #1f2430;
+        color: #fff;
+        border-radius: 4px;
+        pointer-events: none;
+      }
+      .coordinate-tool[aria-pressed="true"] + .coordinate-hint { display: block; }
+      body.submap-open > .coordinate-tool,
+      body.submap-open > .coordinate-hint { display: none !important; }
+      body.submap-open #map .map-filters,
+      body.submap-open > #search,
+      body.submap-open > #search-results { display: none !important; }
 
       /* popup */
       .leaflet-popup-content {
@@ -588,14 +719,10 @@
         background: #15181d;
       }
 
-      body.submap-open #search,
-      body.submap-open #search-results {
-        z-index: 1500;
-      }
-
-      body.submap-open .leaflet-control-layers {
-        z-index: 1500;
-      }
+      #submap-search, #submap-search-results { z-index: 1250; }
+      #submap-window .map-filters { max-height: calc(80dvh - 100px); }
+      #submap-search { width: min(200px, calc(100% - 20px)) !important; min-width: 0 !important; }
+      #submap-search-results { width: min(260px, calc(100% - 20px)); }
 
       @media (max-width: 900px) {
         :root {
@@ -604,7 +731,7 @@
           --search-height: 38px;
         }
 
-        #search {
+        #search, #submap-search {
           left: calc(
             var(--search-left-offset) + env(safe-area-inset-left, 0px)
           );
@@ -614,7 +741,7 @@
           max-width: none;
         }
 
-        #search-results {
+        #search-results, #submap-search-results {
           left: calc(
             var(--search-left-offset) + env(safe-area-inset-left, 0px)
           );
@@ -623,7 +750,7 @@
           max-height: 40vh;
         }
 
-        .leaflet-control-layers {
+        .leaflet-right .map-filters {
           margin-top: calc(
             var(--search-top-offset) + var(--search-height) + 10px +
               env(safe-area-inset-top, 0px)
@@ -642,11 +769,19 @@
           height: calc(100% - 16px);
         }
       }
+      #search, #submap-search {
+        width: min(200px, calc(100vw - 78px)) !important;
+        min-width: 0 !important;
+      }
     </style>
   </head>
 
   <body>
-    <input id="search" placeholder="Search..." />
+    <input id="search" placeholder="Search..." aria-label="Search main map" />
+    <button id="editor-mode-toggle" type="button" class="filter-icon coordinate-tool" title="Coordinate click" aria-label="Coordinate click" aria-pressed="false" aria-describedby="coordinate-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"/><path d="M12 1v6m0 10v6M1 12h6m10 0h6"/></svg>
+    </button>
+    <p id="coordinate-hint" class="coordinate-hint" role="status">Tap map for coordinates</p>
     <div id="search-results"></div>
 
     <div id="submap-modal" hidden>
@@ -655,7 +790,14 @@
           ×
         </button>
         <div id="submap-title"></div>
-        <div id="submap"></div>
+        <div id="submap" style="position: relative;">
+          <input id="submap-search" placeholder="Search this map..." aria-label="Search submap" />
+          <button id="submap-coordinate-toggle" type="button" class="filter-icon coordinate-tool" title="Coordinate click" aria-label="Coordinate click" aria-pressed="false" aria-describedby="submap-coordinate-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"/><path d="M12 1v6m0 10v6M1 12h6m10 0h6"/></svg>
+          </button>
+          <p id="submap-coordinate-hint" class="coordinate-hint" role="status">Tap map for coordinates</p>
+          <div id="submap-search-results"></div>
+        </div>
       </div>
     </div>
 
@@ -664,6 +806,7 @@
     <script src="./js/data.js"></script>
     <script src="./js/popups.js"></script>
     <script src="./js/search.js"></script>
+    <script src="./js/filters.js"></script>
     <script src="./js/submaps.js"></script>
     <script src="./js/map.js"></script>
   </body>
