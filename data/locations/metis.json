@@ -577,6 +577,33 @@
     "district": "metis"
   },
   {
+    "id": "valhalla-bar",
+    "cat": "food-drink",
+    "pos": [
+      -1234,
+      102
+    ],
+    "name": "Valhalla",
+    "aliases": [
+      "Valhalla",
+      "Val"
+    ],
+    "img": "images/Valhalla.png",
+    "desc": "All roads lead to Valhalla\nA dramatic saying, but when people need to run and hide, want a paycheck to survive the week, or just don't enjoy the idea of working above the table, Valhalla is where they come.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=15&#entry3365",
+    "owners": [
+      {
+        "name": "Talon",
+        "url": "https://argonaut.jcink.net/index.php?showuser=240"
+      },
+      {
+        "name": "Valerie",
+        "url": "https://argonaut.jcink.net/index.php?showuser=91"
+      }
+    ],
+    "district": "metis"
+  },
+  {
     "id": "lithos",
     "cat": "portals",
     "pos": [
