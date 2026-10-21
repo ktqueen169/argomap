@@ -225,6 +225,10 @@
     "img": "images/jumborestaurant.jpg",
     "desc": "Seafood restaurant that overlooks the sea.",
     "link": "https://argonaut.jcink.net/index.php?showtopic=315&st=0&#entry948",
+   "owner": {
+      "name": "Nyx Ulric",
+      "url": "https://argonaut.jcink.net/index.php?showuser=267"
+    },
     "district": "western"
   },
   {
