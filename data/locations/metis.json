@@ -603,6 +603,28 @@
     ],
     "district": "metis"
   },
+ {
+    "id": "tempo-point",
+    "cat": "services",
+    "pos": [
+      -499,
+      190
+    ],
+    "name": "Tempo Point",
+    "aliases": [
+      "music",
+      "acting",
+      "recording"
+    ],
+    "img": "images/moosic.jpg",
+    "desc": "A state of the art recording studio open for any and all music artists or voice actors to rent out and use.",
+    "link": "https://argonaut.jcink.net/index.php?showtopic=33&st=15&#entry3511",
+    "owner": {
+      "name": "Ahri",
+      "url": "https://argonaut.jcink.net/index.php?showuser=271"
+    },
+    "district": "metis"
+  },
   {
     "id": "lithos",
     "cat": "portals",
