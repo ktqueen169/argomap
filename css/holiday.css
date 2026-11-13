@@ -1,0 +1,182 @@
+body.holiday-effects::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1190;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.18) 0 1px, transparent 2px),
+    radial-gradient(circle at 84% 14%, rgba(255, 244, 191, 0.15) 0 1px, transparent 2px);
+  background-size: 110px 110px, 150px 150px;
+}
+
+.holiday-snow {
+  position: fixed;
+  inset: 0;
+  z-index: 1191;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.holiday-snowflake {
+  position: absolute;
+  top: -24px;
+  left: var(--snow-left);
+  width: var(--snow-size);
+  height: var(--snow-size);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, var(--snow-opacity));
+  box-shadow: 0 0 6px rgba(210, 235, 255, 0.55);
+  animation: holiday-snowfall var(--snow-duration) linear var(--snow-delay) infinite;
+}
+
+@keyframes holiday-snowfall {
+  to {
+    transform: translate3d(var(--snow-drift), calc(100vh + 48px), 0) rotate(180deg);
+  }
+}
+
+body.holiday-effects .leaflet-popup-content-wrapper {
+  position: relative;
+  border-color: rgba(226, 238, 255, 0.62);
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.52),
+    0 0 14px rgba(185, 220, 255, 0.2);
+}
+
+body.holiday-effects .leaflet-popup-content-wrapper::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  top: -5px;
+  left: 8px;
+  right: 8px;
+  height: 10px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, #ffe9a8 0 2px, transparent 3px) 0 0 / 32px 10px repeat-x,
+    radial-gradient(circle, #9bd7ff 0 2px, transparent 3px) 16px 0 / 32px 10px repeat-x;
+  filter: drop-shadow(0 0 4px rgba(255, 235, 164, 0.8));
+  animation: holiday-lights 3.2s ease-in-out infinite alternate;
+}
+
+body.holiday-effects .leaflet-popup-content-wrapper::after {
+  content: "✦";
+  position: absolute;
+  z-index: 4;
+  right: 9px;
+  bottom: 5px;
+  color: rgba(224, 241, 255, 0.8);
+  font-size: 10px;
+  pointer-events: none;
+  text-shadow: -270px -4px 0 rgba(255, 240, 180, 0.55);
+  animation: holiday-sparkle 2.6s ease-in-out infinite;
+}
+
+@keyframes holiday-lights {
+  from { opacity: 0.72; filter: drop-shadow(0 0 3px rgba(255, 235, 164, 0.55)); }
+  to { opacity: 1; filter: drop-shadow(0 0 6px rgba(155, 215, 255, 0.9)); }
+}
+
+@keyframes holiday-sparkle {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+.holiday-marker {
+  background: transparent;
+  border: 0;
+}
+
+.holiday-marker-sparkle {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  color: #fff4bc;
+  font-size: 20px;
+  cursor: pointer;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px rgba(255, 224, 124, 0.9),
+    0 0 18px rgba(144, 205, 255, 0.75);
+  animation: holiday-marker-pulse 2.8s ease-in-out infinite;
+}
+
+.holiday-marker-sparkle:hover,
+.holiday-marker-sparkle:focus-visible {
+  transform: scale(1.18);
+}
+
+@keyframes holiday-marker-pulse {
+  0%, 100% { opacity: 0.58; transform: scale(0.9) rotate(-8deg); }
+  50% { opacity: 1; transform: scale(1.08) rotate(8deg); }
+}
+
+.holiday-popup {
+  padding: 18px 16px 16px;
+  text-align: center;
+  color: #eef6ff;
+  background: linear-gradient(145deg, #26364a, #24272e 62%);
+}
+
+.holiday-popup-title {
+  margin-bottom: 8px;
+  color: #fff1b8;
+  font: 700 20px/1.25 "Montserrat", sans-serif;
+  text-shadow: 0 0 8px rgba(255, 224, 128, 0.42);
+}
+
+.holiday-popup-message {
+  font: 500 13px/1.6 "Montserrat", sans-serif;
+}
+
+.holiday-popup-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 1px solid rgba(210, 230, 255, 0.42);
+  color: #f5f8ff;
+  background: rgba(118, 160, 205, 0.17);
+  font: 700 11px/1.2 "Montserrat", sans-serif;
+  text-decoration: none;
+}
+
+.holiday-popup-link:hover,
+.holiday-popup-link:focus-visible {
+  background: rgba(158, 198, 235, 0.28);
+}
+
+.holiday-effects-toggle {
+  position: absolute;
+  top: calc(var(--search-top-offset) + env(safe-area-inset-top, 0px));
+  left: calc(var(--search-left-offset) + env(safe-area-inset-left, 0px) + min(200px, calc(100vw - 78px)) + 60px);
+  z-index: 1250;
+  box-shadow: var(--ui-shadow);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.holiday-effects-toggle[hidden],
+body.submap-open > .holiday-effects-toggle {
+  display: none !important;
+}
+
+.holiday-effects-toggle[aria-pressed="false"] {
+  opacity: 0.58;
+}
+
+@media (max-width: 700px) {
+  .holiday-snowflake:nth-child(n + 19) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .holiday-snowflake:nth-child(n + 9) { display: none; }
+  .holiday-snowflake,
+  body.holiday-effects .leaflet-popup-content-wrapper::before,
+  body.holiday-effects .leaflet-popup-content-wrapper::after,
+  .holiday-marker-sparkle {
+    animation: none;
+  }
+  .holiday-snowflake { top: var(--snow-static-top); }
+}

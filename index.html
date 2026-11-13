@@ -18,6 +18,7 @@
       rel="stylesheet"
     />
     <link rel="preload" as="image" href="images/pi.png" />
+    <link rel="stylesheet" href="./css/holiday.css?v=3" />
 
     <style>
       :root {
@@ -782,6 +783,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"/><path d="M12 1v6m0 10v6M1 12h6m10 0h6"/></svg>
     </button>
     <p id="coordinate-hint" class="coordinate-hint" role="status">Tap map for coordinates</p>
+    <button id="holiday-effects-toggle" type="button" class="filter-icon holiday-effects-toggle" title="Holiday effects" aria-label="Holiday effects" aria-pressed="true" hidden>❄</button>
     <div id="search-results"></div>
 
     <div id="submap-modal" hidden>
@@ -808,6 +810,7 @@
     <script src="./js/search.js"></script>
     <script src="./js/filters.js"></script>
     <script src="./js/submaps.js"></script>
-    <script src="./js/map.js"></script>
+    <script src="./js/map.js?v=3"></script>
+    <script src="./js/holiday.js?v=3"></script>
   </body>
 </html>
